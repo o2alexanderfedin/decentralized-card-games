@@ -1,0 +1,152 @@
+/* Card container - applies perspective */
+.container {
+  /* CSS custom properties for theming */
+  --card-perspective: 1000px;
+  --card-border-radius: 8px;
+  --card-padding: 0.5em;
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+  perspective: var(--card-perspective);
+  width: 100%;
+  height: 100%;
+}
+
+/* Card wrapper - maintains 3D context and aspect ratio */
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 7; /* Poker default */
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card--bridge {
+  aspect-ratio: 9 / 14;
+}
+
+/* Face base styles (shared by front and back) */
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Safari fix: force GPU compositing layer */
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow 0.2s ease;
+}
+
+.face:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Front face */
+.front {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-padding);
+}
+
+/* Back face - pre-rotated 180deg for backface-visibility to work */
+.back {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card content layout - corners and center */
+.corner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.corner--top {
+  align-self: flex-start;
+}
+
+.corner--bottom {
+  align-self: flex-end;
+  transform: rotate(180deg);
+  margin-top: auto;
+}
+
+.rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.suit {
+  font-size: 1.2em;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+}
+
+/* Suit color classes - two-color scheme */
+.suit--red {
+  color: #cc0000;
+}
+
+.suit--black {
+  color: #000000;
+}
+
+/* Suit color classes - four-color scheme extensions */
+.suit--blue {
+  color: #0066cc;
+}
+
+.suit--green {
+  color: #009933;
+}
+
+/* Perspective variants */
+.container--subtle {
+  --card-perspective: 2000px;
+}
+
+.container--moderate {
+  --card-perspective: 1000px;
+}
+
+.container--dramatic {
+  --card-perspective: 600px;
+}
+
+/* Default card back pattern */
+.backPattern {
+  width: 80%;
+  height: 80%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255, 255, 255, 0.1) 5px,
+    rgba(255, 255, 255, 0.1) 10px
+  );
+}
+
+/* Error/invalid card state */
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.2em;
+  font-family: sans-serif;
+}
