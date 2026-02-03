@@ -8,6 +8,9 @@ export { Deck } from './components';
 export { CardStack } from './components';
 export { DropZone } from './components';
 export { DraggableCard } from './components';
+export { CardDragOverlay } from './components';
+export { DroppableZone } from './components';
+export { CardDndProvider } from './components';
 export type {
   // Phase 1 component types
   CardProps,
@@ -31,6 +34,9 @@ export type {
   DropZoneVisualState,
   // Phase 3 component types
   DraggableCardProps,
+  CardDragOverlayProps,
+  DroppableZoneProps,
+  CardDndProviderProps,
 } from './components';
 
 // Types
@@ -73,9 +79,22 @@ export type {
 // Hooks
 export { useCardFlip, usePrefersReducedMotion } from './hooks';
 export { useContainerSize } from './hooks';
+export { useDragSensors, useHapticFeedback } from './hooks';
 export type {
   UseCardFlipOptions,
   UseCardFlipReturn,
   SpringPresetOrCustom,
   ContainerSize,
+  HapticFeedback,
 } from './hooks';
+
+// DnD types
+export type {
+  DragItemData,
+  DropValidationFn,
+  DragLifecycleCallbacks,
+  SensorConfig,
+  DragPreviewMode,
+  DropFeedbackMode,
+  InvalidDropBehavior,
+} from './types';

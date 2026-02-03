@@ -9,3 +9,6 @@ export * from './DropZone';
 
 // Phase 3
 export * from './DraggableCard';
+export * from './CardDragOverlay';
+export * from './DroppableZone';
+export * from './CardDndProvider';
