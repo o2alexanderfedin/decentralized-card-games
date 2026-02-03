@@ -64,6 +64,10 @@ Recent decisions affecting current work:
 - Spread spacing clamps to minOverlap when container is too narrow
 - useContainerSize rounds via Math.round with functional updater for identity preservation
 - Hook tests use component render approach rather than useRef spy
+- Card dimensions in Hand: clamp(60, containerWidth/(count+4), 120) with 1.4x aspect ratio
+- AnimatePresence key uses formatCard(card) for stable identity across reorders
+- Selected card y-offset of -15px via motion animate prop
+- Motion/react test mock: importOriginal + override motion.div and AnimatePresence
 - Deck renders max 5 visual layers for stack depth effect
 - CardStack defaults to 'top-only' face-up mode
 - DropZone visual states controlled via prop (future DnD context integration)
