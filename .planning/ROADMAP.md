@@ -66,10 +66,14 @@ Plans:
   3. Drag preview shows the card being dragged at cursor position
   4. Dragging 50+ cards simultaneously does not cause visible jank
   5. Touch gestures work on mobile devices (iOS Safari, Android Chrome)
-**Plans**: TBD
+**Plans**: 5 plans in 4 waves
 
 Plans:
-- [ ] 03-01: (TBD during plan-phase)
+- [ ] 03-01-PLAN.md — Install @dnd-kit deps, DnD types, sensor and haptic hooks (Wave 1)
+- [ ] 03-02-PLAN.md — DraggableCard component with touch support (Wave 2)
+- [ ] 03-03-PLAN.md — CardDragOverlay and DroppableZone components (Wave 2)
+- [ ] 03-04-PLAN.md — CardDndProvider with lifecycle and multi-card support (Wave 3)
+- [ ] 03-05-PLAN.md — Barrel exports and integration verification (Wave 4)
 
 ### Phase 4: State Management
 **Goal**: Redux users can integrate card state with their application store
@@ -124,7 +128,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
 | 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
-| 3. Drag & Drop | 0/TBD | Not started | - |
+| 3. Drag & Drop | 0/5 | Not started | - |
 | 4. State Management | 0/TBD | Not started | - |
 | 5. Accessibility | 0/TBD | Not started | - |
 | 6. Developer Experience & Build | 0/TBD | Not started | - |
