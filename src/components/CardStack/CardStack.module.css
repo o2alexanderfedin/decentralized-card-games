@@ -1,0 +1,16 @@
+.stack {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+}
+
+.cardSlot {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Top card has pointer cursor when clickable */
+.cardSlot--top {
+  cursor: pointer;
+}
