@@ -7,6 +7,7 @@ export { Hand } from './components';
 export { Deck } from './components';
 export { CardStack } from './components';
 export { DropZone } from './components';
+export { DraggableCard } from './components';
 export type {
   // Phase 1 component types
   CardProps,
@@ -28,6 +29,8 @@ export type {
   DropZoneProps,
   DropZoneEmptyState,
   DropZoneVisualState,
+  // Phase 3 component types
+  DraggableCardProps,
 } from './components';
 
 // Types

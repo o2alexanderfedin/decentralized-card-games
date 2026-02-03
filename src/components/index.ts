@@ -6,3 +6,6 @@ export * from './Hand';
 export * from './Deck';
 export * from './CardStack';
 export * from './DropZone';
+
+// Phase 3
+export * from './DraggableCard';
