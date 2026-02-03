@@ -77,7 +77,7 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None.
+None. (2 UI issue todos moved to done/ - already fixed in commit 7562d67)
 
 ### Blockers/Concerns
 
