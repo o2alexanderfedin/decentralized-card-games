@@ -98,9 +98,9 @@ describe('CardFace', () => {
       expect(pipGrid).not.toBeNull();
       // No .center div should exist for number cards
       const text = container.textContent ?? '';
-      // Club emoji appears: 2 corners + 5 pips = 7 total
+      // Club emoji appears: 5 pips only (no suit in corners for number cards)
       const matches = text.match(/♣/g);
-      expect(matches).toHaveLength(7);
+      expect(matches).toHaveLength(5);
     });
 
     it('pip grid is not rendered for face cards', () => {

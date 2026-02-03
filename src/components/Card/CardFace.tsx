@@ -220,6 +220,10 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
   const label = displayRank(rank);
   const pipCount = RANK_PIP_COUNT[rank];
 
+  // For number cards (2-10): show only rank in corners
+  // For face cards (J,Q,K,A): show rank + suit in corners
+  const showSuitInCorner = !isNumberCard(rank);
+
   return (
     <div
       className={`${styles.face} ${styles.front} ${className ?? ''}`.trim()}
@@ -232,7 +236,7 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
         <div className={styles.topRegion}>
           <div className={`${styles.corner} ${styles['corner--top']}`}>
             <span className={styles.rank}>{label}</span>
-            <span className={styles.suit}>{emoji}</span>
+            {showSuitInCorner && <span className={styles.suit}>{emoji}</span>}
           </div>
         </div>
 
@@ -251,7 +255,7 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
         <div className={styles.bottomRegion}>
           <div className={`${styles.corner} ${styles['corner--bottom']}`}>
             <span className={styles.rank}>{label}</span>
-            <span className={styles.suit}>{emoji}</span>
+            {showSuitInCorner && <span className={styles.suit}>{emoji}</span>}
           </div>
         </div>
       </div>
