@@ -375,6 +375,37 @@ function App() {
         </div>
       </section>
 
+      {/* All Cards Grid */}
+      <section style={{ marginBottom: '60px' }}>
+        <h2 style={{
+          fontSize: '1.5rem',
+          fontWeight: 600,
+          marginBottom: '16px',
+          color: '#1e293b'
+        }}>
+          Full Deck (52 Cards)
+        </h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))',
+          gap: '12px',
+          background: '#f8fafc',
+          borderRadius: '12px',
+          padding: '40px'
+        }}>
+          {(['hearts', 'diamonds', 'clubs', 'spades'] as const).map(suit =>
+            (['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'] as const).map(rank => (
+              <Card
+                key={`${suit}-${rank}`}
+                card={{ suit, rank }}
+                isFaceUp={true}
+                style={{ width: 80, height: 112 }}
+              />
+            ))
+          )}
+        </div>
+      </section>
+
       <footer style={{
         marginTop: '80px',
         paddingTop: '20px',
