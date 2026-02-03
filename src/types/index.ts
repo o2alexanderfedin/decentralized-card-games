@@ -1,2 +1,12 @@
-// Types barrel export - populated in Task 2
-export {};
+export {
+  SUITS,
+  RANKS,
+  type Suit,
+  type Rank,
+  type CardData,
+  isSuit,
+  isRank,
+  parseCard,
+  formatCard,
+  allCards,
+} from './card';
