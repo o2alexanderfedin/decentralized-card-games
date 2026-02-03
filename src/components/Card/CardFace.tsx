@@ -11,6 +11,8 @@
 import { CardData, parseCard } from '../../types';
 import { SUIT_EMOJI, getSuitColor } from '../../constants';
 import type { ColorScheme } from '../../constants';
+import { NumberCardLayout, FaceCardLayout } from './layouts';
+import type { CardLayoutStrategy } from './layouts';
 import styles from './Card.module.css';
 
 /** Props for the CardFace component. */
@@ -31,137 +33,18 @@ function displayRank(rank: string): string {
   return rank === 'T' ? '10' : rank;
 }
 
-/** Number of pips for each numeric rank. */
-const RANK_PIP_COUNT: Record<string, number> = {
-  '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
-  '7': 7, '8': 8, '9': 9, 'T': 10,
-};
-
 /** Whether a rank is a number card with pip layout. */
 function isNumberCard(rank: string): boolean {
-  return rank in RANK_PIP_COUNT;
+  return ['2', '3', '4', '5', '6', '7', '8', '9', 'T'].includes(rank);
 }
 
-/**
- * Pip position descriptor.
- * col: 'left' | 'center' | 'right' - which column
- * row: 1-5 - which row (top to bottom)
- * flipped: whether pip is rotated 180deg (bottom half pips)
- */
-interface PipPosition {
-  col: 'left' | 'center' | 'right';
-  row: number;
-  flipped: boolean;
-}
+/** Strategy instances (reused for all cards) */
+const numberCardLayout = new NumberCardLayout();
+const faceCardLayout = new FaceCardLayout();
 
-/**
- * Standard playing card pip layouts.
- *
- * These match the traditional arrangements found on real playing cards.
- * The grid is 3 columns (left, center, right) x 5 rows (top to bottom).
- */
-const PIP_LAYOUTS: Record<number, PipPosition[]> = {
-  2: [
-    { col: 'center', row: 1, flipped: false },
-    { col: 'center', row: 5, flipped: true },
-  ],
-  3: [
-    { col: 'center', row: 1, flipped: false },
-    { col: 'center', row: 3, flipped: false },
-    { col: 'center', row: 5, flipped: true },
-  ],
-  4: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-  5: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'center', row: 3, flipped: false },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-  6: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'left', row: 3, flipped: false },
-    { col: 'right', row: 3, flipped: false },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-  7: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'center', row: 2, flipped: false },
-    { col: 'left', row: 3, flipped: false },
-    { col: 'right', row: 3, flipped: false },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-  8: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'center', row: 2, flipped: false },
-    { col: 'left', row: 3, flipped: false },
-    { col: 'right', row: 3, flipped: false },
-    { col: 'center', row: 4, flipped: true },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-  9: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'left', row: 2, flipped: false },
-    { col: 'right', row: 2, flipped: false },
-    { col: 'center', row: 3, flipped: false },
-    { col: 'left', row: 4, flipped: true },
-    { col: 'right', row: 4, flipped: true },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-  10: [
-    { col: 'left', row: 1, flipped: false },
-    { col: 'right', row: 1, flipped: false },
-    { col: 'center', row: 2, flipped: false },
-    { col: 'left', row: 2, flipped: false },
-    { col: 'right', row: 2, flipped: false },
-    { col: 'left', row: 4, flipped: true },
-    { col: 'right', row: 4, flipped: true },
-    { col: 'center', row: 4, flipped: true },
-    { col: 'left', row: 5, flipped: true },
-    { col: 'right', row: 5, flipped: true },
-  ],
-};
-
-/** Column CSS class lookup. */
-const COL_CLASS: Record<string, string> = {
-  left: styles['pip--left'],
-  center: styles['pip--center'],
-  right: styles['pip--right'],
-};
-
-/**
- * Renders the pip layout grid for number cards (2-10).
- */
-function PipLayout({ emoji, count }: { emoji: string; count: number }) {
-  const layout = PIP_LAYOUTS[count];
-  if (!layout) return null;
-
-  return (
-    <div className={styles.pipGrid} data-testid="pip-grid">
-      {layout.map((pip, i) => (
-        <span
-          key={i}
-          className={`${styles.pip} ${COL_CLASS[pip.col]} ${pip.flipped ? styles['pip--flipped'] : ''}`.trim()}
-          style={{ gridRow: pip.row }}
-        >
-          {emoji}
-        </span>
-      ))}
-    </div>
-  );
+/** Select appropriate layout strategy for the given rank */
+function getLayoutStrategy(rank: string): CardLayoutStrategy {
+  return isNumberCard(rank) ? numberCardLayout : faceCardLayout;
 }
 
 /**
@@ -218,11 +101,9 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
   const emoji = SUIT_EMOJI[suit];
   const color = getSuitColor(suit, colorScheme);
   const label = displayRank(rank);
-  const pipCount = RANK_PIP_COUNT[rank];
 
-  // For number cards (2-10): show only rank in corners
-  // For face cards (J,Q,K,A): show rank + suit in corners
-  const showSuitInCorner = !isNumberCard(rank);
+  // Never show suit symbols in corners - only rank
+  const showSuitInCorner = false;
 
   return (
     <div
@@ -240,23 +121,14 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
           </div>
         </div>
 
-        {/* Center region: pip layout for number cards, single large symbol for face/ace */}
+        {/* Center region: strategy pattern handles layout for number cards vs face/ace */}
         <div className={styles.centerRegion}>
-          {isNumberCard(rank) ? (
-            <PipLayout emoji={emoji} count={pipCount} />
-          ) : (
-            <div className={styles.center}>
-              <span>{emoji}</span>
-            </div>
-          )}
+          {getLayoutStrategy(rank).renderCenter(emoji, rank)}
         </div>
 
-        {/* Bottom region */}
+        {/* Bottom region - no corner rank needed */}
         <div className={styles.bottomRegion}>
-          <div className={`${styles.corner} ${styles['corner--bottom']}`}>
-            <span className={styles.rank}>{label}</span>
-            {showSuitInCorner && <span className={styles.suit}>{emoji}</span>}
-          </div>
+          {/* Bottom corner rank removed per user request */}
         </div>
       </div>
     </div>

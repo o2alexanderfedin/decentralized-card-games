@@ -149,6 +149,19 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
   const perspectiveValue = PERSPECTIVE_VALUES[perspective] ?? PERSPECTIVE_VALUES.moderate;
 
   // ---------------------------------------------------------------------------
+  // Calculate responsive font size based on card dimensions
+  // ---------------------------------------------------------------------------
+  const cardFontSize = useMemo(() => {
+    // Extract width from style prop, default to 120px (standard poker card width)
+    const width = (style?.width as number) ?? 120;
+    // Base font size scales with card width, but with minimum for readability
+    // Formula: clamp(min 12px, preferred width * 0.12, max 16px)
+    // 80px → 12px (min), 120px → 14.4px, 140px+ → 16px (max)
+    const scaledSize = width * 0.12;
+    return `clamp(12px, ${scaledSize}px, 16px)`;
+  }, [style?.width]);
+
+  // ---------------------------------------------------------------------------
   // ARIA label
   // ---------------------------------------------------------------------------
   const ariaLabel = useMemo(() => {
@@ -180,7 +193,7 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
         {/* Front face */}
         <motion.div
           className={`${styles.face} ${styles.front}`}
-          style={{ opacity: frontOpacity }}
+          style={{ opacity: frontOpacity, fontSize: cardFontSize }}
         >
           <CardFace card={cardData ?? card} colorScheme={colorScheme} />
         </motion.div>
@@ -188,7 +201,7 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
         {/* Back face */}
         <motion.div
           className={`${styles.face} ${styles.back}`}
-          style={{ opacity: backOpacity }}
+          style={{ opacity: backOpacity, fontSize: cardFontSize }}
         >
           <CardBack>{cardBack}</CardBack>
         </motion.div>

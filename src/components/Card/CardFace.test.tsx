@@ -18,9 +18,9 @@ describe('CardFace', () => {
     const { container } = render(<CardFace card="♦T" />);
     // T rank should display as "10" in the rendered output
     expect(container.textContent).toContain('10');
-    // Should appear twice (top and bottom corners)
+    // Should appear once (top corner only, bottom corner removed)
     const matches = (container.textContent ?? '').match(/10/g);
-    expect(matches).toHaveLength(2);
+    expect(matches).toHaveLength(1);
   });
 
   it('applies two-color scheme by default (hearts = red)', () => {
@@ -122,17 +122,17 @@ describe('CardFace', () => {
     it('face cards show single large center symbol', () => {
       const { container } = render(<CardFace card="♠K" />);
       const text = container.textContent ?? '';
-      // Spade emoji appears: 2 corners + 1 center = 3 total
+      // Spade emoji appears: 1 center only (face cards don't show suit in corners)
       const matches = text.match(/♠/g);
-      expect(matches).toHaveLength(3);
+      expect(matches).toHaveLength(1);
     });
 
     it('Ace shows single large center symbol', () => {
       const { container } = render(<CardFace card="♥A" />);
       const text = container.textContent ?? '';
-      // Heart emoji appears: 2 corners + 1 center = 3 total
+      // Heart emoji appears: 1 center only (Aces don't show suit in corners)
       const matches = text.match(/♥/g);
-      expect(matches).toHaveLength(3);
+      expect(matches).toHaveLength(1);
     });
   });
 });

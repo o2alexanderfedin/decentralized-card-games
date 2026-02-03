@@ -52,6 +52,11 @@
   /* Ensure solid background */
   background-color: #ffffff;
   /* Remove padding - let cardContent handle spacing */
+  /* Dark bevel for face-up cards */
+  box-shadow:
+    inset 1px 1px 0 rgba(0, 0, 0, 0.15),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 /* Back face - pre-rotated 180deg for backface-visibility to work */
@@ -61,6 +66,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Light bevel for face-down cards */
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 /* Card content container - ensures content stays within bounds */
@@ -87,6 +97,8 @@
   align-items: center;
   justify-content: center;
   min-height: 0; /* Allow flex shrink */
+  /* Add padding to prevent pips from overlapping corner ranks */
+  padding: 0.8em 0;
 }
 
 .bottomRegion {
@@ -130,7 +142,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 /* ── Pip layout for number cards (2-10) ── */
@@ -150,7 +162,7 @@
   grid-template-rows: repeat(5, 1fr);
   align-items: center;
   justify-items: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
   box-sizing: border-box;
 }
 
