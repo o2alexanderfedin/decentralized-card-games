@@ -31,10 +31,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Cards flip smoothly with 3D CSS transform animation when toggled
   4. Click/tap on card triggers event handler with card identity
   5. Cards scale responsively within their container
-**Plans**: TBD
+**Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 01-01: (TBD during plan-phase)
+- [ ] 01-01-PLAN.md - Project foundation and TypeScript types (Wave 1)
+- [ ] 01-02-PLAN.md - Animation hooks with motion values (Wave 2)
+- [ ] 01-03-PLAN.md - Card face and back presentation components (Wave 2)
+- [ ] 01-04-PLAN.md - Complete Card component integration with tests (Wave 3)
 
 ### Phase 2: Container Components & Layouts
 **Goal**: Developers can display cards in hands, decks, and stacks with layout presets
@@ -116,7 +119,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Core Rendering | 0/TBD | Not started | - |
+| 1. Foundation & Core Rendering | 0/4 | Ready to execute | - |
 | 2. Container Components & Layouts | 0/TBD | Not started | - |
 | 3. Drag & Drop | 0/TBD | Not started | - |
 | 4. State Management | 0/TBD | Not started | - |
