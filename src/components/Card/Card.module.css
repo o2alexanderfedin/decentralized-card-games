@@ -36,6 +36,10 @@
   /* Safari fix: force GPU compositing layer */
   transform: translate3d(0, 0, 0);
   transition: box-shadow 0.2s ease;
+  /* Prevent content overflow */
+  overflow: hidden;
+  /* Add border for definition */
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .face:hover {
@@ -48,6 +52,8 @@
   display: flex;
   flex-direction: column;
   padding: var(--card-padding);
+  /* Ensure solid background */
+  background-color: #ffffff;
 }
 
 /* Back face - pre-rotated 180deg for backface-visibility to work */
