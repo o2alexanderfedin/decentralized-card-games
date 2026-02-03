@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 3 of 6 (Drag & Drop)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-03 - Completed 03-03-PLAN.md
+Last activity: 2026-02-03 - Completed 03-04-PLAN.md
 
-Progress: [##########.] 11/13 plans (85%)
+Progress: [############.] 12/13 plans (92%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: 7 min
-- Total execution time: 85 min
+- Total execution time: 90 min
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [##########.] 11/13 plans (85%)
 |-------|-------|-------|----------|
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
-| 3 - Drag & Drop | 3/5 | 13 min | 4 min |
+| 3 - Drag & Drop | 4/5 | 18 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (5 min), 02-04 (9 min), 03-01 (4 min), 03-02 (4 min), 03-03 (5 min)
+- Last 5 plans: 02-04 (9 min), 03-01 (4 min), 03-02 (4 min), 03-03 (5 min), 03-04 (5 min)
 - Trend: Consistent fast execution; DnD component plans averaging 4-5 min
 
 *Updated after each plan completion*
@@ -83,6 +83,10 @@ Recent decisions affecting current work:
 - Wrapper div for useDroppable ref to avoid modifying Phase 2 DropZone
 - Multi-card stack shows max 3 visual cards with +N badge
 - DroppableZone supports both accepts array and onValidate callback
+- Component-level CardDndProviderProps uses simplified card callbacks (card, zoneId) not raw dnd-kit events
+- Drop validation checks zone data.onValidate first, falls back to data.accepts array
+- activeCard state managed internally; consumer never touches DndContext directly
+- Barrel exports expanded to include all Phase 3 DnD components, hooks, and types
 
 ### Pending Todos
 
@@ -94,6 +98,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-03T23:13:44Z
-Stopped at: Completed 03-03-PLAN.md (CardDragOverlay + DroppableZone)
+Last session: 2026-02-03T23:22:34Z
+Stopped at: Completed 03-04-PLAN.md (CardDndProvider)
 Resume file: None
