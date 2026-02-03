@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 3 of 6 (Drag & Drop)
-Plan: 1 of 5 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-03 - Completed 03-01-PLAN.md
+Last activity: 2026-02-03 - Completed 03-03-PLAN.md
 
-Progress: [#########.] 9/13 plans (69%)
+Progress: [##########.] 11/13 plans (85%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
-- Average duration: 8 min
-- Total execution time: 76 min
+- Total plans completed: 11
+- Average duration: 7 min
+- Total execution time: 85 min
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [#########.] 9/13 plans (69%)
 |-------|-------|-------|----------|
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
-| 3 - Drag & Drop | 1/5 | 4 min | 4 min |
+| 3 - Drag & Drop | 3/5 | 13 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (5 min), 02-02 (4 min), 02-03 (5 min), 02-04 (9 min), 03-01 (4 min)
-- Trend: Consistent fast execution; DnD foundation plan was pure types and hooks with no UI complexity
+- Last 5 plans: 02-03 (5 min), 02-04 (9 min), 03-01 (4 min), 03-02 (4 min), 03-03 (5 min)
+- Trend: Consistent fast execution; DnD component plans averaging 4-5 min
 
 *Updated after each plan completion*
 
@@ -79,6 +79,10 @@ Recent decisions affecting current work:
 - @dnd-kit/modifiers installed at 9.0.0 (latest available)
 - useHapticFeedback uses useMemo keyed on enabled+isSupported for referential stability
 - CardDndProviderProps extends DragLifecycleCallbacks via interface extension
+- DragOverlay always mounted, children conditionally rendered (dnd-kit pitfall 4)
+- Wrapper div for useDroppable ref to avoid modifying Phase 2 DropZone
+- Multi-card stack shows max 3 visual cards with +N badge
+- DroppableZone supports both accepts array and onValidate callback
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-03T23:05:59Z
-Stopped at: Completed 03-01-PLAN.md (DnD foundation - types, sensors, haptics)
+Last session: 2026-02-03T23:13:44Z
+Stopped at: Completed 03-03-PLAN.md (CardDragOverlay + DroppableZone)
 Resume file: None
