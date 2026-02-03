@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 2 - Container Components & Layouts (Complete)
+**Current focus:** Phase 3 - Drag & Drop (In progress)
 
 ## Current Position
 
-Phase: 2 of 6 (Container Components & Layouts)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-02-03 - Completed 02-04-PLAN.md
+Phase: 3 of 6 (Drag & Drop)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-03 - Completed 03-01-PLAN.md
 
-Progress: [########..] 8/10 plans (80%)
+Progress: [#########.] 9/13 plans (69%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 9 min
-- Total execution time: 72 min
+- Total plans completed: 9
+- Average duration: 8 min
+- Total execution time: 76 min
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [########..] 8/10 plans (80%)
 |-------|-------|-------|----------|
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
+| 3 - Drag & Drop | 1/5 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-04 (25 min), 02-01 (5 min), 02-02 (4 min), 02-03 (5 min), 02-04 (9 min)
-- Trend: Phase 2 executed efficiently with established patterns; 02-04 included human checkpoint
+- Last 5 plans: 02-01 (5 min), 02-02 (4 min), 02-03 (5 min), 02-04 (9 min), 03-01 (4 min)
+- Trend: Consistent fast execution; DnD foundation plan was pure types and hooks with no UI complexity
 
 *Updated after each plan completion*
 
@@ -74,6 +75,10 @@ Recent decisions affecting current work:
 - Container empty state pattern: 'none' | 'placeholder' | ReactNode
 - Named exports in src/index.ts for explicit public API surface
 - Wildcard re-exports in src/components/index.ts for internal convenience
+- Separate MouseSensor + TouchSensor instead of PointerSensor for iOS Safari scroll prevention
+- @dnd-kit/modifiers installed at 9.0.0 (latest available)
+- useHapticFeedback uses useMemo keyed on enabled+isSupported for referential stability
+- CardDndProviderProps extends DragLifecycleCallbacks via interface extension
 
 ### Pending Todos
 
@@ -81,10 +86,10 @@ None.
 
 ### Blockers/Concerns
 
-None.
+- Pre-existing JSX namespace TypeScript errors in FaceCardLayout.tsx and NumberCardLayout.tsx (does not block execution)
 
 ## Session Continuity
 
-Last session: 2026-02-03T20:18:49Z
-Stopped at: Completed 02-04-PLAN.md (Phase 2 complete - barrel exports and integration verification)
+Last session: 2026-02-03T23:05:59Z
+Stopped at: Completed 03-01-PLAN.md (DnD foundation - types, sensors, haptics)
 Resume file: None
