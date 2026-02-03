@@ -95,6 +95,48 @@
   font-size: 3em;
 }
 
+/* ── Pip layout for number cards (2-10) ── */
+
+/**
+ * Pip grid uses a 3-column, 5-row layout matching traditional playing cards.
+ * Columns: left | center | right
+ * Rows represent vertical positions from top to bottom.
+ *
+ * Individual pips are placed using grid-column and grid-row.
+ */
+.pipGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+  font-size: 1.5em;
+  padding: 0.15em 0;
+}
+
+.pip {
+  line-height: 1;
+}
+
+/* Flipped pips (bottom half of card, rotated 180deg) */
+.pip--flipped {
+  transform: rotate(180deg);
+}
+
+/* Column placement */
+.pip--left {
+  grid-column: 1;
+}
+
+.pip--center {
+  grid-column: 2;
+}
+
+.pip--right {
+  grid-column: 3;
+}
+
 /* Suit color classes - two-color scheme */
 .suit--red {
   color: #cc0000;

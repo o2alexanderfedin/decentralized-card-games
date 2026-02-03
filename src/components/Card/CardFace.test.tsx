@@ -23,14 +23,6 @@ describe('CardFace', () => {
     expect(matches).toHaveLength(2);
   });
 
-  it('shows suit emoji in center and corners', () => {
-    const { container } = render(<CardFace card="♣5" />);
-    const text = container.textContent ?? '';
-    // Club emoji should appear 3 times (top corner, center, bottom corner)
-    const matches = text.match(/♣/g);
-    expect(matches).toHaveLength(3);
-  });
-
   it('applies two-color scheme by default (hearts = red)', () => {
     const { container } = render(<CardFace card="♥7" />);
     const face = container.firstElementChild as HTMLElement;
@@ -71,5 +63,76 @@ describe('CardFace', () => {
     const { container } = render(<CardFace card="♠A" className="custom-class" />);
     const face = container.firstElementChild as HTMLElement;
     expect(face.className).toContain('custom-class');
+  });
+
+  // ── Pip layout tests ──
+
+  describe('pip layouts for number cards', () => {
+    const pipCounts: [string, string, number][] = [
+      ['♠2', '2 of spades', 2],
+      ['♥3', '3 of hearts', 3],
+      ['♦4', '4 of diamonds', 4],
+      ['♣5', '5 of clubs', 5],
+      ['♠6', '6 of spades', 6],
+      ['♥7', '7 of hearts', 7],
+      ['♦8', '8 of diamonds', 8],
+      ['♣9', '9 of clubs', 9],
+      ['♠T', '10 of spades', 10],
+    ];
+
+    it.each(pipCounts)(
+      '%s shows %d suit symbols in pip grid',
+      (notation, _label, expectedCount) => {
+        const { container } = render(<CardFace card={notation} />);
+        const pipGrid = container.querySelector('[data-testid="pip-grid"]');
+        expect(pipGrid).not.toBeNull();
+        // Count pip elements inside the grid
+        const pips = pipGrid!.querySelectorAll('span');
+        expect(pips).toHaveLength(expectedCount);
+      }
+    );
+
+    it('number card suit symbols are inside pip grid, not center', () => {
+      const { container } = render(<CardFace card="♣5" />);
+      const pipGrid = container.querySelector('[data-testid="pip-grid"]');
+      expect(pipGrid).not.toBeNull();
+      // No .center div should exist for number cards
+      const text = container.textContent ?? '';
+      // Club emoji appears: 2 corners + 5 pips = 7 total
+      const matches = text.match(/♣/g);
+      expect(matches).toHaveLength(7);
+    });
+
+    it('pip grid is not rendered for face cards', () => {
+      const { container: jContainer } = render(<CardFace card="♠J" />);
+      expect(jContainer.querySelector('[data-testid="pip-grid"]')).toBeNull();
+
+      const { container: qContainer } = render(<CardFace card="♥Q" />);
+      expect(qContainer.querySelector('[data-testid="pip-grid"]')).toBeNull();
+
+      const { container: kContainer } = render(<CardFace card="♦K" />);
+      expect(kContainer.querySelector('[data-testid="pip-grid"]')).toBeNull();
+    });
+
+    it('pip grid is not rendered for Ace', () => {
+      const { container } = render(<CardFace card="♠A" />);
+      expect(container.querySelector('[data-testid="pip-grid"]')).toBeNull();
+    });
+
+    it('face cards show single large center symbol', () => {
+      const { container } = render(<CardFace card="♠K" />);
+      const text = container.textContent ?? '';
+      // Spade emoji appears: 2 corners + 1 center = 3 total
+      const matches = text.match(/♠/g);
+      expect(matches).toHaveLength(3);
+    });
+
+    it('Ace shows single large center symbol', () => {
+      const { container } = render(<CardFace card="♥A" />);
+      const text = container.textContent ?? '';
+      // Heart emoji appears: 2 corners + 1 center = 3 total
+      const matches = text.match(/♥/g);
+      expect(matches).toHaveLength(3);
+    });
   });
 });

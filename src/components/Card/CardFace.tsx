@@ -1,8 +1,9 @@
 /**
  * CardFace component - renders the front face of a playing card.
  *
- * Displays suit emoji and rank in standard playing card layout:
- * top-left corner, center pip, and bottom-right corner (rotated 180deg).
+ * Displays suit emoji and rank with standard playing card pip layouts:
+ * - Number cards (2-10): show multiple suit symbols in traditional arrangements
+ * - Face cards (J, Q, K) and Ace: show single large center symbol
  *
  * Supports two-color and four-color suit schemes.
  */
@@ -30,10 +31,156 @@ function displayRank(rank: string): string {
   return rank === 'T' ? '10' : rank;
 }
 
+/** Number of pips for each numeric rank. */
+const RANK_PIP_COUNT: Record<string, number> = {
+  '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
+  '7': 7, '8': 8, '9': 9, 'T': 10,
+};
+
+/** Whether a rank is a number card with pip layout. */
+function isNumberCard(rank: string): boolean {
+  return rank in RANK_PIP_COUNT;
+}
+
+/**
+ * Pip position descriptor.
+ * col: 'left' | 'center' | 'right' - which column
+ * row: 1-5 - which row (top to bottom)
+ * flipped: whether pip is rotated 180deg (bottom half pips)
+ */
+interface PipPosition {
+  col: 'left' | 'center' | 'right';
+  row: number;
+  flipped: boolean;
+}
+
+/**
+ * Standard playing card pip layouts.
+ *
+ * These match the traditional arrangements found on real playing cards.
+ * The grid is 3 columns (left, center, right) x 5 rows (top to bottom).
+ */
+const PIP_LAYOUTS: Record<number, PipPosition[]> = {
+  2: [
+    { col: 'center', row: 1, flipped: false },
+    { col: 'center', row: 5, flipped: true },
+  ],
+  3: [
+    { col: 'center', row: 1, flipped: false },
+    { col: 'center', row: 3, flipped: false },
+    { col: 'center', row: 5, flipped: true },
+  ],
+  4: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+  5: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'center', row: 3, flipped: false },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+  6: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'left', row: 3, flipped: false },
+    { col: 'right', row: 3, flipped: false },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+  7: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'center', row: 2, flipped: false },
+    { col: 'left', row: 3, flipped: false },
+    { col: 'right', row: 3, flipped: false },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+  8: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'center', row: 2, flipped: false },
+    { col: 'left', row: 3, flipped: false },
+    { col: 'right', row: 3, flipped: false },
+    { col: 'center', row: 4, flipped: true },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+  9: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'left', row: 2, flipped: false },
+    { col: 'right', row: 2, flipped: false },
+    { col: 'center', row: 3, flipped: false },
+    { col: 'left', row: 4, flipped: true },
+    { col: 'right', row: 4, flipped: true },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+  10: [
+    { col: 'left', row: 1, flipped: false },
+    { col: 'right', row: 1, flipped: false },
+    { col: 'center', row: 2, flipped: false },
+    { col: 'left', row: 2, flipped: false },
+    { col: 'right', row: 2, flipped: false },
+    { col: 'left', row: 4, flipped: true },
+    { col: 'right', row: 4, flipped: true },
+    { col: 'center', row: 4, flipped: true },
+    { col: 'left', row: 5, flipped: true },
+    { col: 'right', row: 5, flipped: true },
+  ],
+};
+
+/** Column CSS class lookup. */
+const COL_CLASS: Record<string, string> = {
+  left: styles['pip--left'],
+  center: styles['pip--center'],
+  right: styles['pip--right'],
+};
+
+/**
+ * Renders the pip layout grid for number cards (2-10).
+ */
+function PipLayout({ emoji, count }: { emoji: string; count: number }) {
+  const layout = PIP_LAYOUTS[count];
+  if (!layout) return null;
+
+  return (
+    <div className={styles.pipGrid} data-testid="pip-grid">
+      {layout.map((pip, i) => (
+        <span
+          key={i}
+          className={`${styles.pip} ${COL_CLASS[pip.col]} ${pip.flipped ? styles['pip--flipped'] : ''}`.trim()}
+          style={{ gridRow: pip.row }}
+        >
+          {emoji}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 /**
  * CardFace renders the front of a playing card with suit emoji and rank.
  *
- * Layout:
+ * Number cards (2-10) display pip layouts with multiple suit symbols:
+ * ```
+ * +-------+
+ * | 5     |
+ * | ♠     |
+ * | ♠   ♠ |
+ * |   ♠   |
+ * | ♠   ♠ |
+ * |     ♠ |
+ * |     5 |
+ * +-------+
+ * ```
+ *
+ * Face cards and Ace display a single large center symbol:
  * ```
  * +-------+
  * | A     |
@@ -50,6 +197,7 @@ function displayRank(rank: string): string {
  * ```tsx
  * <CardFace card="♠A" />
  * <CardFace card={{ suit: 'hearts', rank: 'K' }} colorScheme="four-color" />
+ * <CardFace card="♠6" /> // Shows 6 spade pips in standard layout
  * ```
  */
 export function CardFace({ card, colorScheme = 'two-color', className }: CardFaceProps) {
@@ -70,6 +218,7 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
   const emoji = SUIT_EMOJI[suit];
   const color = getSuitColor(suit, colorScheme);
   const label = displayRank(rank);
+  const pipCount = RANK_PIP_COUNT[rank];
 
   return (
     <div
@@ -84,10 +233,14 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
         <span className={styles.suit}>{emoji}</span>
       </div>
 
-      {/* Center pip */}
-      <div className={styles.center}>
-        <span>{emoji}</span>
-      </div>
+      {/* Card body: pip layout for number cards, single large symbol for face/ace */}
+      {isNumberCard(rank) ? (
+        <PipLayout emoji={emoji} count={pipCount} />
+      ) : (
+        <div className={styles.center}>
+          <span>{emoji}</span>
+        </div>
+      )}
 
       {/* Bottom-right corner (rotated 180deg via CSS) */}
       <div className={`${styles.corner} ${styles['corner--bottom']}`}>
