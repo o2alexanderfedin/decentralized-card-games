@@ -6,3 +6,6 @@ export type {
 } from './useCardFlip';
 
 export { usePrefersReducedMotion } from './usePrefersReducedMotion';
+
+export { useContainerSize } from './useContainerSize';
+export type { ContainerSize } from './useContainerSize';

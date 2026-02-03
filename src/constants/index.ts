@@ -14,3 +14,9 @@ export {
   type PerspectiveLevel,
   type AspectRatioPreset,
 } from './animations';
+
+export {
+  FAN_PRESETS,
+  LAYOUT_DEFAULTS,
+  type FanPreset,
+} from './layouts';
