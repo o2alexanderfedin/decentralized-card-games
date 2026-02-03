@@ -12,7 +12,7 @@ This roadmap delivers a lean React component library for rendering and interacti
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Core Rendering** - Card components with flip animations and TypeScript types
+- [x] **Phase 1: Foundation & Core Rendering** - Card components with flip animations and TypeScript types
 - [ ] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
 - [ ] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
 - [ ] **Phase 4: State Management** - Optional Redux Toolkit integration layer
@@ -34,10 +34,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 01-01-PLAN.md - Project foundation and TypeScript types (Wave 1)
-- [ ] 01-02-PLAN.md - Animation hooks with motion values (Wave 2)
-- [ ] 01-03-PLAN.md - Card face and back presentation components (Wave 2)
-- [ ] 01-04-PLAN.md - Complete Card component integration with tests (Wave 3)
+- [x] 01-01-PLAN.md - Project foundation and TypeScript types (Wave 1)
+- [x] 01-02-PLAN.md - Animation hooks with motion values (Wave 2)
+- [x] 01-03-PLAN.md - Card face and back presentation components (Wave 2)
+- [x] 01-04-PLAN.md - Complete Card component integration with tests (Wave 3)
 
 ### Phase 2: Container Components & Layouts
 **Goal**: Developers can display cards in hands, decks, and stacks with layout presets
@@ -119,8 +119,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Core Rendering | 0/4 | Ready to execute | - |
-| 2. Container Components & Layouts | 0/TBD | Not started | - |
+| 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
+| 2. Container Components & Layouts | 0/TBD | Ready to plan | - |
 | 3. Drag & Drop | 0/TBD | Not started | - |
 | 4. State Management | 0/TBD | Not started | - |
 | 5. Accessibility | 0/TBD | Not started | - |
@@ -128,4 +128,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 ---
 *Roadmap created: 2026-02-02*
-*Last updated: 2026-02-02*
+*Last updated: 2026-02-03*

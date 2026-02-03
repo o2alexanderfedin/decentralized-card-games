@@ -9,20 +9,20 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation & Rendering
 
-- [ ] **FNDN-01**: Render all 52 playing cards with suit and rank display
-- [ ] **FNDN-02**: Render card backs with face up/down state toggle
-- [ ] **FNDN-03**: Card flip animation using CSS 3D transforms
-- [ ] **FNDN-04**: Click and tap event handlers for card interactions
-- [ ] **FNDN-05**: TypeScript types for Card, Suit, Rank, and CardState
-- [ ] **FNDN-06**: Responsive card sizing that scales to container
-- [ ] **FNDN-07**: Basic container component for holding cards
+- [x] **FNDN-01**: Render all 52 playing cards with suit and rank display
+- [x] **FNDN-02**: Render card backs with face up/down state toggle
+- [x] **FNDN-03**: Card flip animation using CSS 3D transforms
+- [x] **FNDN-04**: Click and tap event handlers for card interactions
+- [x] **FNDN-05**: TypeScript types for Card, Suit, Rank, and CardState
+- [x] **FNDN-06**: Responsive card sizing that scales to container
+- [x] **FNDN-07**: Basic container component for holding cards
 
 ### Animation & Performance
 
-- [ ] **ANIM-01**: GPU-accelerated animations using transform and opacity only
-- [ ] **ANIM-02**: Motion Values for animation state (not React state)
-- [ ] **ANIM-03**: Flip animation with configurable duration and easing
-- [ ] **ANIM-04**: Performance optimization to prevent animation re-renders
+- [x] **ANIM-01**: GPU-accelerated animations using transform and opacity only
+- [x] **ANIM-02**: Motion Values for animation state (not React state)
+- [x] **ANIM-03**: Flip animation with configurable duration and easing
+- [x] **ANIM-04**: Performance optimization to prevent animation re-renders
 
 ### Drag & Drop
 
