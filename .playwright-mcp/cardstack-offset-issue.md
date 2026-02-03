@@ -1,0 +1,342 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - heading "Card Components Demo" [level=1] [ref=e5]
+    - paragraph [ref=e6]: "Phase 2: Container Components & Layouts"
+  - generic [ref=e7]:
+    - heading "Individual Card (Phase 1)" [level=2] [ref=e8]
+    - generic [ref=e9]:
+      - button "A of hearts" [ref=e11] [cursor=pointer]:
+        - img "A of hearts" [ref=e13]:
+          - generic [ref=e14]:
+            - generic [ref=e15]: A
+            - generic [ref=e16]: ♥
+          - generic [ref=e18]: ♥
+          - generic [ref=e19]:
+            - generic [ref=e20]: A
+            - generic [ref=e21]: ♥
+      - button "K of spades" [ref=e26] [cursor=pointer]:
+        - img "K of spades" [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: K
+            - generic [ref=e31]: ♠
+          - generic [ref=e33]: ♠
+          - generic [ref=e34]:
+            - generic [ref=e35]: K
+            - generic [ref=e36]: ♠
+      - button "Q of diamonds" [ref=e41] [cursor=pointer]:
+        - img "Q of diamonds" [ref=e43]:
+          - generic [ref=e44]:
+            - generic [ref=e45]: Q
+            - generic [ref=e46]: ♦
+          - generic [ref=e48]: ♦
+          - generic [ref=e49]:
+            - generic [ref=e50]: Q
+            - generic [ref=e51]: ♦
+  - generic [ref=e55]:
+    - generic [ref=e56]:
+      - heading "Hand Component" [level=2] [ref=e57]
+      - generic [ref=e58]:
+        - button "fan" [ref=e59] [cursor=pointer]
+        - button "spread" [ref=e60] [cursor=pointer]
+        - button "stack" [ref=e61] [cursor=pointer]
+    - generic [ref=e64]:
+      - button "A of hearts" [ref=e67] [cursor=pointer]:
+        - img "A of hearts" [ref=e69]:
+          - generic [ref=e70]:
+            - generic [ref=e71]: A
+            - generic [ref=e72]: ♥
+          - generic [ref=e74]: ♥
+          - generic [ref=e75]:
+            - generic [ref=e76]: A
+            - generic [ref=e77]: ♥
+      - button "K of diamonds" [ref=e83] [cursor=pointer]:
+        - img "K of diamonds" [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: K
+            - generic [ref=e88]: ♦
+          - generic [ref=e90]: ♦
+          - generic [ref=e91]:
+            - generic [ref=e92]: K
+            - generic [ref=e93]: ♦
+      - button "Q of clubs" [ref=e99] [cursor=pointer]:
+        - img "Q of clubs" [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: Q
+            - generic [ref=e104]: ♣
+          - generic [ref=e106]: ♣
+          - generic [ref=e107]:
+            - generic [ref=e108]: Q
+            - generic [ref=e109]: ♣
+      - button "J of spades" [ref=e115] [cursor=pointer]:
+        - img "J of spades" [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: J
+            - generic [ref=e120]: ♠
+          - generic [ref=e122]: ♠
+          - generic [ref=e123]:
+            - generic [ref=e124]: J
+            - generic [ref=e125]: ♠
+      - button "10 of hearts" [ref=e131] [cursor=pointer]:
+        - img "10 of hearts" [ref=e133]:
+          - generic [ref=e134]:
+            - generic [ref=e135]: "10"
+            - generic [ref=e136]: ♥
+          - generic [ref=e138]: ♥
+          - generic [ref=e139]:
+            - generic [ref=e140]: "10"
+            - generic [ref=e141]: ♥
+  - generic [ref=e145]:
+    - heading "Deck Component" [level=2] [ref=e146]
+    - generic [ref=e147]:
+      - button "Deck with 52 cards" [ref=e148] [cursor=pointer]:
+        - button "A of spades" [ref=e152]:
+          - img "A of spades" [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]: A
+              - generic [ref=e157]: ♠
+            - generic [ref=e159]: ♠
+            - generic [ref=e160]:
+              - generic [ref=e161]: A
+              - generic [ref=e162]: ♠
+        - button "A of spades" [ref=e168]:
+          - img "A of spades" [ref=e170]:
+            - generic [ref=e171]:
+              - generic [ref=e172]: A
+              - generic [ref=e173]: ♠
+            - generic [ref=e175]: ♠
+            - generic [ref=e176]:
+              - generic [ref=e177]: A
+              - generic [ref=e178]: ♠
+        - button "A of spades" [ref=e184]:
+          - img "A of spades" [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: A
+              - generic [ref=e189]: ♠
+            - generic [ref=e191]: ♠
+            - generic [ref=e192]:
+              - generic [ref=e193]: A
+              - generic [ref=e194]: ♠
+        - button "A of spades" [ref=e200]:
+          - img "A of spades" [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: A
+              - generic [ref=e205]: ♠
+            - generic [ref=e207]: ♠
+            - generic [ref=e208]:
+              - generic [ref=e209]: A
+              - generic [ref=e210]: ♠
+        - button "A of spades" [ref=e216]:
+          - img "A of spades" [ref=e218]:
+            - generic [ref=e219]:
+              - generic [ref=e220]: A
+              - generic [ref=e221]: ♠
+            - generic [ref=e223]: ♠
+            - generic [ref=e224]:
+              - generic [ref=e225]: A
+              - generic [ref=e226]: ♠
+        - generic [ref=e230]: "52"
+      - generic [ref=e231]:
+        - paragraph [ref=e232]:
+          - text: "Cards remaining:"
+          - strong [ref=e233]: "52"
+        - button "Draw Card" [ref=e234] [cursor=pointer]
+        - button "Reset Deck" [ref=e235] [cursor=pointer]
+  - generic [ref=e236]:
+    - heading "CardStack Component" [level=2] [ref=e237]
+    - generic [ref=e238]:
+      - generic [ref=e239]:
+        - paragraph [ref=e240]: All face-up
+        - generic [ref=e241]:
+          - button "7 of diamonds" [ref=e245] [cursor=pointer]:
+            - img "7 of diamonds" [ref=e247]:
+              - generic [ref=e248]:
+                - generic [ref=e249]: "7"
+                - generic [ref=e250]: ♦
+              - generic [ref=e251]:
+                - generic [ref=e252]: ♦
+                - generic [ref=e253]: ♦
+                - generic [ref=e254]: ♦
+                - generic [ref=e255]: ♦
+                - generic [ref=e256]: ♦
+                - generic [ref=e257]: ♦
+                - generic [ref=e258]: ♦
+              - generic [ref=e259]:
+                - generic [ref=e260]: "7"
+                - generic [ref=e261]: ♦
+          - button "8 of clubs" [ref=e267] [cursor=pointer]:
+            - img "8 of clubs" [ref=e269]:
+              - generic [ref=e270]:
+                - generic [ref=e271]: "8"
+                - generic [ref=e272]: ♣
+              - generic [ref=e273]:
+                - generic [ref=e274]: ♣
+                - generic [ref=e275]: ♣
+                - generic [ref=e276]: ♣
+                - generic [ref=e277]: ♣
+                - generic [ref=e278]: ♣
+                - generic [ref=e279]: ♣
+                - generic [ref=e280]: ♣
+                - generic [ref=e281]: ♣
+              - generic [ref=e282]:
+                - generic [ref=e283]: "8"
+                - generic [ref=e284]: ♣
+          - button "9 of hearts" [ref=e290] [cursor=pointer]:
+            - img "9 of hearts" [ref=e292]:
+              - generic [ref=e293]:
+                - generic [ref=e294]: "9"
+                - generic [ref=e295]: ♥
+              - generic [ref=e296]:
+                - generic [ref=e297]: ♥
+                - generic [ref=e298]: ♥
+                - generic [ref=e299]: ♥
+                - generic [ref=e300]: ♥
+                - generic [ref=e301]: ♥
+                - generic [ref=e302]: ♥
+                - generic [ref=e303]: ♥
+                - generic [ref=e304]: ♥
+                - generic [ref=e305]: ♥
+              - generic [ref=e306]:
+                - generic [ref=e307]: "9"
+                - generic [ref=e308]: ♥
+      - generic [ref=e312]:
+        - paragraph [ref=e313]: Top only (default)
+        - generic [ref=e314]:
+          - button "7 of diamonds" [ref=e318] [cursor=pointer]:
+            - img "7 of diamonds" [ref=e320]:
+              - generic [ref=e321]:
+                - generic [ref=e322]: "7"
+                - generic [ref=e323]: ♦
+              - generic [ref=e324]:
+                - generic [ref=e325]: ♦
+                - generic [ref=e326]: ♦
+                - generic [ref=e327]: ♦
+                - generic [ref=e328]: ♦
+                - generic [ref=e329]: ♦
+                - generic [ref=e330]: ♦
+                - generic [ref=e331]: ♦
+              - generic [ref=e332]:
+                - generic [ref=e333]: "7"
+                - generic [ref=e334]: ♦
+          - button "8 of clubs" [ref=e340] [cursor=pointer]:
+            - img "8 of clubs" [ref=e342]:
+              - generic [ref=e343]:
+                - generic [ref=e344]: "8"
+                - generic [ref=e345]: ♣
+              - generic [ref=e346]:
+                - generic [ref=e347]: ♣
+                - generic [ref=e348]: ♣
+                - generic [ref=e349]: ♣
+                - generic [ref=e350]: ♣
+                - generic [ref=e351]: ♣
+                - generic [ref=e352]: ♣
+                - generic [ref=e353]: ♣
+                - generic [ref=e354]: ♣
+              - generic [ref=e355]:
+                - generic [ref=e356]: "8"
+                - generic [ref=e357]: ♣
+          - button "9 of hearts" [ref=e363] [cursor=pointer]:
+            - img "9 of hearts" [ref=e365]:
+              - generic [ref=e366]:
+                - generic [ref=e367]: "9"
+                - generic [ref=e368]: ♥
+              - generic [ref=e369]:
+                - generic [ref=e370]: ♥
+                - generic [ref=e371]: ♥
+                - generic [ref=e372]: ♥
+                - generic [ref=e373]: ♥
+                - generic [ref=e374]: ♥
+                - generic [ref=e375]: ♥
+                - generic [ref=e376]: ♥
+                - generic [ref=e377]: ♥
+                - generic [ref=e378]: ♥
+              - generic [ref=e379]:
+                - generic [ref=e380]: "9"
+                - generic [ref=e381]: ♥
+      - generic [ref=e385]:
+        - paragraph [ref=e386]: All face-down
+        - generic [ref=e387]:
+          - button "7 of diamonds" [ref=e391] [cursor=pointer]:
+            - img "7 of diamonds" [ref=e393]:
+              - generic [ref=e394]:
+                - generic [ref=e395]: "7"
+                - generic [ref=e396]: ♦
+              - generic [ref=e397]:
+                - generic [ref=e398]: ♦
+                - generic [ref=e399]: ♦
+                - generic [ref=e400]: ♦
+                - generic [ref=e401]: ♦
+                - generic [ref=e402]: ♦
+                - generic [ref=e403]: ♦
+                - generic [ref=e404]: ♦
+              - generic [ref=e405]:
+                - generic [ref=e406]: "7"
+                - generic [ref=e407]: ♦
+          - button "8 of clubs" [ref=e413] [cursor=pointer]:
+            - img "8 of clubs" [ref=e415]:
+              - generic [ref=e416]:
+                - generic [ref=e417]: "8"
+                - generic [ref=e418]: ♣
+              - generic [ref=e419]:
+                - generic [ref=e420]: ♣
+                - generic [ref=e421]: ♣
+                - generic [ref=e422]: ♣
+                - generic [ref=e423]: ♣
+                - generic [ref=e424]: ♣
+                - generic [ref=e425]: ♣
+                - generic [ref=e426]: ♣
+                - generic [ref=e427]: ♣
+              - generic [ref=e428]:
+                - generic [ref=e429]: "8"
+                - generic [ref=e430]: ♣
+          - button "9 of hearts" [ref=e436] [cursor=pointer]:
+            - img "9 of hearts" [ref=e438]:
+              - generic [ref=e439]:
+                - generic [ref=e440]: "9"
+                - generic [ref=e441]: ♥
+              - generic [ref=e442]:
+                - generic [ref=e443]: ♥
+                - generic [ref=e444]: ♥
+                - generic [ref=e445]: ♥
+                - generic [ref=e446]: ♥
+                - generic [ref=e447]: ♥
+                - generic [ref=e448]: ♥
+                - generic [ref=e449]: ♥
+                - generic [ref=e450]: ♥
+                - generic [ref=e451]: ♥
+              - generic [ref=e452]:
+                - generic [ref=e453]: "9"
+                - generic [ref=e454]: ♥
+  - generic [ref=e458]:
+    - heading "DropZone Component" [level=2] [ref=e459]
+    - generic [ref=e460]:
+      - generic [ref=e461]:
+        - paragraph [ref=e462]: Empty (idle)
+        - generic [ref=e464]:
+          - generic [ref=e465]: Drop here
+          - generic [ref=e466]: Drop cards here
+      - generic [ref=e467]:
+        - paragraph [ref=e468]: Active
+        - generic [ref=e470]:
+          - generic [ref=e471]: Drop here
+          - generic [ref=e472]: Active zone
+      - generic [ref=e473]:
+        - paragraph [ref=e474]: With card
+        - button "5 of clubs" [ref=e477] [cursor=pointer]:
+          - img "5 of clubs" [ref=e479]:
+            - generic [ref=e480]:
+              - generic [ref=e481]: "5"
+              - generic [ref=e482]: ♣
+            - generic [ref=e483]:
+              - generic [ref=e484]: ♣
+              - generic [ref=e485]: ♣
+              - generic [ref=e486]: ♣
+              - generic [ref=e487]: ♣
+              - generic [ref=e488]: ♣
+            - generic [ref=e489]:
+              - generic [ref=e490]: "5"
+              - generic [ref=e491]: ♣
+  - contentinfo [ref=e495]:
+    - paragraph [ref=e496]:
+      - text: "✓ Phase 1: Card components with flip animations"
+      - text: "✓ Phase 2: Container components & layouts"
+      - text: "→ Phase 3: Drag & drop (coming next)"

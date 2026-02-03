@@ -15,10 +15,12 @@ function App() {
     { suit: 'hearts', rank: '10' },
   ];
 
-  const stackCards: CardData[] = [
-    { suit: 'diamonds', rank: '7' },
-    { suit: 'clubs', rank: '8' },
+  // Discard pile example - realistic descending sequence
+  const discardPile: CardData[] = [
     { suit: 'hearts', rank: '9' },
+    { suit: 'diamonds', rank: '8' },
+    { suit: 'clubs', rank: '7' },
+    { suit: 'spades', rank: '6' },
   ];
 
   const handleDraw = () => {
@@ -226,50 +228,92 @@ function App() {
         }}>
           CardStack Component
         </h2>
+        <p style={{
+          fontSize: '0.875rem',
+          color: '#64748b',
+          marginBottom: '20px',
+          maxWidth: '700px'
+        }}>
+          Overlapping card display with configurable cascade. Perfect for discard piles, played cards, and stacking areas.
+        </p>
         <div style={{
           display: 'flex',
           gap: '40px',
           background: '#f8fafc',
           borderRadius: '12px',
-          padding: '40px'
+          padding: '40px',
+          alignItems: 'flex-start'
         }}>
           <div>
             <p style={{
               fontSize: '0.875rem',
               color: '#64748b',
-              marginBottom: '16px'
+              marginBottom: '8px',
+              fontWeight: 500
             }}>
               All face-up
             </p>
+            <p style={{
+              fontSize: '0.75rem',
+              color: '#94a3b8',
+              marginBottom: '16px'
+            }}>
+              Show all cards
+            </p>
             <CardStack
-              cards={stackCards}
+              cards={discardPile}
               faceUp={true}
+              offsetX={6}
+              offsetY={6}
+              maxRotation={5}
             />
           </div>
           <div>
             <p style={{
               fontSize: '0.875rem',
               color: '#64748b',
-              marginBottom: '16px'
+              marginBottom: '8px',
+              fontWeight: 500
             }}>
               Top only (default)
             </p>
+            <p style={{
+              fontSize: '0.75rem',
+              color: '#94a3b8',
+              marginBottom: '16px'
+            }}>
+              Discard pile style
+            </p>
             <CardStack
-              cards={stackCards}
+              cards={discardPile}
               faceUp="top-only"
+              offsetX={6}
+              offsetY={6}
+              maxRotation={5}
             />
           </div>
           <div>
             <p style={{
               fontSize: '0.875rem',
               color: '#64748b',
-              marginBottom: '16px'
+              marginBottom: '8px',
+              fontWeight: 500
             }}>
               All face-down
             </p>
+            <p style={{
+              fontSize: '0.75rem',
+              color: '#94a3b8',
+              marginBottom: '16px'
+            }}>
+              Hidden stack
+            </p>
             <CardStack
-              cards={stackCards}
+              cards={discardPile}
               faceUp={false}
+              offsetX={6}
+              offsetY={6}
+              maxRotation={5}
             />
           </div>
         </div>
