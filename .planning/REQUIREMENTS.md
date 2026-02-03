@@ -9,7 +9,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation & Rendering
 
-- [ ] **FNDN-01**: Render all 52 playing cards with suit and rank display (♠♥♦♣, A-K)
+- [ ] **FNDN-01**: Render all 52 playing cards with suit and rank display
 - [ ] **FNDN-02**: Render card backs with face up/down state toggle
 - [ ] **FNDN-03**: Card flip animation using CSS 3D transforms
 - [ ] **FNDN-04**: Click and tap event handlers for card interactions
@@ -127,13 +127,62 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (To be filled during roadmap creation) | | |
+| FNDN-01 | Phase 1 | Pending |
+| FNDN-02 | Phase 1 | Pending |
+| FNDN-03 | Phase 1 | Pending |
+| FNDN-04 | Phase 1 | Pending |
+| FNDN-05 | Phase 1 | Pending |
+| FNDN-06 | Phase 1 | Pending |
+| FNDN-07 | Phase 1 | Pending |
+| ANIM-01 | Phase 1 | Pending |
+| ANIM-02 | Phase 1 | Pending |
+| ANIM-03 | Phase 1 | Pending |
+| ANIM-04 | Phase 1 | Pending |
+| CNTR-01 | Phase 2 | Pending |
+| CNTR-02 | Phase 2 | Pending |
+| CNTR-03 | Phase 2 | Pending |
+| CNTR-04 | Phase 2 | Pending |
+| LYOT-01 | Phase 2 | Pending |
+| LYOT-02 | Phase 2 | Pending |
+| LYOT-03 | Phase 2 | Pending |
+| LYOT-04 | Phase 2 | Pending |
+| DND-01 | Phase 3 | Pending |
+| DND-02 | Phase 3 | Pending |
+| DND-03 | Phase 3 | Pending |
+| DND-04 | Phase 3 | Pending |
+| DND-05 | Phase 3 | Pending |
+| DND-06 | Phase 3 | Pending |
+| STATE-01 | Phase 4 | Pending |
+| STATE-02 | Phase 4 | Pending |
+| STATE-03 | Phase 4 | Pending |
+| STATE-04 | Phase 4 | Pending |
+| STATE-05 | Phase 4 | Pending |
+| A11Y-01 | Phase 5 | Pending |
+| A11Y-02 | Phase 5 | Pending |
+| A11Y-03 | Phase 5 | Pending |
+| A11Y-04 | Phase 5 | Pending |
+| A11Y-05 | Phase 5 | Pending |
+| A11Y-06 | Phase 5 | Pending |
+| A11Y-07 | Phase 5 | Pending |
+| A11Y-08 | Phase 5 | Pending |
+| DX-01 | Phase 6 | Pending |
+| DX-02 | Phase 6 | Pending |
+| DX-03 | Phase 6 | Pending |
+| DX-04 | Phase 6 | Pending |
+| DX-05 | Phase 6 | Pending |
+| DX-06 | Phase 6 | Pending |
+| BUILD-01 | Phase 6 | Pending |
+| BUILD-02 | Phase 6 | Pending |
+| BUILD-03 | Phase 6 | Pending |
+| BUILD-04 | Phase 6 | Pending |
+| BUILD-05 | Phase 6 | Pending |
+| BUILD-06 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 48 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 48 ⚠️
+- Mapped to phases: 48
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-02*
-*Last updated: 2026-02-02 after initial definition*
+*Last updated: 2026-02-02 - Traceability completed*
