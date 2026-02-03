@@ -1,20 +1,39 @@
 // @decentralized-games/card-components
 // React component library for playing cards
 
-// Components
+// Components (Phase 1 + Phase 2)
 export { Card, CardFace, CardBack } from './components';
+export { Hand } from './components';
+export { Deck } from './components';
+export { CardStack } from './components';
+export { DropZone } from './components';
 export type {
+  // Phase 1 component types
   CardProps,
   CardRef,
   CardClickData,
   AspectRatio,
   Perspective,
   SpringPreset,
+  // Phase 2 component types
+  HandProps,
+  HandRef,
+  HandLayout,
+  HoverEffect,
+  DeckProps,
+  DeckRef,
+  DeckEmptyState,
+  CardStackProps,
+  FaceUpMode,
+  DropZoneProps,
+  DropZoneEmptyState,
+  DropZoneVisualState,
 } from './components';
 
 // Types
 export { SUITS, RANKS, parseCard, formatCard, allCards, isSuit, isRank } from './types';
-export type { Suit, Rank, CardData } from './types';
+export type { Suit, Rank, CardData, CardInput, CardLayout } from './types';
+export { normalizeCard } from './types';
 
 // Constants
 export {
@@ -25,9 +44,35 @@ export {
   SPRING_PRESETS,
   PERSPECTIVE_VALUES,
   ASPECT_RATIOS,
+  FAN_PRESETS,
+  LAYOUT_DEFAULTS,
 } from './constants';
-export type { ColorScheme, SpringConfig, PerspectiveLevel, AspectRatioPreset } from './constants';
+export type {
+  ColorScheme,
+  SpringConfig,
+  PerspectiveLevel,
+  AspectRatioPreset,
+  FanPreset,
+} from './constants';
 
-// Hooks (for advanced usage)
+// Utilities (Phase 2)
+export {
+  calculateFanLayout,
+  calculateSpreadLayout,
+  calculateStackLayout,
+} from './utils';
+export type {
+  FanLayoutOptions,
+  SpreadLayoutOptions,
+  StackLayoutOptions,
+} from './utils';
+
+// Hooks
 export { useCardFlip, usePrefersReducedMotion } from './hooks';
-export type { UseCardFlipOptions, UseCardFlipReturn, SpringPresetOrCustom } from './hooks';
+export { useContainerSize } from './hooks';
+export type {
+  UseCardFlipOptions,
+  UseCardFlipReturn,
+  SpringPresetOrCustom,
+  ContainerSize,
+} from './hooks';
