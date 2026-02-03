@@ -4,6 +4,7 @@
   min-height: 168px; /* 120 * 1.4 = poker card ratio */
   border-radius: 8px;
   transition: border-color 0.2s ease, background-color 0.2s ease;
+  overflow: hidden;
 }
 
 .dropZone--idle {
