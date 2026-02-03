@@ -77,7 +77,7 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None. (2 UI issue todos moved to done/ - already fixed in commit 7562d67)
+1. **Fix CardStack visual offset artifacts in demo** (ui) - CardStack shows confusing "ghost" outlines due to identical cards with small offsets; needs demo data improvement and/or visual polish
 
 ### Blockers/Concerns
 
