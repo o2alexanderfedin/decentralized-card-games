@@ -227,25 +227,33 @@ export function CardFace({ card, colorScheme = 'two-color', className }: CardFac
       role="img"
       aria-label={`${label} of ${suit}`}
     >
-      {/* Top-left corner */}
-      <div className={`${styles.corner} ${styles['corner--top']}`}>
-        <span className={styles.rank}>{label}</span>
-        <span className={styles.suit}>{emoji}</span>
-      </div>
-
-      {/* Card body: pip layout for number cards, single large symbol for face/ace */}
-      {isNumberCard(rank) ? (
-        <PipLayout emoji={emoji} count={pipCount} />
-      ) : (
-        <div className={styles.center}>
-          <span>{emoji}</span>
+      <div className={styles.cardContent}>
+        {/* Top region */}
+        <div className={styles.topRegion}>
+          <div className={`${styles.corner} ${styles['corner--top']}`}>
+            <span className={styles.rank}>{label}</span>
+            <span className={styles.suit}>{emoji}</span>
+          </div>
         </div>
-      )}
 
-      {/* Bottom-right corner (rotated 180deg via CSS) */}
-      <div className={`${styles.corner} ${styles['corner--bottom']}`}>
-        <span className={styles.rank}>{label}</span>
-        <span className={styles.suit}>{emoji}</span>
+        {/* Center region: pip layout for number cards, single large symbol for face/ace */}
+        <div className={styles.centerRegion}>
+          {isNumberCard(rank) ? (
+            <PipLayout emoji={emoji} count={pipCount} />
+          ) : (
+            <div className={styles.center}>
+              <span>{emoji}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Bottom region */}
+        <div className={styles.bottomRegion}>
+          <div className={`${styles.corner} ${styles['corner--bottom']}`}>
+            <span className={styles.rank}>{label}</span>
+            <span className={styles.suit}>{emoji}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

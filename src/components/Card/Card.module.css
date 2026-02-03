@@ -49,11 +49,9 @@
 /* Front face */
 .front {
   background: white;
-  display: flex;
-  flex-direction: column;
-  padding: var(--card-padding);
   /* Ensure solid background */
   background-color: #ffffff;
+  /* Remove padding - let cardContent handle spacing */
 }
 
 /* Back face - pre-rotated 180deg for backface-visibility to work */
@@ -65,6 +63,40 @@
   justify-content: center;
 }
 
+/* Card content container - ensures content stays within bounds */
+.cardContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-padding);
+  box-sizing: border-box;
+}
+
+/* Regions for hierarchical layout */
+.topRegion {
+  flex-shrink: 0;
+  height: 15%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.centerRegion {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0; /* Allow flex shrink */
+}
+
+.bottomRegion {
+  flex-shrink: 0;
+  height: 15%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 /* Card content layout - corners and center */
 .corner {
   display: flex;
@@ -74,13 +106,12 @@
 }
 
 .corner--top {
-  align-self: flex-start;
+  /* Positioned in topRegion */
 }
 
 .corner--bottom {
-  align-self: flex-end;
   transform: rotate(180deg);
-  margin-top: auto;
+  /* Positioned in bottomRegion */
 }
 
 .rank {
@@ -94,7 +125,8 @@
 }
 
 .center {
-  flex: 1;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,14 +143,15 @@
  * Individual pips are placed using grid-column and grid-row.
  */
 .pipGrid {
-  flex: 1;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(5, 1fr);
   align-items: center;
   justify-items: center;
   font-size: 1.5em;
-  padding: 0.15em 0;
+  box-sizing: border-box;
 }
 
 .pip {
