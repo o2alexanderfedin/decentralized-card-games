@@ -9,3 +9,8 @@ export { usePrefersReducedMotion } from './usePrefersReducedMotion';
 
 export { useContainerSize } from './useContainerSize';
 export type { ContainerSize } from './useContainerSize';
+
+export { useDragSensors } from './useDragSensors';
+
+export { useHapticFeedback } from './useHapticFeedback';
+export type { HapticFeedback } from './useHapticFeedback';
