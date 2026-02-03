@@ -64,6 +64,9 @@ export interface CardProps {
 
   /** Additional CSS class. */
   className?: string;
+
+  /** Inline styles for the card container. */
+  style?: React.CSSProperties;
 }
 
 /** Imperative handle exposed via ref for uncontrolled Card. */

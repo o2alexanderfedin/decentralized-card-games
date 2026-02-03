@@ -128,7 +128,11 @@ export const CardStack: React.FC<CardStackProps> = (props) => {
             data-testid="card-stack-slot"
             {...(isTop && onTopCardClick ? { onClick: handleTopCardClick } : {})}
           >
-            <Card card={card} isFaceUp={cardIsFaceUp} />
+            <Card
+              card={card}
+              isFaceUp={cardIsFaceUp}
+              style={{ width: 120, height: 168 }}
+            />
           </div>
         );
       })}

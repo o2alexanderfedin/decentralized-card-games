@@ -60,6 +60,7 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
     onHover,
     onFocus,
     className,
+    style,
   } = props;
 
   // ---------------------------------------------------------------------------
@@ -162,7 +163,7 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
   return (
     <div
       className={containerClasses}
-      style={{ perspective: perspectiveValue }}
+      style={{ perspective: perspectiveValue, ...style }}
     >
       <motion.div
         className={cardClasses}

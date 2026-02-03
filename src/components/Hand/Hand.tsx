@@ -256,7 +256,11 @@ export const Hand = forwardRef<HandRef, HandProps>((props, ref) => {
               onClick={() => handleCardClick(card, i)}
               data-testid="card-slot"
             >
-              <Card card={card} isFaceUp={faceUp} />
+              <Card
+                card={card}
+                isFaceUp={faceUp}
+                style={{ width: cardWidth, height: cardHeight }}
+              />
             </motion.div>
           );
         })}
