@@ -12,25 +12,25 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 Phase: 1 of 6 (Foundation & Core Rendering)
 Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-03 - Completed 01-03-PLAN.md
+Last activity: 2026-02-03 - Completed 01-02-PLAN.md
 
-Progress: [##........] 2/10 plans (20%)
+Progress: [###.......] 3/10 plans (30%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 6 min
-- Total execution time: 12 min
+- Total plans completed: 3
+- Average duration: 8 min
+- Total execution time: 23 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1 - Foundation | 2/4 | 12 min | 6 min |
+| 1 - Foundation | 3/4 | 23 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-03 (8 min)
+- Last 5 plans: 01-01 (4 min), 01-03 (8 min), 01-02 (11 min)
 - Trend: stable
 
 *Updated after each plan completion*
@@ -51,6 +51,10 @@ Recent decisions affecting current work:
 - Display rank T as "10" in rendered output
 - Inline style for suit colors using getSuitColor utility
 - CSS module type declarations at src/css-modules.d.ts
+- useSpring (not useMotionValue) for automatic spring-animated transitions
+- 4-point opacity transform [0,89,90,180] for sharp crossover at 90 degrees
+- useMotionValueEvent for animation lifecycle tracking
+- Custom usePrefersReducedMotion independent of Motion library
 
 ### Pending Todos
 
@@ -62,6 +66,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-03T05:14:25Z
-Stopped at: Completed 01-03-PLAN.md (card face/back presentation components)
+Last session: 2026-02-03T05:16:27Z
+Stopped at: Completed 01-02-PLAN.md (animation hooks for card flip)
 Resume file: None
