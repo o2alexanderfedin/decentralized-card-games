@@ -13,7 +13,7 @@ This roadmap delivers a lean React component library for rendering and interacti
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Core Rendering** - Card components with flip animations and TypeScript types
-- [ ] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
+- [x] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
 - [ ] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
 - [ ] **Phase 4: State Management** - Optional Redux Toolkit integration layer
 - [ ] **Phase 5: Accessibility** - WCAG compliance with keyboard navigation and screen readers
@@ -51,10 +51,10 @@ Plans:
 **Plans**: 4 plans in 3 waves
 
 Plans:
-- [ ] 02-01-PLAN.md — Layout utilities, container types, constants, and useContainerSize hook (Wave 1)
-- [ ] 02-02-PLAN.md — Hand component with fan/spread/stack layouts (Wave 2)
-- [ ] 02-03-PLAN.md — Deck, CardStack, and DropZone components (Wave 2)
-- [ ] 02-04-PLAN.md — Barrel exports and integration verification (Wave 3)
+- [x] 02-01-PLAN.md — Layout utilities, container types, constants, and useContainerSize hook (Wave 1)
+- [x] 02-02-PLAN.md — Hand component with fan/spread/stack layouts (Wave 2)
+- [x] 02-03-PLAN.md — Deck, CardStack, and DropZone components (Wave 2)
+- [x] 02-04-PLAN.md — Barrel exports and integration verification (Wave 3)
 
 ### Phase 3: Drag & Drop
 **Goal**: Developers can build card games where cards can be dragged between zones
@@ -123,7 +123,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
-| 2. Container Components & Layouts | 0/4 | Planned | - |
+| 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
 | 3. Drag & Drop | 0/TBD | Not started | - |
 | 4. State Management | 0/TBD | Not started | - |
 | 5. Accessibility | 0/TBD | Not started | - |
