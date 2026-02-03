@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 1 - Foundation & Core Rendering
+**Current focus:** Phase 1 - Foundation & Core Rendering (COMPLETE)
 
 ## Current Position
 
 Phase: 1 of 6 (Foundation & Core Rendering)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-02-03 - Completed 01-02-PLAN.md
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-02-03 - Completed 01-04-PLAN.md
 
-Progress: [###.......] 3/10 plans (30%)
+Progress: [####......] 4/10 plans (40%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 8 min
-- Total execution time: 23 min
+- Total plans completed: 4
+- Average duration: 10 min
+- Total execution time: 48 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1 - Foundation | 3/4 | 23 min | 8 min |
+| 1 - Foundation | 4/4 | 48 min | 12 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min), 01-03 (8 min), 01-02 (11 min)
-- Trend: stable
+- Last 5 plans: 01-01 (4 min), 01-03 (8 min), 01-02 (11 min), 01-04 (25 min)
+- Trend: increasing (checkpoint added time to 01-04)
 
 *Updated after each plan completion*
 
@@ -55,6 +55,10 @@ Recent decisions affecting current work:
 - 4-point opacity transform [0,89,90,180] for sharp crossover at 90 degrees
 - useMotionValueEvent for animation lifecycle tracking
 - Custom usePrefersReducedMotion independent of Motion library
+- CSS grid (3-col x 5-row) for pip layouts matching traditional card arrangements
+- Number cards (2-10) show pip grids; face cards and Ace show single large symbol
+- Bottom-half pips rotated 180deg for visual symmetry
+- forwardRef + useImperativeHandle for uncontrolled component ref API
 
 ### Pending Todos
 
@@ -66,6 +70,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-03T05:16:27Z
-Stopped at: Completed 01-02-PLAN.md (animation hooks for card flip)
+Last session: 2026-02-03T05:31:00Z
+Stopped at: Completed 01-04-PLAN.md (card component integration with pip layouts)
 Resume file: None
