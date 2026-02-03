@@ -41,8 +41,10 @@ function resolveIsFaceUp(
 export const CardStack: React.FC<CardStackProps> = (props) => {
   const {
     cards,
-    offsetX = 2,
-    offsetY = 2,
+    cardWidth = 120,
+    cardHeight = 168,
+    offsetX = cardWidth * 0.05,
+    offsetY = cardHeight * 0.05,
     maxRotation = 3,
     faceUp = 'top-only',
     onTopCardClick,
@@ -98,9 +100,8 @@ export const CardStack: React.FC<CardStackProps> = (props) => {
       {/* Spacer to give the container natural height/width */}
       <div
         style={{
-          aspectRatio: '5 / 7',
-          width: 120 + totalOffsetX,
-          paddingBottom: totalOffsetY,
+          width: cardWidth + totalOffsetX,
+          height: cardHeight + totalOffsetY,
         }}
       />
 
@@ -131,7 +132,7 @@ export const CardStack: React.FC<CardStackProps> = (props) => {
             <Card
               card={card}
               isFaceUp={cardIsFaceUp}
-              style={{ width: 120, height: 168 }}
+              style={{ width: cardWidth, height: cardHeight }}
             />
           </div>
         );

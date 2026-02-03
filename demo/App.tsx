@@ -263,8 +263,6 @@ function App() {
             <CardStack
               cards={discardPile}
               faceUp={true}
-              offsetX={6}
-              offsetY={6}
               maxRotation={5}
             />
           </div>
@@ -287,8 +285,6 @@ function App() {
             <CardStack
               cards={discardPile}
               faceUp="top-only"
-              offsetX={6}
-              offsetY={6}
               maxRotation={5}
             />
           </div>
@@ -311,8 +307,6 @@ function App() {
             <CardStack
               cards={discardPile}
               faceUp={false}
-              offsetX={6}
-              offsetY={6}
               maxRotation={5}
             />
           </div>

@@ -23,9 +23,13 @@ export type FaceUpMode = boolean | 'top-only';
 export interface CardStackProps {
   /** Cards to display in the stack. */
   cards: CardInput[];
-  /** Horizontal offset per card in px.  Default: `2`. */
+  /** Card width in px. Default: `120`. */
+  cardWidth?: number;
+  /** Card height in px. Default: `168`. */
+  cardHeight?: number;
+  /** Horizontal offset per card in px. Default: `5% of cardWidth`. */
   offsetX?: number;
-  /** Vertical offset per card in px.  Default: `2`. */
+  /** Vertical offset per card in px. Default: `5% of cardHeight`. */
   offsetY?: number;
   /** Maximum rotation spread in degrees.  Default: `3`. */
   maxRotation?: number;
