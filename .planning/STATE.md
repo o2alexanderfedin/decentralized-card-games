@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 4 of 6 (State Management)
-Plan: 4 of 6 in current phase
+Plan: 5 of 6 in current phase
 Status: In progress
-Last activity: 2026-02-04 - Completed 04-04-PLAN.md
+Last activity: 2026-02-04 - Completed 04-05-PLAN.md
 
-Progress: [################--] 17/19 plans (89%)
+Progress: [#################-] 18/19 plans (95%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 17
+- Total plans completed: 18
 - Average duration: 6 min
-- Total execution time: 110 min
+- Total execution time: 114 min
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [################--] 17/19 plans (89%)
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
-| 4 - State Management | 4/6 | 15 min | 4 min |
+| 4 - State Management | 5/6 | 19 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-05 (5 min), 04-01 (2 min), 04-02 (3 min), 04-03 (5 min), 04-04 (5 min)
+- Last 5 plans: 04-01 (2 min), 04-02 (3 min), 04-03 (5 min), 04-04 (5 min), 04-05 (4 min)
 - Trend: Accelerating; state management plans averaging 4 min
 
 *Updated after each plan completion*
@@ -105,6 +105,9 @@ Recent decisions affecting current work:
 - Immer-powered mutations in createSlice reducers (direct splice/push/assignment)
 - Static ACTION_CREATOR_MAP bridges dispatch('TYPE', payload) to RTK action creators
 - Plain action creators re-exported with Action suffix to avoid slice collision
+- DTS types path uses vite-plugin-dts output structure (dist/index.d.ts, dist/redux/index.d.ts)
+- Externalize @dnd-kit/* alongside React/motion/Redux in rollup for smaller bundles
+- Multi-entry Vite build: object entry in build.lib.entry for separate bundles
 
 ### Pending Todos
 
@@ -116,6 +119,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T04:27:00Z
-Stopped at: Completed 04-04-PLAN.md
+Last session: 2026-02-04T04:34:04Z
+Stopped at: Completed 04-05-PLAN.md
 Resume file: None
