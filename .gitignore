@@ -53,6 +53,9 @@ tmp/
 temp/
 *.tmp
 
+# Playwright MCP artifacts
+.playwright-mcp/
+
 # Smart contract secrets (NEVER COMMIT)
 .secret
 mnemonic.txt
