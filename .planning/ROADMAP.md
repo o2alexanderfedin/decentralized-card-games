@@ -124,10 +124,14 @@ Plans:
   3. TypeScript users get full type definitions and autocomplete
   4. Test suite passes with >80% coverage
   5. Library installs and works in fresh Vite/Next.js projects
-**Plans**: TBD
+**Plans**: 5 plans in 3 waves
 
 Plans:
-- [ ] 06-01: (TBD during plan-phase)
+- [ ] 06-01-PLAN.md -- ESLint flat config + Vitest coverage setup (Wave 1)
+- [ ] 06-02-PLAN.md -- CSS variable theming + headless DnD hooks (Wave 1)
+- [ ] 06-03-PLAN.md -- Build optimization: ESM+UMD, exports, sideEffects, bundle size (Wave 2)
+- [ ] 06-04-PLAN.md -- Storybook setup + core component stories (Wave 2)
+- [ ] 06-05-PLAN.md -- Interactive DnD stories, game demos, pipeline verification (Wave 3)
 
 ## Progress
 
@@ -141,7 +145,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Drag & Drop | 5/5 | Complete | 2026-02-03 |
 | 4. State Management | 6/6 | Complete | 2026-02-04 |
 | 5. Accessibility | 5/5 | Complete | 2026-02-04 |
-| 6. Developer Experience & Build | 0/TBD | Not started | - |
+| 6. Developer Experience & Build | 0/5 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-02*
