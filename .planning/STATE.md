@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 5 of 6 (Accessibility)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-04 - Completed 05-01-PLAN.md
+Last activity: 2026-02-04 - Completed 05-02-PLAN.md
 
-Progress: [####################] 20/24 plans (83%)
+Progress: [#####################...] 21/24 plans (87%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
+- Total plans completed: 21
 - Average duration: 6 min
-- Total execution time: 121 min
+- Total execution time: 129 min
 
 **By Phase:**
 
@@ -31,11 +31,11 @@ Progress: [####################] 20/24 plans (83%)
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
 | 4 - State Management | 6/6 | 21 min | 4 min |
-| 5 - Accessibility | 1/5 | 5 min | 5 min |
+| 5 - Accessibility | 2/5 | 13 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-03 (5 min), 04-04 (5 min), 04-05 (4 min), 04-06 (2 min), 05-01 (5 min)
-- Trend: Stable at 4-5 min per plan
+- Last 5 plans: 04-04 (5 min), 04-05 (4 min), 04-06 (2 min), 05-01 (5 min), 05-02 (8 min)
+- Trend: Stable at 4-8 min per plan
 
 *Updated after each plan completion*
 
@@ -115,6 +115,11 @@ Recent decisions affecting current work:
 - contentEditable check uses target.contentEditable === 'true' for jsdom compatibility
 - useRovingTabIndex does not manage DOM focus directly; consuming component calls .focus()
 - formatFaceDownLabel has no CardData parameter to prevent accidental identity leaks
+- Browser default outline via :focus-visible for guaranteed keyboard visibility
+- Green box-shadow for selected cards, distinct from blue focus outline
+- Touch target 44x44px via ::before pseudo-element invisible expansion
+- Static motionValue(0) for rotateY in reduced motion (no 3D rotation)
+- 250ms crossfade duration for reduced motion card flip
 
 ### Pending Todos
 
@@ -126,6 +131,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T07:15:53Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-02-04T07:18:17Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None
