@@ -26,7 +26,13 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@reduxjs/toolkit": "^2.0.0",
+    "react-redux": "^9.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@reduxjs/toolkit": { "optional": true },
+    "react-redux": { "optional": true }
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -35,6 +41,7 @@
     "motion": "^12.27.0"
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.0",
@@ -43,6 +50,7 @@
     "jsdom": "^26.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "typescript": "^5.8.0",
     "vite": "^6.1.0",
     "vite-plugin-dts": "^4.5.0",
