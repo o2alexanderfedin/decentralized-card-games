@@ -143,3 +143,17 @@ export { loadState, saveState, clearState } from './context';
 export { useGameState, useLocation, useCard, useGameActions } from './hooks';
 export { useStateBackend, StateBackendContext } from './hooks';
 export type { StateBackend, GameDispatchFn } from './hooks';
+
+// Accessibility hooks (Phase 5)
+export { useRovingTabIndex } from './hooks';
+export { useKeyboardShortcuts } from './hooks';
+export type { KeyboardShortcut, UseRovingTabIndexReturn } from './hooks';
+
+// Accessibility utilities (Phase 5)
+export {
+  formatCardForSpeech,
+  formatCardLabel,
+  formatFaceDownLabel,
+  RANK_NAMES,
+  SUIT_NAMES,
+} from './utils';
