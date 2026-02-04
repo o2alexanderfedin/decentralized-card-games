@@ -2,29 +2,29 @@
   position: relative;
   min-width: 120px;
   min-height: 168px; /* 120 * 1.4 = poker card ratio */
-  border-radius: 8px;
+  border-radius: var(--card-border-radius, 8px);
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .dropZone--idle {
-  border: 2px dashed rgba(0, 0, 0, 0.15);
+  border: 2px dashed var(--empty-border-color, rgba(0, 0, 0, 0.15));
   background: transparent;
 }
 
 .dropZone--active {
-  border: 2px solid #3b82f6;
-  background: rgba(59, 130, 246, 0.05);
+  border: 2px solid var(--dropzone-active-border, #3b82f6);
+  background: var(--dropzone-active-bg, rgba(59, 130, 246, 0.05));
 }
 
 .dropZone--hover {
-  border: 2px dashed #3b82f6;
-  background: rgba(59, 130, 246, 0.02);
+  border: 2px dashed var(--dropzone-hover-border, #3b82f6);
+  background: var(--dropzone-hover-bg, rgba(59, 130, 246, 0.02));
 }
 
 /* Focus-visible: show browser default outline for keyboard navigation */
 .dropZone:focus-visible {
   outline: revert;
-  outline-offset: 2px;
+  outline-offset: var(--focus-ring-offset, 2px);
 }
 
 /* Hide focus outline on mouse click */
@@ -39,7 +39,7 @@
   justify-content: center;
   height: 100%;
   min-height: inherit;
-  color: rgba(0, 0, 0, 0.3);
+  color: var(--empty-placeholder-color, rgba(0, 0, 0, 0.3));
   font-size: 0.875rem;
 }
 

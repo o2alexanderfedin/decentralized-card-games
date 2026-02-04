@@ -1,144 +1,155 @@
-# Project State
+# Project State: Decentralized Card Games Component Library
+
+**Updated:** 2026-02-04
+**Milestone:** v2.0 Distribution & Showcase
+**Status:** In Progress
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-02)
+**Core Value:** Developers can drop in fully interactive card components without building card UI from scratch
 
-**Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 5 - Accessibility (Complete)
+**Current Focus:** Make the library publicly accessible with automated quality gates and compelling demonstration of capabilities through real game implementations
+
+**Milestone Goal:** CI/CD pipeline + GitHub Pages site + three playable game demos (Memory, War, Solitaire)
+
+---
 
 ## Current Position
 
-Phase: 5 of 6 (Accessibility)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-04 - Completed 05-05-PLAN.md
+**Phase:** 7 of 6 - CI/CD Foundation & Deployment Infrastructure
+**Plan:** 2 of 3 complete
+**Status:** In progress
+**Last activity:** 2026-02-04 - Completed 07-02-PLAN.md
 
-Progress: [########################] 24/24 plans (100%)
+**Progress:**
+```
+██░░░░░░░░ ~8% (2/~24 plans complete)
+```
+
+**Next Action:** Execute 07-03-PLAN.md (README badges and repository visibility)
+
+---
 
 ## Performance Metrics
 
-**Velocity:**
-- Total plans completed: 24
-- Average duration: 6 min
-- Total execution time: 156 min
+### v2.0 Milestone (Current)
 
-**By Phase:**
+| Metric | Value | Target |
+|--------|-------|--------|
+| Phases planned | 6 | 6 |
+| Phases complete | 0 | 6 |
+| Plans created | 3 | ~24 (estimated) |
+| Plans complete | 2 | ~24 |
+| Requirements delivered | 5/51 | 51/51 |
+| Days elapsed | 0 | TBD |
 
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 1 - Foundation | 4/4 | 48 min | 12 min |
-| 2 - Containers | 4/4 | 24 min | 6 min |
-| 3 - Drag & Drop | 5/5 | 23 min | 5 min |
-| 4 - State Management | 6/6 | 21 min | 4 min |
-| 5 - Accessibility | 5/5 | 40 min | 8 min |
+### v1.0 Milestone (Completed 2026-02-04)
 
-**Recent Trend:**
-- Last 5 plans: 05-01 (5 min), 05-02 (8 min), 05-03 (5 min), 05-04 (5 min), 05-05 (17 min)
-- Trend: 05-05 longer due to axe violation discovery and fix
+| Metric | Actual |
+|--------|--------|
+| Phases | 6 |
+| Plans | 29 |
+| Requirements | 9/9 delivered |
+| Files created | 278 |
+| Lines of code | ~13,000 TypeScript/TSX |
+| Test coverage | 91.78% |
+| Duration | 2 days (Feb 2-4, 2026) |
 
-*Updated after each plan completion*
+---
 
 ## Accumulated Context
 
-### Decisions
+### Key Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+**v2.0 Architecture:**
+- Three-way composed deployment: landing page + Storybook + game demos into unified site-dist/
+- Hash routing for games to avoid GitHub Pages SPA 404 issues
+- Direct source imports (games/site import from ../src/ not npm package during development)
+- Game logic as custom hooks (useMemoryGame, useWarGame, useSolitaire)
+- Separate Vite configs per build target (library vs. app mode)
 
-- Const assertion pattern for Suit/Rank types (typeof arr[number])
-- parseCard supports both emoji and text notation
-- React as peer dependency (not bundled)
-- Vitest 3.x (4.x not yet available)
-- vite-plugin-dts for library .d.ts generation
-- Reuse ColorScheme from constants rather than redefining in component types
-- Display rank T as "10" in rendered output
-- Inline style for suit colors using getSuitColor utility
-- CSS module type declarations at src/css-modules.d.ts
-- useSpring (not useMotionValue) for automatic spring-animated transitions
-- 4-point opacity transform [0,89,90,180] for sharp crossover at 90 degrees
-- useMotionValueEvent for animation lifecycle tracking
-- Custom usePrefersReducedMotion independent of Motion library
-- CSS grid (3-col x 5-row) for pip layouts matching traditional card arrangements
-- Number cards (2-10) show pip grids; face cards and Ace show single large symbol
-- Bottom-half pips rotated 180deg for visual symmetry
-- forwardRef + useImperativeHandle for uncontrolled component ref API
-- Fan angle scaling: count<=3 uses count/5, count>3 uses sqrt(count/7)
-- Spread spacing clamps to minOverlap when container is too narrow
-- useContainerSize rounds via Math.round with functional updater for identity preservation
-- Hook tests use component render approach rather than useRef spy
-- Card dimensions in Hand: clamp(60, containerWidth/(count+4), 120) with 1.4x aspect ratio
-- AnimatePresence key uses formatCard(card) for stable identity across reorders
-- Selected card y-offset of -15px via motion animate prop
-- Motion/react test mock: importOriginal + override motion.div and AnimatePresence
-- Deck renders max 5 visual layers for stack depth effect
-- CardStack defaults to 'top-only' face-up mode
-- DropZone visual states controlled via prop (future DnD context integration)
-- Container empty state pattern: 'none' | 'placeholder' | ReactNode
-- Named exports in src/index.ts for explicit public API surface
-- Wildcard re-exports in src/components/index.ts for internal convenience
-- Separate MouseSensor + TouchSensor instead of PointerSensor for iOS Safari scroll prevention
-- @dnd-kit/modifiers installed at 9.0.0 (latest available)
-- useHapticFeedback uses useMemo keyed on enabled+isSupported for referential stability
-- CardDndProviderProps extends DragLifecycleCallbacks via interface extension
-- DragOverlay always mounted, children conditionally rendered (dnd-kit pitfall 4)
-- Wrapper div for useDroppable ref to avoid modifying Phase 2 DropZone
-- Multi-card stack shows max 3 visual cards with +N badge
-- DroppableZone supports both accepts array and onValidate callback
-- Component-level CardDndProviderProps uses simplified card callbacks (card, zoneId) not raw dnd-kit events
-- Drop validation checks zone data.onValidate first, falls back to data.accepts array
-- activeCard state managed internally; consumer never touches DndContext directly
-- Barrel exports expanded to include all Phase 3 DnD components, hooks, and types
-- ReactNode over JSX.Element for return type annotations in TSX layout files
-- GameState uses Record<string, CardState[]> for nested-by-location structure
-- CardState extends CardData identity with faceUp, selected, position UI fields
-- Pure gameReducer with zero RTK imports for dual-mode compatibility
-- SET_LOCATIONS merges into existing locations (preserves unmentioned keys)
-- DEAL_CARDS gracefully stops when source exhausted
-- selectCard selector aliased as selectCardState in barrel to avoid action creator collision
-- useLocation uses module-level EMPTY constant for stable empty-array reference with useSyncExternalStore
-- GameDispatchFn = (type: string, payload?: Record<string, unknown>) => void for Redux-style API
-- StateBackend interface: getState/dispatch/subscribe as strategy pattern pivot
-- persist=true by default with configurable storageKey for Context mode
-- useReducer lazy initializer merges base + persisted + prop overrides (no double render)
-- Subscriber notification via useEffect on state change (not synchronous in dispatch)
-- RTK and react-redux as optional peer dependencies via peerDependenciesMeta
-- Immer-powered mutations in createSlice reducers (direct splice/push/assignment)
-- Static ACTION_CREATOR_MAP bridges dispatch('TYPE', payload) to RTK action creators
-- Plain action creators re-exported with Action suffix to avoid slice collision
-- DTS types path uses vite-plugin-dts output structure (dist/index.d.ts, dist/redux/index.d.ts)
-- Externalize @dnd-kit/* alongside React/motion/Redux in rollup for smaller bundles
-- Multi-entry Vite build: object entry in build.lib.entry for separate bundles
-- Card index lookup via suit+rank match in source location state for MOVE_CARD dispatch
-- useGameState for fresh state snapshot in handleDragEnd callback
-- autoDispatch defaults to true for zero-config state synchronization
-- contentEditable check uses target.contentEditable === 'true' for jsdom compatibility
-- useRovingTabIndex does not manage DOM focus directly; consuming component calls .focus()
-- formatFaceDownLabel has no CardData parameter to prevent accidental identity leaks
-- Browser default outline via :focus-visible for guaranteed keyboard visibility
-- Green box-shadow for selected cards, distinct from blue focus outline
-- Touch target 44x44px via ::before pseudo-element invisible expansion
-- Static motionValue(0) for rotateY in reduced motion (no 3D rotation)
-- 250ms crossfade duration for reduced motion card flip
-- Static announcement constants outside component (not memoized inside)
-- aria-roledescription and aria-label placed after {...attributes} spread for override
-- aria-hidden={isDragging || undefined} hides source card during drag overlay
-- Card ARIA labels use natural language ("Ace of Spades") via formatCardForSpeech
-- Face-down cards announce as "Face-down card" without any identity information
-- Hand uses role="listbox" with role="option" children and roving tabindex
-- Card interactive prop suppresses role/tabIndex when nested inside interactive containers
-- @testing-library/user-event for realistic keyboard simulation in Hand/Deck tests
+**Critical Deployment Config:**
+- Base path: `/decentralized-card-games/` for all builds (GitHub Pages subdirectory)
+- .nojekyll file required to prevent Jekyll filtering of Storybook assets
+- NODE_OPTIONS: '--max_old_space_size=4096' in CI to prevent OOM during Storybook build
+- Workflow triggers: [main, develop, 'feature/**', 'release/**', 'hotfix/**'] to align with git-flow
 
-### Pending Todos
+**Game Scope Constraints:**
+- Memory: Flip-pairs-match only, no difficulty levels or leaderboards
+- War: Automated comparison only, no manual play mode
+- Solitaire: Klondike draw-1 mode, NO undo, NO hints, NO auto-complete
 
-None.
+**CI/CD Decisions (Phase 7):**
 
-### Blockers/Concerns
+| ID | Decision | Rationale |
+|----|----------|-----------|
+| CICD-01 | Five parallel jobs for maximum CI speed | No dependencies between jobs; ~3-5 min feedback |
+| CICD-02 | Node.js 22 LTS for CI | Current LTS with maintenance until Apr 2027 |
+| CICD-03 | setup-node cache: npm | Automatic lockfile-based caching |
+| CICD-04 | Conditional deploy jobs for production/staging | Separate environments in GitHub UI for tracking |
+| CICD-05 | STORYBOOK_BASE env var for base path | Flexible subdirectory deployment without hardcoding |
 
-None.
+### Open Questions
+
+None at this time. Research phase completed with HIGH confidence.
+
+### Technical Debt
+
+None yet (v2.0 just started).
+
+---
+
+## Blockers & Risks
+
+### Active Blockers
+
+None
+
+### Known Risks
+
+1. **Storybook base path edge cases** (Medium) - Storybook 8.x has inconsistent viteFinal behavior in some scenarios. Mitigation: Test deployment early in Phase 7.
+
+2. **GitHub Actions permissions** (Medium) - Three overlapping config points (workflow permissions, repo settings, Actions permissions). Mitigation: Follow Phase 7 checklist carefully.
+
+3. **Game scope creep** (Low) - Temptation to add "just one more feature" to games. Mitigation: Hard requirements list in roadmap.
+
+### Mitigated Risks
+
+- **Deployment failures** - Research identified top 5 pitfalls with solutions
+- **Missing dependencies** - Research confirmed no new npm packages needed
+
+---
 
 ## Session Continuity
 
-Last session: 2026-02-04T07:47:59Z
-Stopped at: Completed 05-05-PLAN.md (Phase 5 complete)
-Resume file: None
+### Last Session Summary
+
+**Date:** 2026-02-04
+**Agent:** gsd-executor
+**Accomplishment:** Completed Plan 07-02 - Deployment workflow with production/staging environments
+
+**Files modified:**
+- Created .github/workflows/deploy.yml
+- Modified .storybook/main.ts (viteFinal for base path)
+- Created .planning/phases/07-cicd-foundation-deployment-infrastructure/07-02-SUMMARY.md
+
+**Context for next session:**
+- Plan 07-02 complete (deployment workflow with production/staging)
+- Deployment triggers on main (production) and develop (staging preview)
+- Storybook configured for GitHub Pages subdirectory at /storybook/
+- Ready to execute Plan 07-03 (README badges)
+- No blockers
+
+### Quick Context Recovery
+
+If resuming after interruption:
+
+1. **Where we are:** Phase 7 in progress, Plans 01-02 complete
+2. **What's built:** CI workflow + deploy workflow at .github/workflows/
+3. **What's next:** Plan 07-03 (README badges and repo visibility)
+4. **Key constraints:** git-flow branch strategy, requires GitHub Pages source set to Actions
+
+---
+
+*State initialized: 2026-02-04*
+*Last updated: 2026-02-04*

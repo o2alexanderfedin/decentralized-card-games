@@ -17,6 +17,7 @@ dist/
 build/
 out/
 .next/
+storybook-static/
 
 # IDE
 .vscode/
@@ -51,6 +52,9 @@ logs/
 tmp/
 temp/
 *.tmp
+
+# Playwright MCP artifacts
+.playwright-mcp/
 
 # Smart contract secrets (NEVER COMMIT)
 .secret

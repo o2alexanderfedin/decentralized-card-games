@@ -9,7 +9,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(var(--stack-shadow, 0 2px 4px rgba(0, 0, 0, 0.1)));
 }
 
 /* Top card has pointer cursor when clickable */
@@ -20,7 +20,7 @@
 /* Focus-visible: show browser default outline for keyboard navigation */
 .cardSlot:focus-visible {
   outline: revert;
-  outline-offset: 2px;
+  outline-offset: var(--focus-ring-offset, 2px);
 }
 
 /* Hide focus outline on mouse click */

@@ -28,6 +28,7 @@ describe('DnD type definitions', () => {
 
   it('SensorConfig fields are all optional', () => {
     // An empty object should satisfy SensorConfig
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     expectTypeOf<{}>().toMatchTypeOf<SensorConfig>();
 
     expectTypeOf<SensorConfig>().toHaveProperty('mouseDistance');
@@ -53,6 +54,7 @@ describe('DnD type definitions', () => {
   });
 
   it('DragLifecycleCallbacks has all optional callback fields', () => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     expectTypeOf<{}>().toMatchTypeOf<DragLifecycleCallbacks>();
     expectTypeOf<DragLifecycleCallbacks>().toHaveProperty('onDragStart');
     expectTypeOf<DragLifecycleCallbacks>().toHaveProperty('onDragOver');

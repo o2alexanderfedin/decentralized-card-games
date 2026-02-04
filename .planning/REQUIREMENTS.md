@@ -1,125 +1,109 @@
 # Requirements: Decentralized Card Games Component Library
 
-**Defined:** 2026-02-02
+**Defined:** 2026-02-04
 **Core Value:** Developers can drop in fully interactive card components without building card UI from scratch
 
-## v1 Requirements
+## Milestone v2.0 Requirements
 
-Requirements for initial release. Each maps to roadmap phases.
+### CI/CD Pipeline
 
-### Foundation & Rendering
+- [ ] **CICD-01**: GitHub Actions workflow runs tests on every push to develop/feature branches
+- [ ] **CICD-02**: GitHub Actions workflow runs linting (TypeScript, ESLint) on every push
+- [ ] **CICD-03**: GitHub Actions workflow builds library artifacts and verifies success
+- [ ] **CICD-04**: GitHub Actions workflow builds Storybook static site
+- [ ] **CICD-05**: GitHub Actions workflow builds all game demos
+- [ ] **CICD-06**: GitHub Actions workflow deploys composite site to GitHub Pages on successful builds
+- [ ] **CICD-07**: CI workflow includes proper caching for node_modules and build artifacts
+- [ ] **CICD-08**: CI workflow sets NODE_OPTIONS for memory allocation to prevent OOM errors
 
-- [x] **FNDN-01**: Render all 52 playing cards with suit and rank display
-- [x] **FNDN-02**: Render card backs with face up/down state toggle
-- [x] **FNDN-03**: Card flip animation using CSS 3D transforms
-- [x] **FNDN-04**: Click and tap event handlers for card interactions
-- [x] **FNDN-05**: TypeScript types for Card, Suit, Rank, and CardState
-- [x] **FNDN-06**: Responsive card sizing that scales to container
-- [x] **FNDN-07**: Basic container component for holding cards
+### GitHub Pages Site
 
-### Animation & Performance
+- [ ] **SITE-01**: Landing page with hero section showcasing library capabilities
+- [ ] **SITE-02**: Landing page includes installation instructions (npm install command)
+- [ ] **SITE-03**: Landing page includes quick start code example
+- [ ] **SITE-04**: Landing page includes feature highlights section
+- [ ] **SITE-05**: Landing page includes navigation links to Storybook documentation
+- [ ] **SITE-06**: Landing page includes navigation links to game demos
+- [ ] **SITE-07**: Storybook deployed to `/storybook/` subdirectory with correct base path
+- [ ] **SITE-08**: Game demos deployed to `/games/` subdirectory with hash routing
+- [ ] **SITE-09**: Site includes `.nojekyll` file to prevent Jekyll asset filtering
+- [ ] **SITE-10**: All site artifacts composed into single `site-dist/` for deployment
 
-- [x] **ANIM-01**: GPU-accelerated animations using transform and opacity only
-- [x] **ANIM-02**: Motion Values for animation state (not React state)
-- [x] **ANIM-03**: Flip animation with configurable duration and easing
-- [x] **ANIM-04**: Performance optimization to prevent animation re-renders
+### Memory Game Demo
 
-### Drag & Drop
+- [ ] **MEM-01**: User can start a new Memory game with shuffled card pairs
+- [ ] **MEM-02**: User can flip cards by clicking to reveal face
+- [ ] **MEM-03**: Cards flip back automatically if no match after short delay
+- [ ] **MEM-04**: Matched card pairs remain face-up and disabled
+- [ ] **MEM-05**: Game detects win condition when all pairs are matched
+- [ ] **MEM-06**: Game displays move counter and elapsed time
+- [ ] **MEM-07**: User can reset game to play again
 
-- [x] **DND-01**: dnd-kit integration for drag-and-drop functionality
-- [x] **DND-02**: Draggable card components
-- [x] **DND-03**: Droppable zone components
-- [x] **DND-04**: Drag preview/overlay component
-- [x] **DND-05**: Touch gesture support for mobile drag-and-drop
-- [x] **DND-06**: Performance optimizations for dragging 50+ cards
+### War Game Demo
 
-### State Management
+- [ ] **WAR-01**: User can start War game with deck split between two players
+- [ ] **WAR-02**: Cards are automatically drawn and compared each round
+- [ ] **WAR-03**: Higher card wins the round and both cards go to winner's pile
+- [ ] **WAR-04**: "War" scenario handles ties (multiple cards played face-down, then face-up)
+- [ ] **WAR-05**: Game displays current card counts for both players
+- [ ] **WAR-06**: Game detects win condition when one player has all cards
+- [ ] **WAR-07**: User can pause/resume automated gameplay
 
-- [ ] **STATE-01**: Redux Toolkit integration as optional layer
-- [ ] **STATE-02**: Redux slice for normalized card state (byId, allIds, locations)
-- [ ] **STATE-03**: Redux hooks (useDeck, useHand) for state access
-- [ ] **STATE-04**: Internal context provider for non-Redux usage
-- [ ] **STATE-05**: Selectors for common card queries
+### Solitaire Game Demo
 
-### Container Components
+- [ ] **SOL-01**: User can start Klondike Solitaire with proper initial layout (7 tableau columns)
+- [ ] **SOL-02**: User can drag cards between tableau columns following Klondike rules
+- [ ] **SOL-03**: User can drag cards from tableau to foundation piles (4 foundations, sorted by suit)
+- [ ] **SOL-04**: User can draw cards from stock to waste pile (draw 3 mode)
+- [ ] **SOL-05**: User can drag cards from waste pile to tableau or foundations
+- [ ] **SOL-06**: Game validates legal moves (alternating colors, descending rank for tableau)
+- [ ] **SOL-07**: Game auto-reveals face-down tableau cards when top card is moved
+- [ ] **SOL-08**: Game detects win condition when all foundations complete (King to Ace)
+- [ ] **SOL-09**: User can restart game with new shuffle
 
-- [x] **CNTR-01**: Hand component for displaying player's cards
-- [x] **CNTR-02**: Deck component for card stack with draw functionality
-- [x] **CNTR-03**: CardStack component for visual card stacking
-- [x] **CNTR-04**: DropZone component for droppable areas
+### Repository & Documentation
 
-### Layout Presets
+- [ ] **REPO-01**: Repository visibility changed from private to public
+- [ ] **REPO-02**: README includes build status badge linked to GitHub Actions
+- [ ] **REPO-03**: README includes npm version badge
+- [ ] **REPO-04**: README includes bundle size badge
+- [ ] **REPO-05**: README includes link to live GitHub Pages site
+- [ ] **REPO-06**: README includes link to Storybook documentation
+- [ ] **REPO-07**: CONTRIBUTING.md file created with contribution guidelines
+- [ ] **REPO-08**: CONTRIBUTING.md includes development setup instructions
+- [ ] **REPO-09**: CONTRIBUTING.md includes testing guidelines
+- [ ] **REPO-10**: CONTRIBUTING.md includes code style expectations
 
-- [x] **LYOT-01**: Fan layout with configurable spread angle
-- [x] **LYOT-02**: Spread layout for horizontal card arrangement
-- [x] **LYOT-03**: Stack layout for vertical card stacking
-- [x] **LYOT-04**: Layout calculation utilities (overlap, rotation)
+## Future Requirements
 
-### Developer Experience
+Deferred to later milestones.
 
-- [ ] **DX-01**: Storybook documentation with component examples
-- [ ] **DX-02**: Headless hooks (useDraggableCard, useDroppableZone, useCardFlip)
-- [ ] **DX-03**: CSS variable theming system
-- [ ] **DX-04**: Tree-shakeable ESM build
-- [ ] **DX-05**: TypeScript declaration files (.d.ts)
-- [ ] **DX-06**: Package exports configuration for subpath imports
+### Enhanced Game Features
 
-### Accessibility
+- **MEM-02**: Difficulty levels (4x4, 6x6, 8x8 grids)
+- **MEM-03**: Leaderboard with best times
+- **WAR-02**: Speed control slider for automated gameplay
+- **SOL-02**: Draw 1 mode toggle
+- **SOL-03**: Undo move functionality
+- **SOL-04**: Hint system
 
-- [x] **A11Y-01**: Semantic HTML structure for all components
-- [x] **A11Y-02**: Keyboard navigation (Tab, Enter, Space, Arrow keys)
-- [x] **A11Y-03**: ARIA labels and roles for screen readers
-- [x] **A11Y-04**: Focus management and visible focus indicators
-- [x] **A11Y-05**: Screen reader announcements for card actions
-- [x] **A11Y-06**: prefers-reduced-motion support
-- [x] **A11Y-07**: Touch target size minimum 44x44px
-- [x] **A11Y-08**: Keyboard-accessible drag-and-drop alternative
+### Site Polish
 
-### Build & Distribution
-
-- [ ] **BUILD-01**: Vite library mode configuration
-- [ ] **BUILD-02**: Dual ESM/CJS output
-- [ ] **BUILD-03**: sideEffects: false for tree-shaking
-- [ ] **BUILD-04**: Vitest test suite with >80% coverage
-- [ ] **BUILD-05**: ESLint flat config with jsx-a11y plugin
-- [ ] **BUILD-06**: Bundle size testing and optimization
-
-## v2 Requirements
-
-Deferred to future release. Tracked but not in current roadmap.
-
-### Advanced Animations
-
-- **ANIM2-01**: Deal animation with stagger effect
-- **ANIM2-02**: Shuffle animation with choreography
-- **ANIM2-03**: Advanced gesture animations (swipe, long-press)
-
-### Custom Cards
-
-- **CSTM-01**: Support for custom card faces beyond standard 52-card deck
-- **CSTM-02**: Card builder/editor component
-- **CSTM-03**: Image upload for custom card artwork
-
-### Performance
-
-- **PERF-01**: Virtualization for rendering 100+ cards
-- **PERF-02**: Server-Side Rendering (SSR) support
-- **PERF-03**: React Server Components compatibility
+- **SITE-11**: Dark mode toggle for landing page
+- **SITE-12**: Animated hero section with floating cards
+- **SITE-13**: View source toggle for game demos
+- **SITE-14**: Mobile-responsive game layouts
 
 ## Out of Scope
 
-Explicitly excluded. Documented to prevent scope creep.
-
 | Feature | Reason |
 |---------|--------|
-| Game logic (Poker, Durak rules) | Library focuses on UI only; game rules couple to specific games and limit reusability |
-| Multiplayer/networking | Server communication is application concern, not component library |
-| Player management | User/session management belongs in consuming application |
-| Scoring systems | Game-specific logic, not UI library responsibility |
-| AI opponents | Complex game logic, out of scope for component library |
-| Blockchain/decentralization | Deferred to future platform work, not part of base library |
-| Card builder UI | Data model supports it, but builder interface deferred to v2 |
-| Image assets for cards | Using emoji/CSS only to keep library lightweight |
+| Multiplayer games | No server infrastructure, demos are single-player only |
+| User accounts/authentication | Documentation site doesn't need user management |
+| Custom domain (e.g., cardlib.dev) | GitHub Pages default domain sufficient for v2.0 |
+| npm package publishing automation | Manual publishing provides control and verification |
+| Game high scores persistence | No backend storage, in-memory only is sufficient for demos |
+| Touch gestures for mobile | Desktop-first demos, mobile is secondary |
 
 ## Traceability
 
@@ -127,62 +111,71 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FNDN-01 | Phase 1 | Pending |
-| FNDN-02 | Phase 1 | Pending |
-| FNDN-03 | Phase 1 | Pending |
-| FNDN-04 | Phase 1 | Pending |
-| FNDN-05 | Phase 1 | Pending |
-| FNDN-06 | Phase 1 | Pending |
-| FNDN-07 | Phase 1 | Pending |
-| ANIM-01 | Phase 1 | Pending |
-| ANIM-02 | Phase 1 | Pending |
-| ANIM-03 | Phase 1 | Pending |
-| ANIM-04 | Phase 1 | Pending |
-| CNTR-01 | Phase 2 | Pending |
-| CNTR-02 | Phase 2 | Pending |
-| CNTR-03 | Phase 2 | Pending |
-| CNTR-04 | Phase 2 | Pending |
-| LYOT-01 | Phase 2 | Pending |
-| LYOT-02 | Phase 2 | Pending |
-| LYOT-03 | Phase 2 | Pending |
-| LYOT-04 | Phase 2 | Pending |
-| DND-01 | Phase 3 | Pending |
-| DND-02 | Phase 3 | Pending |
-| DND-03 | Phase 3 | Pending |
-| DND-04 | Phase 3 | Pending |
-| DND-05 | Phase 3 | Pending |
-| DND-06 | Phase 3 | Pending |
-| STATE-01 | Phase 4 | Pending |
-| STATE-02 | Phase 4 | Pending |
-| STATE-03 | Phase 4 | Pending |
-| STATE-04 | Phase 4 | Pending |
-| STATE-05 | Phase 4 | Pending |
-| A11Y-01 | Phase 5 | Complete |
-| A11Y-02 | Phase 5 | Complete |
-| A11Y-03 | Phase 5 | Complete |
-| A11Y-04 | Phase 5 | Complete |
-| A11Y-05 | Phase 5 | Complete |
-| A11Y-06 | Phase 5 | Complete |
-| A11Y-07 | Phase 5 | Complete |
-| A11Y-08 | Phase 5 | Complete |
-| DX-01 | Phase 6 | Pending |
-| DX-02 | Phase 6 | Pending |
-| DX-03 | Phase 6 | Pending |
-| DX-04 | Phase 6 | Pending |
-| DX-05 | Phase 6 | Pending |
-| DX-06 | Phase 6 | Pending |
-| BUILD-01 | Phase 6 | Pending |
-| BUILD-02 | Phase 6 | Pending |
-| BUILD-03 | Phase 6 | Pending |
-| BUILD-04 | Phase 6 | Pending |
-| BUILD-05 | Phase 6 | Pending |
-| BUILD-06 | Phase 6 | Pending |
+| CICD-01 | Phase 7 | Pending |
+| CICD-02 | Phase 7 | Pending |
+| CICD-03 | Phase 7 | Pending |
+| CICD-04 | Phase 7 | Pending |
+| CICD-05 | Phase 7 | Pending |
+| CICD-06 | Phase 7 | Pending |
+| CICD-07 | Phase 7 | Pending |
+| CICD-08 | Phase 7 | Pending |
+| SITE-01 | Phase 8 | Pending |
+| SITE-02 | Phase 8 | Pending |
+| SITE-03 | Phase 8 | Pending |
+| SITE-04 | Phase 8 | Pending |
+| SITE-05 | Phase 8 | Pending |
+| SITE-06 | Phase 8 | Pending |
+| SITE-07 | Phase 8 | Pending |
+| SITE-08 | Phase 8 | Pending |
+| SITE-09 | Phase 8 | Pending |
+| SITE-10 | Phase 8 | Pending |
+| MEM-01 | Phase 9 | Pending |
+| MEM-02 | Phase 9 | Pending |
+| MEM-03 | Phase 9 | Pending |
+| MEM-04 | Phase 9 | Pending |
+| MEM-05 | Phase 9 | Pending |
+| MEM-06 | Phase 9 | Pending |
+| MEM-07 | Phase 9 | Pending |
+| WAR-01 | Phase 10 | Pending |
+| WAR-02 | Phase 10 | Pending |
+| WAR-03 | Phase 10 | Pending |
+| WAR-04 | Phase 10 | Pending |
+| WAR-05 | Phase 10 | Pending |
+| WAR-06 | Phase 10 | Pending |
+| WAR-07 | Phase 10 | Pending |
+| SOL-01 | Phase 11 | Pending |
+| SOL-02 | Phase 11 | Pending |
+| SOL-03 | Phase 11 | Pending |
+| SOL-04 | Phase 11 | Pending |
+| SOL-05 | Phase 11 | Pending |
+| SOL-06 | Phase 11 | Pending |
+| SOL-07 | Phase 11 | Pending |
+| SOL-08 | Phase 11 | Pending |
+| SOL-09 | Phase 11 | Pending |
+| REPO-01 | Phase 7 | Pending |
+| REPO-02 | Phase 7 | Pending |
+| REPO-03 | Phase 8 | Pending |
+| REPO-04 | Phase 8 | Pending |
+| REPO-05 | Phase 8 | Pending |
+| REPO-06 | Phase 8 | Pending |
+| REPO-07 | Phase 12 | Pending |
+| REPO-08 | Phase 12 | Pending |
+| REPO-09 | Phase 12 | Pending |
+| REPO-10 | Phase 12 | Pending |
 
 **Coverage:**
-- v1 requirements: 48 total
-- Mapped to phases: 48
-- Unmapped: 0
+- v2.0 requirements: 51 total
+- Mapped to phases: 51/51
+- Unmapped: 0 ✓
+
+**Phase Distribution:**
+- Phase 7 (CI/CD Foundation): 10 requirements
+- Phase 8 (Landing Page): 10 requirements
+- Phase 9 (Memory Game): 7 requirements
+- Phase 10 (War Game): 7 requirements
+- Phase 11 (Solitaire Game): 9 requirements
+- Phase 12 (Repository Docs): 4 requirements
 
 ---
-*Requirements defined: 2026-02-02*
-*Last updated: 2026-02-02 - Traceability completed*
+*Requirements defined: 2026-02-04*
+*Last updated: 2026-02-04 after roadmap creation*

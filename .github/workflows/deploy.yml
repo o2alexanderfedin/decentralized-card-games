@@ -1,0 +1,85 @@
+# Deploy to GitHub Pages - Builds and deploys composite site
+# Triggers on main (production) and develop (staging preview)
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+env:
+  # Prevent Storybook OOM during build (GitHub runners have 7GB RAM)
+  NODE_OPTIONS: --max-old-space-size=4096
+
+jobs:
+  build:
+    name: Build Site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Library
+        run: npm run build
+
+      - name: Build Storybook
+        run: npm run build-storybook
+        env:
+          STORYBOOK_BASE: /decentralized-card-games/storybook/
+
+      - name: Compose Site Directory
+        run: |
+          mkdir -p site-dist/storybook
+          cp -r storybook-static/* site-dist/storybook/
+          touch site-dist/.nojekyll
+          echo "Site composed successfully"
+          ls -la site-dist/
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site-dist/
+
+  deploy-production:
+    name: Deploy to Production
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-staging:
+    name: Deploy to Staging
+    if: github.ref == 'refs/heads/develop'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

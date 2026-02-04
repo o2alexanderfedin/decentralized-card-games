@@ -1,254 +1,343 @@
-# Feature Research: React Card Component Library
+# Feature Research: Documentation Site & Game Demos
 
-**Domain:** React component library for playing card visualization and interaction
-**Researched:** 2026-02-02
-**Confidence:** MEDIUM (verified against existing libraries and current React ecosystem practices)
+**Domain:** Component library documentation site with interactive game demonstrations
+**Researched:** 2026-02-04
+**Confidence:** HIGH (based on analysis of leading component library docs sites, Storybook official docs, and established game demo patterns)
+
+## Context: What Already Exists
+
+Before defining features, it is critical to understand what v1.0 already provides:
+
+- **10 components**: Card, Hand, Deck, CardStack, DropZone, DraggableCard, DroppableZone, CardDragOverlay, CardDndProvider, StatefulCardDndProvider
+- **35 Storybook stories** with autodocs, a11y testing, and interactive examples
+- **State management**: GameProvider, gameReducer, context-based and Redux-compatible
+- **Drag-and-drop**: Full dnd-kit integration with stateful provider
+- **Accessibility**: ARIA labels, keyboard navigation, roving tab index, screen reader announcements
+- **Build output**: ESM + UMD, TypeScript types, CSS variables theming
+
+The v2.0 goal is NOT to rebuild documentation (Storybook already handles component-level docs). It is to create a **marketing + adoption layer** that sits in front of Storybook and proves the library works through playable games.
+
+---
 
 ## Feature Landscape
 
 ### Table Stakes (Users Expect These)
 
-Features developers assume exist. Missing these = library feels incomplete or unusable.
+Features developers assume a credible component library site has. Missing these = library looks abandoned or unprofessional.
 
 | Feature | Why Expected | Complexity | Notes |
 |---------|--------------|------------|-------|
-| **Render all 52 cards** | Basic deck coverage | LOW | 4 suits x 13 ranks; must include face cards (J, Q, K) and Aces |
-| **Card back rendering** | Cards need hidden state | LOW | Single back design or configurable; essential for any game |
-| **Suit/rank display** | Core card identity | LOW | Visual distinction between suits; standard rank notation |
-| **Face up/down state** | Fundamental game mechanic | LOW | Boolean prop; all card games need this |
-| **Card flip animation** | Expected UX polish | MEDIUM | CSS transform or animation library; 3D flip is standard |
-| **Click/tap handlers** | Basic interactivity | LOW | onClick prop; foundation for all interactions |
-| **Responsive sizing** | Modern web requirement | LOW | CSS-based scaling; SVG preferred for crisp rendering |
-| **TypeScript types** | 2026 standard expectation | LOW | Full type coverage for props, events, card data |
-| **Basic card container** | Group cards logically | LOW | Simple wrapper component for hands, piles, etc. |
+| **Landing page with project identity** | Every serious library has a homepage; npm README links here | MEDIUM | Hero section, tagline, visual card showcase. Must establish "what is this" in 5 seconds |
+| **Installation instructions** | First thing devs look for; copy-pasteable npm install | LOW | `npm install @decentralized-games/card-components` with framework-specific setup notes |
+| **Quick start code example** | Developers evaluate by trying; need < 30-second path to first render | LOW | Minimal JSX showing a card rendering. Must be copy-pasteable |
+| **Link to full Storybook docs** | Component-level API docs already exist; do not duplicate | LOW | Prominent "View All Components" button linking to deployed Storybook |
+| **Feature overview / highlights** | Developers scan capabilities before deep-diving docs | LOW | Bullet list or card grid: DnD, animations, state management, accessibility, theming |
+| **GitHub repository link** | Open source credibility signal; developers check stars, activity | LOW | Header/footer link to repo |
+| **License visibility** | Legal requirement for adoption decisions | LOW | Footer or dedicated section. MIT license is expected |
+| **Mobile-responsive layout** | Developers evaluate on multiple devices; looks broken on phone = red flag | MEDIUM | Responsive breakpoints. Games can degrade gracefully on mobile |
+| **At least one working demo** | Proves the library actually works, not just renders in Storybook | HIGH | A single playable game is minimum. Multiple is better but one is the floor |
 
 ### Differentiators (Competitive Advantage)
 
-Features that set the library apart. Not required, but valuable for adoption.
+Features that make this documentation site memorable and drive adoption. No competing card component library has these.
 
 | Feature | Value Proposition | Complexity | Notes |
 |---------|-------------------|------------|-------|
-| **Drag and drop** | Interactive card movement without custom implementation | HIGH | Consider dnd-kit or hello-pangea/dnd integration; gesture support |
-| **Layout presets (fan, spread, stack)** | Ready-to-use hand arrangements | MEDIUM | CSS transforms for rotation/overlap; configurable spacing |
-| **Deal/shuffle animations** | Professional card game feel | HIGH | Framer Motion or GSAP; staggered animations |
-| **Redux integration hooks** | Seamless state management | MEDIUM | useCard, useDeck hooks; actions for draw, discard, shuffle |
-| **WCAG accessibility** | Inclusive design; legal requirement in some regions | MEDIUM | aria-labels, keyboard navigation, screen reader announcements |
-| **Emoji-based icons** | Lightweight, no external assets | LOW | Unicode suits; customizable via props |
-| **CSS variable theming** | Easy customization without CSS-in-JS overhead | LOW | --card-width, --card-bg, --suit-red, etc. |
-| **Tree-shakeable exports** | Small bundle for consumers | MEDIUM | ESM format, named exports, sideEffects: false |
-| **Zone management** | Logical groupings (deck, hand, discard, play area) | MEDIUM | Container components with transfer animations |
-| **Selection state** | Multi-select for discard/play actions | LOW | Visual feedback, managed state |
-| **Stacking with peek** | See partial cards in piles | LOW | CSS positioning with configurable offset |
-| **Hover/focus effects** | Visual feedback for interactive cards | LOW | CSS transitions; lift effect common |
-| **Card back customization** | Branding, game themes | LOW | Prop for custom back design/color |
+| **Three playable game demos (Memory, War, Solitaire)** | Proves the library handles real game scenarios, not just isolated component rendering. Each game showcases different capabilities | HIGH | See Game Demo Features section below for scoping details |
+| **Live embedded game on landing page** | Immediate "wow factor" -- visitor can play without navigating away. shadcn/ui has interactive dashboard on homepage; we have a game | MEDIUM | Embed simplest game (Memory or War) directly in hero/feature section. Not an iframe -- actual React components |
+| **"View source" toggle on demos** | Developers want to see HOW games use the library. Toggle between playing and reading the implementation | MEDIUM | Code panel alongside game. Similar to Storybook canvas/docs toggle but for full game implementations |
+| **Component capability matrix** | At-a-glance view of what each component does. Table format: Component vs. capabilities (DnD, animation, state, a11y) | LOW | Static content, but highly valuable for evaluation |
+| **Bundle size badge** | Size-conscious developers check this. Library is already optimized (60kB limit) -- show it | LOW | Display actual bundle sizes from size-limit. Automated via build |
+| **Dark mode / theme toggle** | Shows theming system works in practice. CSS variables make this straightforward | MEDIUM | Demonstrates CSS variable theming as a feature of the library itself |
+| **Animated card hero visual** | Cards fanning out, flipping, or stacking on landing page. Uses the actual library components | MEDIUM | Demonstrates animation capabilities immediately. Not a GIF -- live rendered cards |
 
 ### Anti-Features (Deliberately NOT Built)
 
-Features that seem valuable but create problems for a component library.
+Features that seem good but create scope creep, maintenance burden, or wrong focus.
 
 | Anti-Feature | Why Requested | Why Problematic | Alternative |
 |--------------|---------------|-----------------|-------------|
-| **Game logic/rules** | "Just add Poker rules" | Couples library to specific games; limits reusability | Provide hooks/events; let consumers implement rules |
-| **Server communication** | Multiplayer support | Networking is app-specific; adds massive scope | Export card state shapes; let consumers sync however they want |
-| **Full deck management** | Convenience | State belongs to app, not component library | Provide utility functions (createDeck, shuffle) as separate export |
-| **Player management** | Multi-player games | UI library shouldn't manage player state | Provide layout components that accept player data |
-| **Scoring system** | Track points | Game-specific logic | Consumer responsibility |
-| **Timer/turn management** | Game flow | App-level concern | Consumer responsibility |
-| **Sound effects** | Polish | Bloats bundle; preference varies | Document how to add with events |
-| **Database persistence** | Save games | Infrastructure concern | Export serializable state shapes |
-| **AI opponents** | Single-player games | Massive scope; game-specific | Completely out of scope |
-| **Chat/social features** | Multiplayer | App infrastructure | Completely out of scope |
+| **Custom documentation framework (Docusaurus/Nextra)** | "We need proper docs" | Storybook already generates comprehensive component docs with autodocs. Building a parallel docs system creates duplication, maintenance divergence, and confusion about which is canonical | Use Storybook as the docs system. Landing page links to Storybook. Games are standalone React pages |
+| **API reference on the site** | "Put all props/types on the landing page" | Already exists in Storybook autodocs. Duplicating means two sources of truth that will drift. Component docs should live with components | Link to Storybook autodocs. "View API" button per component goes to Storybook page |
+| **User accounts / leaderboards** | "Track high scores" | Requires backend, database, auth. Massive scope for a demo. Games are showcases, not products | Store scores in localStorage only. No server. No accounts |
+| **Multiplayer / networked play** | "War should be player vs. player online" | Requires WebSocket server, state sync, hosting. The library is about components, not networking | All games are single-player or player-vs-computer. Sufficient for showcase purposes |
+| **Full production game logic** | "Solitaire should have undo, hints, auto-complete, multiple variants" | Games are DEMOS, not products. Undo/hint/auto-complete each add significant complexity without proving library capabilities | Build minimal viable rules. Enough to play a full game. No undo, no hints, no variant selection |
+| **Blog / changelog on site** | "Keep users updated" | GitHub releases and CHANGELOG.md already serve this purpose. Blog requires ongoing content creation commitment | Link to GitHub releases. Changelog in README |
+| **Search across docs** | "Full-text search" | Storybook has built-in search. Landing page is small enough to not need search | Storybook search handles component/API discovery |
+| **Tutorials / step-by-step guides** | "Walk through building a game" | High maintenance cost. Becomes stale as APIs evolve. Better as blog posts or external content | Link to game demo source code with inline comments. "View Source" toggle is the tutorial |
+| **Sound effects in demos** | "Games feel better with sound" | Bloats bundle, auto-play policies are complex, accessibility concerns. Not related to library capabilities | Silent games. Library is visual/interactive, not audio |
+| **Mobile-first game controls** | "Touch drag on mobile" | DnD on mobile is complex (touch vs scroll conflict). Games are developer evaluation tools, not consumer products | Games work on desktop. Mobile gets a "best on desktop" note or simplified click-only controls |
+
+---
+
+## Game Demo Features (Detailed Scoping)
+
+Each game serves a specific showcase purpose. Scope must be ruthlessly minimal -- enough to prove the library works, not enough to ship as a standalone game.
+
+### Memory Game
+
+**Showcase purpose:** Card flip animation, grid layout, state management, component reuse
+
+**Must have (demo-grade):**
+| Feature | Showcases | Complexity |
+|---------|-----------|------------|
+| Grid of face-down cards | Card component rendering, CardStack/layout | LOW |
+| Click to flip | Card flip animation, onClick handler | LOW |
+| Match detection (2 cards) | State management via GameProvider | LOW |
+| Matched pairs stay face-up | Conditional rendering, card state | LOW |
+| Win detection | Simple state check: all matched | LOW |
+| Card count display | Basic game chrome | LOW |
+| Reset / new game button | State reset via dispatch | LOW |
+
+**Explicitly NOT building:**
+- Difficulty levels (different grid sizes)
+- Timer / scoring
+- Move counter optimization
+- Animated card dealing at start
+- Card matching animations beyond flip
+
+**Total complexity:** LOW-MEDIUM (simplest of the three games)
+
+### War
+
+**Showcase purpose:** Deck component, card comparison, CardStack for piles, deal animation
+
+**Must have (demo-grade):**
+| Feature | Showcases | Complexity |
+|---------|-----------|------------|
+| Two card piles (player + computer) | Deck component with count display | LOW |
+| Click/button to reveal top cards | Card flip, deal from deck | LOW |
+| Card rank comparison (higher wins) | Game logic (not library feature -- pure JS) | LOW |
+| Winner takes cards, piles update | State management, Deck count | LOW |
+| War scenario (tie handling) | Multiple cards face-down then reveal | MEDIUM |
+| Game over when one side has all cards | Win condition check | LOW |
+| Card count per player | UI chrome | LOW |
+
+**Explicitly NOT building:**
+- Animated card movement between piles
+- Speed War variant
+- Multiple tie resolution depth (cap at 1 war)
+- Card history / replay
+
+**Total complexity:** LOW-MEDIUM (War is inherently simple -- no player decisions)
+
+### Solitaire (Klondike)
+
+**Showcase purpose:** Drag-and-drop between zones, DroppableZone validation, complex multi-zone state, CardStack with peek
+
+**Must have (demo-grade):**
+| Feature | Showcases | Complexity |
+|---------|-----------|------------|
+| 7 tableau columns with cascading cards | CardStack with stacking/offset | MEDIUM |
+| Face-down cards with top card face-up | Card face state management | LOW |
+| 4 foundation piles (Ace to King by suit) | DroppableZone with validation rules | MEDIUM |
+| Stock pile (click to draw) | Deck component with draw action | LOW |
+| Waste pile (drawn cards) | CardStack or single card display | LOW |
+| Drag cards between tableau columns | DraggableCard + DroppableZone + StatefulCardDndProvider | HIGH |
+| Drag cards to foundation | Drop validation (correct suit, sequential rank) | MEDIUM |
+| Auto-flip revealed cards in tableau | State management on card removal | LOW |
+| Win detection (all cards in foundations) | State check | LOW |
+
+**Explicitly NOT building:**
+- Undo functionality
+- Hint system
+- Auto-complete (when winnable)
+- Draw-3 mode (only draw-1)
+- Scoring system
+- Timer
+- Vegas variant
+- Multi-card drag from tableau (single card drag only for v2.0)
+
+**Total complexity:** HIGH (most complex game due to multi-zone DnD with validation)
+
+---
 
 ## Feature Dependencies
 
 ```
-[Card Component]
+[Landing Page]
     |
-    +-- requires --> [Suit/Rank Types]
+    +-- requires --> [GitHub Pages deployment pipeline]
     |
-    +-- requires --> [Card Styling (CSS)]
+    +-- requires --> [Built Storybook (already exists)]
     |
-    +-- enhances --> [Flip Animation]
+    +-- enhances --> [Embedded game demo on page]
+    |                    |
+    |                    +-- requires --> [At least Memory or War game complete]
     |
-    +-- enhances --> [Drag and Drop]
+    +-- enhances --> [Theme toggle]
+                         |
+                         +-- requires --> [CSS variable theming (already exists)]
 
-[Container Components]
+[Memory Game]
     |
-    +-- requires --> [Card Component]
-    |
-    +-- Layout Presets --> [Fan Layout]
-    |                  --> [Spread Layout]
-    |                  --> [Stack Layout]
-    |
-    +-- enhances --> [Zone Management]
+    +-- requires --> [Card component (exists)]
+    +-- requires --> [GameProvider / state management (exists)]
+    +-- requires --> [Card flip animation (exists)]
+    +-- standalone (no game depends on it)
 
-[Redux Integration]
+[War Game]
     |
-    +-- requires --> [Card Types]
-    |
-    +-- provides --> [useCard Hook]
-    |           --> [useDeck Hook]
-    |           --> [Actions (draw, discard, shuffle)]
-    |
-    +-- optional --> [Zone State Management]
+    +-- requires --> [Card component (exists)]
+    +-- requires --> [Deck component (exists)]
+    +-- requires --> [GameProvider / state management (exists)]
+    +-- standalone (no game depends on it)
 
-[Animations]
+[Solitaire Game]
     |
-    +-- requires --> [Card Component]
-    |
-    +-- [Flip] (can be CSS-only)
-    |
-    +-- [Deal/Shuffle] --> requires --> [Animation Library (Framer Motion/GSAP)]
+    +-- requires --> [Card component (exists)]
+    +-- requires --> [Deck component (exists)]
+    +-- requires --> [CardStack component (exists)]
+    +-- requires --> [DraggableCard (exists)]
+    +-- requires --> [DroppableZone (exists)]
+    +-- requires --> [StatefulCardDndProvider (exists)]
+    +-- requires --> [GameProvider / state management (exists)]
+    +-- most complex -- build last
 
-[Accessibility]
+[View Source Toggle]
     |
-    +-- enhances --> [All Components]
-    |
-    +-- requires --> [Keyboard Navigation]
-    |           --> [ARIA Labels]
-    |           --> [Focus Management]
+    +-- requires --> [At least one game complete]
+    +-- requires --> [Source code extraction / embedding approach]
 
-[Theming]
+[GitHub Pages Deployment]
     |
-    +-- CSS Variables (standalone)
-    |
-    +-- enhances --> [All Visual Components]
+    +-- requires --> [Vite build for landing page]
+    +-- requires --> [Storybook build (already configured)]
+    +-- requires --> [GitHub Actions workflow]
+    +-- must handle --> [Base path configuration for repo subpath]
 ```
 
 ### Dependency Notes
 
-- **Card Component requires Suit/Rank Types:** TypeScript types must be defined before components
-- **Container Components require Card Component:** Containers render cards; card must exist first
-- **Redux Integration requires Card Types:** Hooks and actions operate on typed card data
-- **Deal/Shuffle Animations require Animation Library:** CSS alone insufficient for complex choreography
-- **Accessibility enhances All Components:** Can be added incrementally but should be designed in from start
-- **Drag and Drop conflicts with simple click handlers:** Need clear interaction mode (drag vs select)
+- **All games depend on existing library components:** No new library features needed. Games consume the public API
+- **Memory and War are independent:** Can be built in parallel or any order
+- **Solitaire depends on DnD maturity:** Should be built last as it exercises the most complex interactions
+- **Landing page can start before games:** Static content (hero, install, features) does not need games. Embed game later
+- **GitHub Pages deployment blocks everything being visible:** Should be set up early as infrastructure
+
+---
 
 ## MVP Definition
 
-### Launch With (v1.0)
+### v2.0 Launch Requirements
 
-Minimum viable product - what's needed to validate the library is useful.
+The minimum needed to ship a credible documentation site with game demos.
 
-- [x] **Card component** - Render any card face-up or face-down
-- [x] **All 52 cards + backs** - Complete standard deck coverage
-- [x] **Emoji suit icons** - Lightweight, zero external dependencies
-- [x] **Flip animation** - CSS-based 3D flip on state change
-- [x] **Click handlers** - onCardClick prop for basic interaction
-- [x] **TypeScript types** - Full type safety for all public APIs
-- [x] **Basic styling** - Clean default look with CSS variables
-- [x] **Hand container** - Simple wrapper to group cards horizontally
+- [ ] **Landing page** -- Hero, tagline, install command, feature highlights, link to Storybook
+- [ ] **Storybook deployed** -- Built and accessible via link from landing page
+- [ ] **Memory game** -- Playable, demonstrates flip + state management
+- [ ] **War game** -- Playable, demonstrates Deck + card comparison
+- [ ] **Solitaire game** -- Playable, demonstrates DnD + multi-zone state
+- [ ] **GitHub Pages deployment** -- Automated via GitHub Actions
+- [ ] **Responsive landing page** -- Works on mobile (games can be desktop-only)
 
-### Add After Validation (v1.x)
+### Add After Launch (v2.x)
 
-Features to add once core is working and adopted.
+Features to add once the site is live and receiving traffic.
 
-- [ ] **Drag and drop** - Trigger: Users request card movement
-- [ ] **Layout presets (fan, spread, stack)** - Trigger: Users building traditional card games
-- [ ] **Redux hooks** - Trigger: Users asking for state management patterns
-- [ ] **Zone components (Deck, Pile, PlayArea)** - Trigger: Users building multi-zone games
-- [ ] **WCAG accessibility** - Trigger: Should be v1.1 priority; legal/ethical requirement
-- [ ] **Selection state** - Trigger: Users need multi-card actions
+- [ ] **View source toggle** -- Trigger: developers asking "how did you build this?"
+- [ ] **Dark mode toggle** -- Trigger: demonstrates theming capabilities
+- [ ] **Animated card hero** -- Trigger: landing page feels static
+- [ ] **Bundle size badges** -- Trigger: automated via CI, add when build pipeline is stable
+- [ ] **Component capability matrix** -- Trigger: developers asking which component does what
 
-### Future Consideration (v2+)
+### Defer Indefinitely
 
-Features to defer until product-market fit is established.
+- [ ] Custom documentation framework -- Storybook is sufficient
+- [ ] Blog / changelog -- GitHub releases is sufficient
+- [ ] User accounts / leaderboards -- Not a product
+- [ ] Multiplayer -- Not a library showcase need
 
-- [ ] **Deal/shuffle animations** - Complex choreography; nice-to-have polish
-- [ ] **Custom card faces** - Extending beyond standard deck (Uno, custom games)
-- [ ] **Touch gestures (swipe, long-press)** - Mobile-specific interactions
-- [ ] **Animation presets** - Pre-built animation configs for common patterns
-- [ ] **Storybook documentation site** - Comprehensive interactive docs
+---
 
 ## Feature Prioritization Matrix
 
 | Feature | User Value | Implementation Cost | Priority |
 |---------|------------|---------------------|----------|
-| Render 52 cards | HIGH | LOW | **P1** |
-| Card back | HIGH | LOW | **P1** |
-| Flip animation | HIGH | MEDIUM | **P1** |
-| Click handlers | HIGH | LOW | **P1** |
-| TypeScript types | HIGH | LOW | **P1** |
-| Emoji icons | MEDIUM | LOW | **P1** |
-| CSS variable theming | MEDIUM | LOW | **P1** |
-| Hand container | MEDIUM | LOW | **P1** |
-| Layout presets | HIGH | MEDIUM | **P2** |
-| Drag and drop | HIGH | HIGH | **P2** |
-| Redux hooks | MEDIUM | MEDIUM | **P2** |
-| WCAG accessibility | HIGH | MEDIUM | **P2** |
-| Zone components | MEDIUM | MEDIUM | **P2** |
-| Selection state | MEDIUM | LOW | **P2** |
-| Deal/shuffle animations | MEDIUM | HIGH | **P3** |
-| Custom card faces | LOW | MEDIUM | **P3** |
-| Touch gestures | MEDIUM | HIGH | **P3** |
+| Landing page (hero, install, features) | HIGH | MEDIUM | **P1** |
+| GitHub Pages deployment | HIGH | MEDIUM | **P1** |
+| Storybook link from landing page | HIGH | LOW | **P1** |
+| Memory game demo | HIGH | LOW-MEDIUM | **P1** |
+| War game demo | HIGH | LOW-MEDIUM | **P1** |
+| Solitaire game demo | HIGH | HIGH | **P1** |
+| Responsive landing page | MEDIUM | MEDIUM | **P1** |
+| GitHub repo link + license | HIGH | LOW | **P1** |
+| View source toggle | MEDIUM | MEDIUM | **P2** |
+| Dark mode toggle | MEDIUM | MEDIUM | **P2** |
+| Animated card hero | MEDIUM | MEDIUM | **P2** |
+| Bundle size badges | LOW | LOW | **P2** |
+| Component capability matrix | MEDIUM | LOW | **P2** |
+| Embedded game in landing page | MEDIUM | LOW | **P2** |
 
 **Priority Key:**
-- **P1:** Must have for v1.0 launch - library is broken without these
-- **P2:** Should have for v1.x - adds significant value, drives adoption
-- **P3:** Nice to have for v2+ - polish and advanced use cases
+- **P1:** Must have for v2.0 launch -- site is incomplete without these
+- **P2:** Should have, add iteratively after launch
+- **P3:** Nice to have, future consideration
+
+---
 
 ## Competitor Feature Analysis
 
-| Feature | @heruka_urgyen/react-playing-cards | react-playing-cards (wmaillard) | ink-playing-cards | Our Approach |
-|---------|-----------------------------------|--------------------------------|-------------------|--------------|
-| Card rendering | SVG-based, clean | Vector graphics | ASCII/Unicode variants | **SVG + Emoji hybrid** |
-| Layouts | None | Fan, spread, stack | Grid, CardStack | **Fan, spread, stack (v1.x)** |
-| Animations | None | None | None | **Flip (v1), Deal (v2)** |
-| State management | None | None | Full zone/event system | **Redux hooks (v1.x)** |
-| Customization | Limited | Card back color | Multiple variants | **CSS variables + props** |
-| TypeScript | Yes | Unknown | Yes | **Full coverage** |
-| Drag/drop | No | No | No | **v1.x differentiator** |
-| Accessibility | Unknown | Unknown | Unknown | **v1.1 priority** |
+No direct competitor has a documentation site with playable game demos for a card component library. This is the differentiator.
 
-### Competitive Gaps We Can Fill
+| Feature | @heruka_urgyen/react-playing-cards | react-playing-cards (wmaillard) | ink-playing-cards | shadcn/ui (for site pattern) | Our Approach |
+|---------|-----------------------------------|-------------------------------|-------------------|------------------------------|--------------|
+| Documentation site | npm README only | GitHub README only | GitHub README + examples | Full docs site with interactive examples | **Landing page + Storybook + game demos** |
+| Live demos | None | None | Terminal only | Interactive component playground | **Three playable card games** |
+| Installation guide | npm install one-liner | Clone instructions | npm install | Framework-specific guides | **Copy-paste install + quick start** |
+| Interactive examples | None | None | Code snippets | Live code playground | **Storybook stories (35 existing) + full games** |
+| Source code visibility | Open source repo | Open source repo | Open source repo | "View Code" per component | **View Source toggle on game demos** |
+| Theming showcase | None | None | None | Theme customizer | **Dark mode toggle using CSS variables** |
 
-1. **Animation support** - No existing library has built-in animations
-2. **Drag and drop** - Common need, no library provides it
-3. **State management integration** - ink-playing-cards has it for terminal, nothing for web React
-4. **Modern React patterns** - Hooks, TypeScript, CSS variables
-5. **Accessibility** - Appears neglected across all libraries
+### Competitive Gaps We Fill
+
+1. **No card library has a documentation site** -- They all rely on README files. Having a proper landing page with deployed Storybook is already unusual
+2. **No card library has playable demos** -- Proving the library works in real game scenarios is unprecedented in this niche
+3. **No card library shows DnD working** -- Solitaire demo proves drag-and-drop works for card games, which is the highest-value differentiator
+4. **Interactive evaluation** -- Developers can play games before reading any docs, dramatically reducing evaluation friction
+
+---
 
 ## Implementation Complexity Notes
 
-### LOW Complexity Features
-- Card rendering, types, basic props, CSS variables
-- Can be completed in single sprint
-- Standard React patterns
+### What Makes This Achievable
 
-### MEDIUM Complexity Features
-- Flip animation (CSS 3D transforms, state management)
-- Layout presets (CSS math for rotation/positioning)
-- Redux hooks (Redux Toolkit patterns)
-- Accessibility (ARIA, keyboard nav, testing)
+The landing page + games approach is achievable because:
 
-### HIGH Complexity Features
-- Drag and drop (dnd-kit integration, gesture handling, drop zones)
-- Deal/shuffle animations (Framer Motion choreography, staggering)
-- Full zone management with transfer animations
+1. **All game components already exist.** Memory, War, and Solitaire can be built using only the existing public API (Card, Deck, Hand, CardStack, DraggableCard, DroppableZone, GameProvider, StatefulCardDndProvider)
+2. **Storybook is already configured.** Just needs `storybook build` in CI and deployment
+3. **Vite is already configured.** Landing page and games can use the existing Vite setup
+4. **Game logic is simple.** Memory matching, War comparison, and Klondike rules are well-documented algorithms with no ambiguity
+
+### What Is Harder Than It Looks
+
+1. **Solitaire DnD validation rules** -- Determining valid drops (tableau: alternating colors descending, foundation: same suit ascending) requires careful state management
+2. **GitHub Pages base path** -- Vite needs `base: '/<repo-name>/'` for assets to load correctly on GitHub Pages subpaths
+3. **Combining Storybook + custom pages** -- Need to decide: same deployment or separate subpaths (/storybook/ vs root)
+4. **Solitaire tableau cascading layout** -- Overlapping face-down cards with only the bottom card visible, while maintaining DnD targets for each card
+
+---
 
 ## Sources
 
-### Existing Libraries Analyzed
-- [@heruka_urgyen/react-playing-cards](https://www.npmjs.com/package/@heruka_urgyen/react-playing-cards) - SVG playing cards
-- [react-playing-cards (wmaillard)](https://github.com/wmaillard/react-playing-cards) - Vector graphics with layouts
-- [ink-playing-cards](https://github.com/gfargo/ink-playing-cards) - Terminal card framework
-- [react-playing-cards (listingslab)](https://github.com/javascript-pro/react-playing-cards) - Customizable SVG with GSAP
+### Component Library Documentation Patterns
+- [shadcn/ui documentation site](https://ui.shadcn.com) -- Progressive disclosure pattern, framework-specific install, interactive demos on landing page (HIGH confidence)
+- [Chakra UI documentation site](https://chakra-ui.com) -- Hero with tagline, component showcase, enterprise credibility section (HIGH confidence)
+- [Storybook embed documentation](https://storybook.js.org/docs/sharing/embed) -- iframe embedding with viewMode and singleStory parameters (HIGH confidence)
+- [Storybook publish documentation](https://storybook.js.org/docs/sharing/publish-storybook) -- Static build and deployment options (HIGH confidence)
 
-### Animation Libraries
-- [Framer Motion](https://motion.dev/) - Production-grade React animation
-- [react-card-flip](https://www.npmjs.com/package/react-card-flip) - Flip animation component
-- [dnd-kit](https://puckeditor.com/blog/top-5-drag-and-drop-libraries-for-react) - Customizable drag and drop
+### Deployment
+- [Vite static deployment guide](https://vite.dev/guide/static-deploy) -- GitHub Pages configuration with base path (HIGH confidence)
+- [Deploy Storybook to GitHub Pages Action](https://github.com/marketplace/actions/deploy-storybook-to-github-pages) -- Community GitHub Action for Storybook deployment (MEDIUM confidence)
 
-### Best Practices
-- [React Aria (Adobe)](https://react-spectrum.adobe.com/react-aria/accessibility.html) - Accessibility patterns
-- [styled-components theming](https://styled-components.com/docs/advanced) - Theming approaches
-- [Tree shaking guide](https://carlrippon.com/how-to-make-your-react-component-library-tree-shakeable/) - Bundle optimization
-- [TypeScript generics in React](https://www.totaltypescript.com/tips/use-generics-in-react-to-make-dynamic-and-flexible-components) - Type patterns
+### Game Implementation References
+- [War card game rules](https://en.wikipedia.org/wiki/War_(card_game)) -- Complete rule reference for minimal implementation (HIGH confidence)
+- [freeCodeCamp Memory Game tutorial](https://www.freecodecamp.org/news/how-to-build-a-memory-card-game-using-react/) -- React memory game patterns and accessibility (MEDIUM confidence)
+- [React Solitaire implementation](https://github.com/gcedo/react-solitaire) -- Reference implementation for Klondike rules (MEDIUM confidence)
 
-### Card UI Patterns
-- [Card UI Design Best Practices](https://www.simplethread.com/card-components-best-practices/) - General card component patterns
-- [Accessible cards](https://kittygiraudel.com/2022/04/02/accessible-cards/) - Accessibility implementation
+### Design Patterns
+- [Page UI components](https://pageui.shipixen.com/) -- Landing page section patterns (hero, features, CTA) (MEDIUM confidence)
 
 ---
-*Feature research for: React Card Component Library*
-*Researched: 2026-02-02*
+*Feature research for: Documentation Site & Game Demos (v2.0)*
+*Researched: 2026-02-04*

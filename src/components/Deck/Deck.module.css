@@ -13,7 +13,7 @@
 /* Focus-visible: show browser default outline for keyboard navigation */
 .deck:focus-visible {
   outline: revert;
-  outline-offset: 2px;
+  outline-offset: var(--focus-ring-offset, 2px);
 }
 
 /* Hide focus outline on mouse click */
@@ -28,20 +28,20 @@
 
 .placeholder {
   aspect-ratio: 5 / 7;
-  border: 2px dashed rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  border: 2px dashed var(--empty-border-color, rgba(0, 0, 0, 0.2));
+  border-radius: var(--card-border-radius, 8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(0, 0, 0, 0.3);
+  color: var(--empty-placeholder-color, rgba(0, 0, 0, 0.3));
 }
 
 .countBadge {
   position: absolute;
   bottom: -8px;
   right: -8px;
-  background: #1a365d;
-  color: white;
+  background: var(--deck-badge-bg, #1a365d);
+  color: var(--deck-badge-color, white);
   border-radius: 50%;
   width: 24px;
   height: 24px;
