@@ -62,6 +62,14 @@ export interface CardProps {
   /** Called on focus state change. */
   onFocus?: (isFocused: boolean) => void;
 
+  /**
+   * When false, suppresses role="button" and tabIndex on the card element.
+   * Use when Card is rendered inside an interactive container (e.g. DraggableCard)
+   * to prevent nested-interactive accessibility violations.
+   * Defaults to true.
+   */
+  interactive?: boolean;
+
   /** Additional CSS class. */
   className?: string;
 

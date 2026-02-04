@@ -138,7 +138,7 @@ export const Deck = forwardRef<DeckRef, DeckProps>((props, ref) => {
           }}
           data-testid="deck-card-layer"
         >
-          <Card card="sA" isFaceUp={false} style={{ width: 120, height: 168 }} />
+          <Card card="sA" isFaceUp={false} interactive={false} style={{ width: 120, height: 168 }} />
         </div>
       ))}
 

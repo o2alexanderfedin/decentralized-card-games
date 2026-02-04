@@ -113,6 +113,7 @@ const DraggableCardInner: React.FC<DraggableCardProps> = ({
         onFlipComplete={onFlipComplete}
         onHover={onHover}
         onFocus={onFocus}
+        interactive={false}
       />
     </div>
   );

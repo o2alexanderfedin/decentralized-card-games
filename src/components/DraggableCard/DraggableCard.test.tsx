@@ -239,6 +239,16 @@ describe('DraggableCard', () => {
   });
 
   // ---------------------------------------------------------------------------
+  // Accessibility - axe scan
+  // ---------------------------------------------------------------------------
+  it('has no axe violations', async () => {
+    const { axe: runAxe } = await import('vitest-axe');
+    const { container } = render(<DraggableCard id="card-axe" card="sA" />);
+    const results = await runAxe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  // ---------------------------------------------------------------------------
   // Memoization
   // ---------------------------------------------------------------------------
   it('is wrapped in React.memo', () => {
