@@ -101,5 +101,15 @@
     "components",
     "animation",
     "card-game"
+  ],
+  "size-limit": [
+    {
+      "path": "dist/card-components.js",
+      "limit": "60 kB"
+    },
+    {
+      "path": "dist/card-components-redux.js",
+      "limit": "10 kB"
+    }
   ]
 }
