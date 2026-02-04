@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
 - [x] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
 - [x] **Phase 4: State Management** - Optional Redux Toolkit integration layer
-- [ ] **Phase 5: Accessibility** - WCAG compliance with keyboard navigation and screen readers
+- [x] **Phase 5: Accessibility** - WCAG compliance with keyboard navigation and screen readers
 - [ ] **Phase 6: Developer Experience & Build** - Storybook, tree-shakeable build, distribution
 
 ## Phase Details
@@ -108,11 +108,11 @@ Plans:
 **Plans**: 5 plans in 3 waves
 
 Plans:
-- [ ] 05-01-PLAN.md — A11Y utilities and hooks: formatCardForSpeech, useRovingTabIndex, useKeyboardShortcuts (Wave 1)
-- [ ] 05-02-PLAN.md — vitest-axe setup, CSS focus-visible styles, touch targets, reduced motion crossfade (Wave 1)
-- [ ] 05-03-PLAN.md — Component ARIA enhancements: Card, Hand, Deck, CardStack, DropZone, DroppableZone (Wave 2)
-- [ ] 05-04-PLAN.md — DnD accessibility: custom announcements, screen reader instructions, DraggableCard ARIA (Wave 2)
-- [ ] 05-05-PLAN.md — Axe accessibility tests, keyboard interaction tests, barrel exports (Wave 3)
+- [x] 05-01-PLAN.md — A11Y utilities and hooks: formatCardForSpeech, useRovingTabIndex, useKeyboardShortcuts (Wave 1)
+- [x] 05-02-PLAN.md — vitest-axe setup, CSS focus-visible styles, touch targets, reduced motion crossfade (Wave 1)
+- [x] 05-03-PLAN.md — Component ARIA enhancements: Card, Hand, Deck, CardStack, DropZone, DroppableZone (Wave 2)
+- [x] 05-04-PLAN.md — DnD accessibility: custom announcements, screen reader instructions, DraggableCard ARIA (Wave 2)
+- [x] 05-05-PLAN.md — Axe accessibility tests, keyboard interaction tests, barrel exports (Wave 3)
 
 ### Phase 6: Developer Experience & Build
 **Goal**: Library is published with documentation and tree-shakeable imports
@@ -140,7 +140,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
 | 3. Drag & Drop | 5/5 | Complete | 2026-02-03 |
 | 4. State Management | 6/6 | Complete | 2026-02-04 |
-| 5. Accessibility | 0/5 | Not started | - |
+| 5. Accessibility | 5/5 | Complete | 2026-02-04 |
 | 6. Developer Experience & Build | 0/TBD | Not started | - |
 
 ---

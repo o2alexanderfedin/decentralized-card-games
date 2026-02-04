@@ -66,14 +66,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Accessibility
 
-- [ ] **A11Y-01**: Semantic HTML structure for all components
-- [ ] **A11Y-02**: Keyboard navigation (Tab, Enter, Space, Arrow keys)
-- [ ] **A11Y-03**: ARIA labels and roles for screen readers
-- [ ] **A11Y-04**: Focus management and visible focus indicators
-- [ ] **A11Y-05**: Screen reader announcements for card actions
-- [ ] **A11Y-06**: prefers-reduced-motion support
-- [ ] **A11Y-07**: Touch target size minimum 44x44px
-- [ ] **A11Y-08**: Keyboard-accessible drag-and-drop alternative
+- [x] **A11Y-01**: Semantic HTML structure for all components
+- [x] **A11Y-02**: Keyboard navigation (Tab, Enter, Space, Arrow keys)
+- [x] **A11Y-03**: ARIA labels and roles for screen readers
+- [x] **A11Y-04**: Focus management and visible focus indicators
+- [x] **A11Y-05**: Screen reader announcements for card actions
+- [x] **A11Y-06**: prefers-reduced-motion support
+- [x] **A11Y-07**: Touch target size minimum 44x44px
+- [x] **A11Y-08**: Keyboard-accessible drag-and-drop alternative
 
 ### Build & Distribution
 
@@ -157,14 +157,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STATE-03 | Phase 4 | Pending |
 | STATE-04 | Phase 4 | Pending |
 | STATE-05 | Phase 4 | Pending |
-| A11Y-01 | Phase 5 | Pending |
-| A11Y-02 | Phase 5 | Pending |
-| A11Y-03 | Phase 5 | Pending |
-| A11Y-04 | Phase 5 | Pending |
-| A11Y-05 | Phase 5 | Pending |
-| A11Y-06 | Phase 5 | Pending |
-| A11Y-07 | Phase 5 | Pending |
-| A11Y-08 | Phase 5 | Pending |
+| A11Y-01 | Phase 5 | Complete |
+| A11Y-02 | Phase 5 | Complete |
+| A11Y-03 | Phase 5 | Complete |
+| A11Y-04 | Phase 5 | Complete |
+| A11Y-05 | Phase 5 | Complete |
+| A11Y-06 | Phase 5 | Complete |
+| A11Y-07 | Phase 5 | Complete |
+| A11Y-08 | Phase 5 | Complete |
 | DX-01 | Phase 6 | Pending |
 | DX-02 | Phase 6 | Pending |
 | DX-03 | Phase 6 | Pending |
