@@ -15,15 +15,18 @@ import {
   useState,
   useMemo,
   useCallback,
+  useRef,
+  useEffect,
 } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Card } from '../Card';
-import { useContainerSize, usePrefersReducedMotion } from '../../hooks';
+import { useContainerSize, usePrefersReducedMotion, useRovingTabIndex } from '../../hooks';
 import {
   calculateFanLayout,
   calculateSpreadLayout,
   calculateStackLayout,
 } from '../../utils';
+import { formatCardLabel, formatFaceDownLabel } from '../../utils/a11y';
 import { normalizeCard, formatCard } from '../../types';
 import type { CardData } from '../../types';
 import type { HandProps, HandRef } from './Hand.types';
@@ -69,6 +72,7 @@ export const Hand = forwardRef<HandRef, HandProps>((props, ref) => {
     onCardClick,
     hoverEffect = 'lift',
     faceUp = true,
+    ariaLabel = 'Your hand',
     className,
   } = props;
 
@@ -204,6 +208,16 @@ export const Hand = forwardRef<HandRef, HandProps>((props, ref) => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   // ---------------------------------------------------------------------------
+  // Roving tabindex for keyboard navigation
+  // ---------------------------------------------------------------------------
+  const { activeIndex, getTabIndex, handleKeyDown: handleRovingKeyDown } = useRovingTabIndex(normalizedCards.length);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    cardRefs.current[activeIndex]?.focus();
+  }, [activeIndex]);
+
+  // ---------------------------------------------------------------------------
   // CSS class assembly
   // ---------------------------------------------------------------------------
   const handClasses = [
@@ -220,7 +234,14 @@ export const Hand = forwardRef<HandRef, HandProps>((props, ref) => {
   // Render
   // ---------------------------------------------------------------------------
   return (
-    <div ref={containerRef} className={handClasses} data-testid="hand">
+    <div
+      ref={containerRef}
+      className={handClasses}
+      data-testid="hand"
+      role="listbox"
+      aria-label={ariaLabel}
+      aria-orientation="horizontal"
+    >
       <AnimatePresence mode="popLayout">
         {normalizedCards.map((card, i) => {
           const cardLayout = layouts[i];
@@ -228,15 +249,31 @@ export const Hand = forwardRef<HandRef, HandProps>((props, ref) => {
           const isSelected = effectiveSelected.has(i);
           const selectedYOffset = isSelected ? -15 : 0;
 
+          const cardAriaLabel = faceUp
+            ? formatCardLabel(card, i + 1, normalizedCards.length, ariaLabel)
+            : formatFaceDownLabel(i + 1, normalizedCards.length, ariaLabel);
+
           return (
             <motion.div
               key={key}
+              ref={(el) => { cardRefs.current[i] = el; }}
               className={[
                 styles.cardSlot,
                 isSelected ? styles['cardSlot--selected'] : undefined,
               ]
                 .filter(Boolean)
                 .join(' ')}
+              role="option"
+              aria-selected={isSelected}
+              aria-label={cardAriaLabel}
+              tabIndex={getTabIndex(i)}
+              onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+                handleRovingKeyDown(e, i);
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  handleCardClick(card, i);
+                }
+              }}
               layout
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{
