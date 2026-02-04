@@ -61,11 +61,11 @@ describe('Card', () => {
       expect(ranks.length).toBeGreaterThanOrEqual(1);
     });
 
-    it('displays rank "T" as "10" in aria-label', () => {
+    it('displays rank "T" as "Ten" in aria-label', () => {
       render(<Card card="♠T" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        '10 of spades',
+        'Ten of Spades',
       );
     });
 
@@ -248,7 +248,7 @@ describe('Card', () => {
       render(<Card card="♠A" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        'A of spades',
+        'Ace of Spades',
       );
     });
 
@@ -256,7 +256,7 @@ describe('Card', () => {
       render(<Card card="♥K" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        'K of hearts',
+        'King of Hearts',
       );
     });
 
@@ -264,8 +264,30 @@ describe('Card', () => {
       render(<Card card="♦T" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        '10 of diamonds',
+        'Ten of Diamonds',
       );
+    });
+
+    it('announces face-down card without revealing identity', () => {
+      render(<Card card="♠A" isFaceUp={false} />);
+      expect(screen.getByRole('button')).toHaveAttribute(
+        'aria-label',
+        'Face-down card',
+      );
+    });
+
+    it('activates on Enter key press', () => {
+      const onClick = vi.fn();
+      render(<Card card="♠A" isFaceUp={true} onClick={onClick} />);
+      fireEvent.keyDown(screen.getByRole('button'), { key: 'Enter' });
+      expect(onClick).toHaveBeenCalled();
+    });
+
+    it('activates on Space key press', () => {
+      const onClick = vi.fn();
+      render(<Card card="♠A" isFaceUp={true} onClick={onClick} />);
+      fireEvent.keyDown(screen.getByRole('button'), { key: ' ' });
+      expect(onClick).toHaveBeenCalled();
     });
 
     it('has fallback ARIA label for invalid card', () => {
