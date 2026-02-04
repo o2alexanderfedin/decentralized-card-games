@@ -17,16 +17,16 @@
 ## Current Position
 
 **Phase:** 7 of 6 - CI/CD Foundation & Deployment Infrastructure
-**Plan:** 1 of 3 complete
+**Plan:** 2 of 3 complete
 **Status:** In progress
-**Last activity:** 2026-02-04 - Completed 07-01-PLAN.md
+**Last activity:** 2026-02-04 - Completed 07-02-PLAN.md
 
 **Progress:**
 ```
-█░░░░░░░░░ ~4% (1/~24 plans complete)
+██░░░░░░░░ ~8% (2/~24 plans complete)
 ```
 
-**Next Action:** Execute 07-02-PLAN.md (deployment workflow)
+**Next Action:** Execute 07-03-PLAN.md (README badges and repository visibility)
 
 ---
 
@@ -39,7 +39,7 @@
 | Phases planned | 6 | 6 |
 | Phases complete | 0 | 6 |
 | Plans created | 3 | ~24 (estimated) |
-| Plans complete | 1 | ~24 |
+| Plans complete | 2 | ~24 |
 | Requirements delivered | 5/51 | 51/51 |
 | Days elapsed | 0 | TBD |
 
@@ -86,6 +86,8 @@
 | CICD-01 | Five parallel jobs for maximum CI speed | No dependencies between jobs; ~3-5 min feedback |
 | CICD-02 | Node.js 22 LTS for CI | Current LTS with maintenance until Apr 2027 |
 | CICD-03 | setup-node cache: npm | Automatic lockfile-based caching |
+| CICD-04 | Conditional deploy jobs for production/staging | Separate environments in GitHub UI for tracking |
+| CICD-05 | STORYBOOK_BASE env var for base path | Flexible subdirectory deployment without hardcoding |
 
 ### Open Questions
 
@@ -124,26 +126,28 @@ None
 
 **Date:** 2026-02-04
 **Agent:** gsd-executor
-**Accomplishment:** Completed Plan 07-01 - CI workflow with parallel jobs
+**Accomplishment:** Completed Plan 07-02 - Deployment workflow with production/staging environments
 
 **Files modified:**
-- Created .github/workflows/ci.yml
-- Created .planning/phases/07-cicd-foundation-deployment-infrastructure/07-01-SUMMARY.md
+- Created .github/workflows/deploy.yml
+- Modified .storybook/main.ts (viteFinal for base path)
+- Created .planning/phases/07-cicd-foundation-deployment-infrastructure/07-02-SUMMARY.md
 
 **Context for next session:**
-- Plan 07-01 complete (CI workflow with 5 parallel jobs)
-- CI will trigger on next push to git-flow branches
-- Ready to execute Plan 07-02 (deployment workflow)
+- Plan 07-02 complete (deployment workflow with production/staging)
+- Deployment triggers on main (production) and develop (staging preview)
+- Storybook configured for GitHub Pages subdirectory at /storybook/
+- Ready to execute Plan 07-03 (README badges)
 - No blockers
 
 ### Quick Context Recovery
 
 If resuming after interruption:
 
-1. **Where we are:** Phase 7 in progress, Plan 01 complete
-2. **What's built:** CI workflow at .github/workflows/ci.yml
-3. **What's next:** Plan 07-02 (deployment workflow for GitHub Pages)
-4. **Key constraints:** git-flow branch strategy, NODE_OPTIONS for memory
+1. **Where we are:** Phase 7 in progress, Plans 01-02 complete
+2. **What's built:** CI workflow + deploy workflow at .github/workflows/
+3. **What's next:** Plan 07-03 (README badges and repo visibility)
+4. **Key constraints:** git-flow branch strategy, requires GitHub Pages source set to Actions
 
 ---
 
