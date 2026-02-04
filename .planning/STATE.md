@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 4 of 6 (State Management)
-Plan: 3 of 6 in current phase
+Plan: 4 of 6 in current phase
 Status: In progress
-Last activity: 2026-02-04 - Completed 04-03-PLAN.md
+Last activity: 2026-02-04 - Completed 04-04-PLAN.md
 
-Progress: [################--] 16/19 plans (84%)
+Progress: [################--] 17/19 plans (89%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
-- Average duration: 7 min
-- Total execution time: 105 min
+- Total plans completed: 17
+- Average duration: 6 min
+- Total execution time: 110 min
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [################--] 16/19 plans (84%)
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
-| 4 - State Management | 3/6 | 10 min | 3 min |
+| 4 - State Management | 4/6 | 15 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-04 (5 min), 03-05 (5 min), 04-01 (2 min), 04-02 (3 min), 04-03 (5 min)
-- Trend: Accelerating; state management plans averaging 3 min
+- Last 5 plans: 03-05 (5 min), 04-01 (2 min), 04-02 (3 min), 04-03 (5 min), 04-04 (5 min)
+- Trend: Accelerating; state management plans averaging 4 min
 
 *Updated after each plan completion*
 
@@ -101,6 +101,10 @@ Recent decisions affecting current work:
 - persist=true by default with configurable storageKey for Context mode
 - useReducer lazy initializer merges base + persisted + prop overrides (no double render)
 - Subscriber notification via useEffect on state change (not synchronous in dispatch)
+- RTK and react-redux as optional peer dependencies via peerDependenciesMeta
+- Immer-powered mutations in createSlice reducers (direct splice/push/assignment)
+- Static ACTION_CREATOR_MAP bridges dispatch('TYPE', payload) to RTK action creators
+- Plain action creators re-exported with Action suffix to avoid slice collision
 
 ### Pending Todos
 
@@ -112,6 +116,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T04:27:04Z
-Stopped at: Completed 04-03-PLAN.md
+Last session: 2026-02-04T04:27:00Z
+Stopped at: Completed 04-04-PLAN.md
 Resume file: None
