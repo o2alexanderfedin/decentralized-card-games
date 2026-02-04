@@ -111,13 +111,71 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (Empty - will be filled by roadmapper) | | |
+| CICD-01 | Phase 7 | Pending |
+| CICD-02 | Phase 7 | Pending |
+| CICD-03 | Phase 7 | Pending |
+| CICD-04 | Phase 7 | Pending |
+| CICD-05 | Phase 7 | Pending |
+| CICD-06 | Phase 7 | Pending |
+| CICD-07 | Phase 7 | Pending |
+| CICD-08 | Phase 7 | Pending |
+| SITE-01 | Phase 8 | Pending |
+| SITE-02 | Phase 8 | Pending |
+| SITE-03 | Phase 8 | Pending |
+| SITE-04 | Phase 8 | Pending |
+| SITE-05 | Phase 8 | Pending |
+| SITE-06 | Phase 8 | Pending |
+| SITE-07 | Phase 8 | Pending |
+| SITE-08 | Phase 8 | Pending |
+| SITE-09 | Phase 8 | Pending |
+| SITE-10 | Phase 8 | Pending |
+| MEM-01 | Phase 9 | Pending |
+| MEM-02 | Phase 9 | Pending |
+| MEM-03 | Phase 9 | Pending |
+| MEM-04 | Phase 9 | Pending |
+| MEM-05 | Phase 9 | Pending |
+| MEM-06 | Phase 9 | Pending |
+| MEM-07 | Phase 9 | Pending |
+| WAR-01 | Phase 10 | Pending |
+| WAR-02 | Phase 10 | Pending |
+| WAR-03 | Phase 10 | Pending |
+| WAR-04 | Phase 10 | Pending |
+| WAR-05 | Phase 10 | Pending |
+| WAR-06 | Phase 10 | Pending |
+| WAR-07 | Phase 10 | Pending |
+| SOL-01 | Phase 11 | Pending |
+| SOL-02 | Phase 11 | Pending |
+| SOL-03 | Phase 11 | Pending |
+| SOL-04 | Phase 11 | Pending |
+| SOL-05 | Phase 11 | Pending |
+| SOL-06 | Phase 11 | Pending |
+| SOL-07 | Phase 11 | Pending |
+| SOL-08 | Phase 11 | Pending |
+| SOL-09 | Phase 11 | Pending |
+| REPO-01 | Phase 7 | Pending |
+| REPO-02 | Phase 7 | Pending |
+| REPO-03 | Phase 8 | Pending |
+| REPO-04 | Phase 8 | Pending |
+| REPO-05 | Phase 8 | Pending |
+| REPO-06 | Phase 8 | Pending |
+| REPO-07 | Phase 12 | Pending |
+| REPO-08 | Phase 12 | Pending |
+| REPO-09 | Phase 12 | Pending |
+| REPO-10 | Phase 12 | Pending |
 
 **Coverage:**
-- v2.0 requirements: 46 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 46 ⚠️
+- v2.0 requirements: 51 total
+- Mapped to phases: 51/51
+- Unmapped: 0 ✓
+
+**Phase Distribution:**
+- Phase 7 (CI/CD Foundation): 10 requirements
+- Phase 8 (Landing Page): 10 requirements
+- Phase 9 (Memory Game): 7 requirements
+- Phase 10 (War Game): 7 requirements
+- Phase 11 (Solitaire Game): 9 requirements
+- Phase 12 (Repository Docs): 4 requirements
 
 ---
 *Requirements defined: 2026-02-04*
-*Last updated: 2026-02-04 after initial definition*
+*Last updated: 2026-02-04 after roadmap creation*
