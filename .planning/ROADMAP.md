@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Core Rendering** - Card components with flip animations and TypeScript types
 - [x] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
-- [ ] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
+- [x] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
 - [ ] **Phase 4: State Management** - Optional Redux Toolkit integration layer
 - [ ] **Phase 5: Accessibility** - WCAG compliance with keyboard navigation and screen readers
 - [ ] **Phase 6: Developer Experience & Build** - Storybook, tree-shakeable build, distribution
@@ -82,12 +82,17 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. Library works without Redux (internal context provides state)
   2. Redux users can import slice and selectors from separate entry point
-  3. useDeck and useHand hooks provide convenient state access
-  4. Card state is normalized (byId, allIds, locations) for efficient updates
-**Plans**: TBD
+  3. useGameState, useLocation, useCard, useGameActions hooks provide convenient state access
+  4. Card state uses nested-by-location structure for flexible game types
+  5. Drag/drop lifecycle can trigger state actions for unified state management
+**Plans**: 5 plans in 4 waves
 
 Plans:
-- [ ] 04-01: (TBD during plan-phase)
+- [ ] 04-01-PLAN.md — Shared state foundation: types, TDD reducer, action creators, initialState (Wave 1)
+- [ ] 04-02-PLAN.md — Selectors, StateBackend interface, unified hooks (Wave 2)
+- [ ] 04-03-PLAN.md — Context mode GameProvider with localStorage persistence (Wave 3)
+- [ ] 04-04-PLAN.md — Redux entry point: slice, store, ReduxGameProvider (Wave 3)
+- [ ] 04-05-PLAN.md — Multi-entry build config, barrel exports, integration verification (Wave 4)
 
 ### Phase 5: Accessibility
 **Goal**: Users with disabilities can fully interact with card components
@@ -129,7 +134,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
 | 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
 | 3. Drag & Drop | 5/5 | Complete | 2026-02-03 |
-| 4. State Management | 0/TBD | Not started | - |
+| 4. State Management | 0/5 | Planned | - |
 | 5. Accessibility | 0/TBD | Not started | - |
 | 6. Developer Experience & Build | 0/TBD | Not started | - |
 
