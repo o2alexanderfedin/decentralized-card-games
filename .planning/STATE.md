@@ -137,6 +137,12 @@ Recent decisions affecting current work:
 - DraggableAttributes and DraggableSyntheticListeners from dnd-kit for type-safe hook returns
 - Card bevel shadows exposed as --card-front-bevel and --card-back-bevel tokens
 - Four-color suit variables (--suit-blue, --suit-green) included alongside two-color defaults
+- Two-pass Vite build: ESM multi-entry + UMD single-entry (multi-entry incompatible with UMD)
+- UMD global name: CardComponents
+- Redux entry ESM-only (no require/UMD) since Redux users always use bundlers
+- sideEffects: ['**/*.css'] for tree-shaking all JS modules
+- Size budgets: 60kB main, 10kB redux (brotli+minified) via size-limit
+- ./styles subpath export for explicit CSS import
 - Storybook 8.6 pinned (not 10.x) for stable react-vite framework integration
 - CSF3 story format with satisfies Meta<typeof Component> for type safety
 - Stories organized by use case: Getting Started/Card, Layouts/* for containers
