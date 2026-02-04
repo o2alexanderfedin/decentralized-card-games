@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 3 - Drag & Drop (In progress)
+**Current focus:** Phase 3 - Drag & Drop (Complete)
 
 ## Current Position
 
 Phase: 3 of 6 (Drag & Drop)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-02-03 - Completed 03-04-PLAN.md
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-02-03 - Completed 03-05-PLAN.md
 
-Progress: [############.] 12/13 plans (92%)
+Progress: [#############] 13/13 plans (100%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
+- Total plans completed: 13
 - Average duration: 7 min
-- Total execution time: 90 min
+- Total execution time: 95 min
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [############.] 12/13 plans (92%)
 |-------|-------|-------|----------|
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
-| 3 - Drag & Drop | 4/5 | 18 min | 5 min |
+| 3 - Drag & Drop | 5/5 | 23 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-04 (9 min), 03-01 (4 min), 03-02 (4 min), 03-03 (5 min), 03-04 (5 min)
-- Trend: Consistent fast execution; DnD component plans averaging 4-5 min
+- Last 5 plans: 03-01 (4 min), 03-02 (4 min), 03-03 (5 min), 03-04 (5 min), 03-05 (5 min)
+- Trend: Consistent fast execution; Phase 3 completed at 5 min/plan average
 
 *Updated after each plan completion*
 
@@ -87,6 +87,7 @@ Recent decisions affecting current work:
 - Drop validation checks zone data.onValidate first, falls back to data.accepts array
 - activeCard state managed internally; consumer never touches DndContext directly
 - Barrel exports expanded to include all Phase 3 DnD components, hooks, and types
+- ReactNode over JSX.Element for return type annotations in TSX layout files
 
 ### Pending Todos
 
@@ -94,10 +95,10 @@ None.
 
 ### Blockers/Concerns
 
-- Pre-existing JSX namespace TypeScript errors in FaceCardLayout.tsx and NumberCardLayout.tsx (does not block execution)
+None. (Pre-existing JSX namespace TypeScript errors resolved in 03-05.)
 
 ## Session Continuity
 
-Last session: 2026-02-03T23:22:34Z
-Stopped at: Completed 03-04-PLAN.md (CardDndProvider)
+Last session: 2026-02-03T23:28:00Z
+Stopped at: Completed 03-05-PLAN.md (Phase 3 complete)
 Resume file: None
