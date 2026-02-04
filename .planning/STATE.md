@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 3 - Drag & Drop (Complete)
+**Current focus:** Phase 4 - State Management (In Progress)
 
 ## Current Position
 
-Phase: 3 of 6 (Drag & Drop)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-03 - Completed 03-05-PLAN.md
+Phase: 4 of 6 (State Management)
+Plan: 1 of 6 in current phase
+Status: In progress
+Last activity: 2026-02-04 - Completed 04-01-PLAN.md
 
-Progress: [#############] 13/13 plans (100%)
+Progress: [##############----] 14/19 plans (74%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
+- Total plans completed: 14
 - Average duration: 7 min
-- Total execution time: 95 min
+- Total execution time: 97 min
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [#############] 13/13 plans (100%)
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
+| 4 - State Management | 1/6 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (4 min), 03-02 (4 min), 03-03 (5 min), 03-04 (5 min), 03-05 (5 min)
-- Trend: Consistent fast execution; Phase 3 completed at 5 min/plan average
+- Last 5 plans: 03-02 (4 min), 03-03 (5 min), 03-04 (5 min), 03-05 (5 min), 04-01 (2 min)
+- Trend: Accelerating; TDD pure-logic plans execute fastest
 
 *Updated after each plan completion*
 
@@ -88,6 +89,11 @@ Recent decisions affecting current work:
 - activeCard state managed internally; consumer never touches DndContext directly
 - Barrel exports expanded to include all Phase 3 DnD components, hooks, and types
 - ReactNode over JSX.Element for return type annotations in TSX layout files
+- GameState uses Record<string, CardState[]> for nested-by-location structure
+- CardState extends CardData identity with faceUp, selected, position UI fields
+- Pure gameReducer with zero RTK imports for dual-mode compatibility
+- SET_LOCATIONS merges into existing locations (preserves unmentioned keys)
+- DEAL_CARDS gracefully stops when source exhausted
 
 ### Pending Todos
 
@@ -95,10 +101,10 @@ None.
 
 ### Blockers/Concerns
 
-None. (Pre-existing JSX namespace TypeScript errors resolved in 03-05.)
+None.
 
 ## Session Continuity
 
-Last session: 2026-02-03T23:28:00Z
-Stopped at: Completed 03-05-PLAN.md (Phase 3 complete)
+Last session: 2026-02-04T04:14:00Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
