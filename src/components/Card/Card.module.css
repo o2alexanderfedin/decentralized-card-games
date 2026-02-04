@@ -86,9 +86,10 @@
 /* Regions for hierarchical layout */
 .topRegion {
   flex-shrink: 0;
-  height: 15%;
+  height: 16%; /* Slightly larger to prevent corner clipping */
   display: flex;
   align-items: flex-start;
+  padding-top: 0.2em; /* Add small top padding */
 }
 
 .centerRegion {
@@ -97,16 +98,18 @@
   align-items: center;
   justify-content: center;
   min-height: 0; /* Allow flex shrink */
-  /* Add padding to prevent pips from overlapping corner ranks */
-  padding: 0.8em 0;
+  /* Add padding to prevent pips from overlapping corner ranks and being clipped */
+  /* Use larger padding to prevent clipping at small card sizes */
+  padding: 1.2em 0.6em;
 }
 
 .bottomRegion {
   flex-shrink: 0;
-  height: 15%;
+  height: 16%; /* Slightly larger to prevent corner clipping */
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  padding-bottom: 0.2em; /* Add small bottom padding */
 }
 
 /* Card content layout - corners and center */
@@ -155,19 +158,22 @@
  * Individual pips are placed using grid-column and grid-row.
  */
 .pipGrid {
-  width: 100%;
-  height: 100%;
+  width: 95%; /* Reduce width slightly to add horizontal breathing room */
+  height: 95%; /* Reduce height to prevent bottom row clipping */
+  max-height: 100%; /* Constrain to parent */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(5, 1fr);
   align-items: center;
   justify-items: center;
-  font-size: 1.2em;
+  font-size: 1em; /* Reduced to prevent bottom row clipping at small sizes */
   box-sizing: border-box;
+  /* Ensure grid content doesn't overflow */
+  overflow: visible; /* Allow pips to be fully visible within card bounds */
 }
 
 .pip {
-  line-height: 1;
+  line-height: 0.8; /* Reduce line height to prevent bottom row clipping */
 }
 
 /* Flipped pips (bottom half of card, rotated 180deg) */
