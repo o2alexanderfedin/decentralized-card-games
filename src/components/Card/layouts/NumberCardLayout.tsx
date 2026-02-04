@@ -4,6 +4,7 @@
  * Renders pip grid with multiple suit symbols in traditional arrangements.
  */
 
+import type { ReactNode } from 'react';
 import { CardLayoutStrategy } from './CardLayoutStrategy';
 import styles from '../Card.module.css';
 
@@ -105,7 +106,7 @@ const COL_CLASS: Record<string, string> = {
 
 /** Number card layout strategy implementation */
 export class NumberCardLayout implements CardLayoutStrategy {
-  renderCenter(emoji: string, rank: string): JSX.Element {
+  renderCenter(emoji: string, rank: string): ReactNode {
     const count = RANK_PIP_COUNT[rank];
     const layout = PIP_LAYOUTS[count];
 
