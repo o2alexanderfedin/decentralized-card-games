@@ -18,6 +18,13 @@ Transform the v1.0 component library into a public-facing project with CI/CD aut
 
 **Dependencies:** None (foundational phase)
 
+**Plans:** 3 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Create CI workflow with parallel test/lint/build jobs
+- [ ] 07-02-PLAN.md — Create deployment workflow and Storybook base path config
+- [ ] 07-03-PLAN.md — Update README with badges and make repository public
+
 **Requirements:**
 - CICD-01: Tests run on every push to develop/feature branches
 - CICD-02: Linting runs on every push
@@ -176,7 +183,7 @@ Transform the v1.0 component library into a public-facing project with CI/CD aut
 
 | Phase | Status | Plans | Completed | Progress |
 |-------|--------|-------|-----------|----------|
-| 7 - CI/CD Foundation | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
+| 7 - CI/CD Foundation | In Progress | 3 | 0 | ░░░░░░░░░░ 0% |
 | 8 - Landing Page | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
 | 9 - Memory Game | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
 | 10 - War Game | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
