@@ -13,13 +13,19 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'CardComponents',
+      entry: {
+        'card-components': resolve(__dirname, 'src/index.ts'),
+        'card-components-redux': resolve(__dirname, 'src/redux/index.ts'),
+      },
       formats: ['es', 'cjs'],
-      fileName: 'card-components',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'motion', 'motion/react'],
+      external: [
+        'react', 'react-dom', 'react/jsx-runtime',
+        'motion', 'motion/react',
+        '@dnd-kit/core', '@dnd-kit/utilities', '@dnd-kit/modifiers',
+        '@reduxjs/toolkit', 'react-redux',
+      ],
       output: {
         globals: {
           react: 'React',
@@ -27,6 +33,8 @@ export default defineConfig({
           'react/jsx-runtime': 'jsxRuntime',
           motion: 'motion',
           'motion/react': 'motionReact',
+          '@reduxjs/toolkit': 'RTK',
+          'react-redux': 'ReactRedux',
         },
       },
     },

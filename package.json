@@ -11,6 +11,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/card-components.js",
       "require": "./dist/card-components.cjs"
+    },
+    "./redux": {
+      "types": "./dist/redux/index.d.ts",
+      "import": "./dist/card-components-redux.js",
+      "require": "./dist/card-components-redux.cjs"
     }
   },
   "files": [
