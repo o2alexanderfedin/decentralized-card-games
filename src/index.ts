@@ -76,7 +76,7 @@ export type {
   StackLayoutOptions,
 } from './utils';
 
-// Hooks
+// Hooks (Phase 1-3)
 export { useCardFlip, usePrefersReducedMotion } from './hooks';
 export { useContainerSize } from './hooks';
 export { useDragSensors, useHapticFeedback } from './hooks';
@@ -98,3 +98,45 @@ export type {
   DropFeedbackMode,
   InvalidDropBehavior,
 } from './types';
+
+// State management (Phase 4)
+export { gameReducer } from './state';
+export { createInitialState } from './state';
+export {
+  dealStandardDeck,
+  shuffleLocation,
+  moveCard as moveCardAction,
+  flipCard as flipCardAction,
+  selectCard as selectCardAction,
+  setGamePhase,
+  setCurrentPlayer,
+  reset as resetAction,
+} from './state';
+export {
+  selectAllLocations,
+  selectLocation as selectLocationState,
+  selectCardState,
+  selectGamePhase as selectGamePhaseState,
+  selectCurrentPlayer as selectCurrentPlayerState,
+  selectLocationCount,
+} from './state';
+export type {
+  GameState,
+  CardState,
+  GameAction,
+  MoveCardPayload,
+  FlipCardPayload,
+  SelectCardPayload,
+  SetLocationsPayload,
+  DealCardsPayload,
+} from './state';
+
+// Context mode provider (Phase 4)
+export { GameProvider } from './context';
+export type { GameProviderProps } from './context';
+export { loadState, saveState, clearState } from './context';
+
+// Hooks (Phase 4 - state management)
+export { useGameState, useLocation, useCard, useGameActions } from './hooks';
+export { useStateBackend, StateBackendContext } from './hooks';
+export type { StateBackend, GameDispatchFn } from './hooks';

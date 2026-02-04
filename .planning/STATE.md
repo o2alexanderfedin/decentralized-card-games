@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 3 - Drag & Drop (Complete)
+**Current focus:** Phase 4 - State Management (In Progress)
 
 ## Current Position
 
-Phase: 3 of 6 (Drag & Drop)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-03 - Completed 03-05-PLAN.md
+Phase: 4 of 6 (State Management)
+Plan: 5 of 6 in current phase
+Status: In progress
+Last activity: 2026-02-04 - Completed 04-05-PLAN.md
 
-Progress: [#############] 13/13 plans (100%)
+Progress: [#################-] 18/19 plans (95%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
-- Average duration: 7 min
-- Total execution time: 95 min
+- Total plans completed: 18
+- Average duration: 6 min
+- Total execution time: 114 min
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [#############] 13/13 plans (100%)
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
+| 4 - State Management | 5/6 | 19 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (4 min), 03-02 (4 min), 03-03 (5 min), 03-04 (5 min), 03-05 (5 min)
-- Trend: Consistent fast execution; Phase 3 completed at 5 min/plan average
+- Last 5 plans: 04-01 (2 min), 04-02 (3 min), 04-03 (5 min), 04-04 (5 min), 04-05 (4 min)
+- Trend: Accelerating; state management plans averaging 4 min
 
 *Updated after each plan completion*
 
@@ -88,6 +89,25 @@ Recent decisions affecting current work:
 - activeCard state managed internally; consumer never touches DndContext directly
 - Barrel exports expanded to include all Phase 3 DnD components, hooks, and types
 - ReactNode over JSX.Element for return type annotations in TSX layout files
+- GameState uses Record<string, CardState[]> for nested-by-location structure
+- CardState extends CardData identity with faceUp, selected, position UI fields
+- Pure gameReducer with zero RTK imports for dual-mode compatibility
+- SET_LOCATIONS merges into existing locations (preserves unmentioned keys)
+- DEAL_CARDS gracefully stops when source exhausted
+- selectCard selector aliased as selectCardState in barrel to avoid action creator collision
+- useLocation uses module-level EMPTY constant for stable empty-array reference with useSyncExternalStore
+- GameDispatchFn = (type: string, payload?: Record<string, unknown>) => void for Redux-style API
+- StateBackend interface: getState/dispatch/subscribe as strategy pattern pivot
+- persist=true by default with configurable storageKey for Context mode
+- useReducer lazy initializer merges base + persisted + prop overrides (no double render)
+- Subscriber notification via useEffect on state change (not synchronous in dispatch)
+- RTK and react-redux as optional peer dependencies via peerDependenciesMeta
+- Immer-powered mutations in createSlice reducers (direct splice/push/assignment)
+- Static ACTION_CREATOR_MAP bridges dispatch('TYPE', payload) to RTK action creators
+- Plain action creators re-exported with Action suffix to avoid slice collision
+- DTS types path uses vite-plugin-dts output structure (dist/index.d.ts, dist/redux/index.d.ts)
+- Externalize @dnd-kit/* alongside React/motion/Redux in rollup for smaller bundles
+- Multi-entry Vite build: object entry in build.lib.entry for separate bundles
 
 ### Pending Todos
 
@@ -95,10 +115,10 @@ None.
 
 ### Blockers/Concerns
 
-None. (Pre-existing JSX namespace TypeScript errors resolved in 03-05.)
+None.
 
 ## Session Continuity
 
-Last session: 2026-02-03T23:28:00Z
-Stopped at: Completed 03-05-PLAN.md (Phase 3 complete)
+Last session: 2026-02-04T04:34:04Z
+Stopped at: Completed 04-05-PLAN.md
 Resume file: None
