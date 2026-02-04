@@ -1,6 +1,6 @@
 {
   "name": "@decentralized-games/card-components",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "React component library for visualizing and interacting with playing cards",
   "type": "module",
   "main": "./dist/card-components.umd.cjs",
@@ -94,13 +94,26 @@
     "vitest-axe": "^0.1.0"
   },
   "license": "MIT",
+  "author": "Alexander Fedin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o2alexanderfedin/decentralized-card-games.git"
+  },
+  "homepage": "https://github.com/o2alexanderfedin/decentralized-card-games#readme",
+  "bugs": {
+    "url": "https://github.com/o2alexanderfedin/decentralized-card-games/issues"
+  },
   "keywords": [
     "react",
     "card",
     "playing-cards",
     "components",
     "animation",
-    "card-game"
+    "card-game",
+    "drag-and-drop",
+    "accessibility",
+    "typescript",
+    "redux"
   ],
   "size-limit": [
     {
