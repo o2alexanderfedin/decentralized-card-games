@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 5 - Accessibility (Complete)
+**Current focus:** Phase 6 - Developer Experience & Build (In Progress)
 
 ## Current Position
 
-Phase: 5 of 6 (Accessibility)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-04 - Completed 05-05-PLAN.md
+Phase: 6 of 6 (Developer Experience & Build)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-04 - Completed 06-01-PLAN.md
 
-Progress: [########################] 24/24 plans (100%)
+Progress: [#########################-------] 25/29 plans (86%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24
+- Total plans completed: 25
 - Average duration: 6 min
-- Total execution time: 156 min
+- Total execution time: 162 min
 
 **By Phase:**
 
@@ -32,10 +32,11 @@ Progress: [########################] 24/24 plans (100%)
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
 | 4 - State Management | 6/6 | 21 min | 4 min |
 | 5 - Accessibility | 5/5 | 40 min | 8 min |
+| 6 - DX & Build | 1/5 | 6 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (5 min), 05-02 (8 min), 05-03 (5 min), 05-04 (5 min), 05-05 (17 min)
-- Trend: 05-05 longer due to axe violation discovery and fix
+- Last 5 plans: 05-02 (8 min), 05-03 (5 min), 05-04 (5 min), 05-05 (17 min), 06-01 (6 min)
+- Trend: Back to normal after 05-05 outlier
 
 *Updated after each plan completion*
 
@@ -128,6 +129,10 @@ Recent decisions affecting current work:
 - Hand uses role="listbox" with role="option" children and roving tabindex
 - Card interactive prop suppresses role/tabIndex when nested inside interactive containers
 - @testing-library/user-event for realistic keyboard simulation in Hand/Deck tests
+- ESLint 9 flat config with ESM format (not legacy .eslintrc)
+- @vitest/coverage-v8@^3.2.4 pinned to match vitest@^3.0 (4.x incompatible)
+- 80% thresholds on lines/functions/branches/statements for coverage enforcement
+- eslint-plugin-react-hooks@^7.0.1 for flat config native support
 
 ### Pending Todos
 
@@ -139,6 +144,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T07:47:59Z
-Stopped at: Completed 05-05-PLAN.md (Phase 5 complete)
+Last session: 2026-02-04T09:12:30Z
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None
