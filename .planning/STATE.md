@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 4 - State Management (In Progress)
+**Current focus:** Phase 4 - State Management (Complete)
 
 ## Current Position
 
 Phase: 4 of 6 (State Management)
-Plan: 5 of 6 in current phase
-Status: In progress
-Last activity: 2026-02-04 - Completed 04-05-PLAN.md
+Plan: 6 of 6 in current phase
+Status: Phase complete
+Last activity: 2026-02-04 - Completed 04-06-PLAN.md
 
-Progress: [#################-] 18/19 plans (95%)
+Progress: [###################] 19/19 plans (100%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 6 min
-- Total execution time: 114 min
+- Total execution time: 116 min
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [#################-] 18/19 plans (95%)
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
-| 4 - State Management | 5/6 | 19 min | 4 min |
+| 4 - State Management | 6/6 | 21 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (2 min), 04-02 (3 min), 04-03 (5 min), 04-04 (5 min), 04-05 (4 min)
+- Last 5 plans: 04-02 (3 min), 04-03 (5 min), 04-04 (5 min), 04-05 (4 min), 04-06 (2 min)
 - Trend: Accelerating; state management plans averaging 4 min
 
 *Updated after each plan completion*
@@ -108,6 +108,9 @@ Recent decisions affecting current work:
 - DTS types path uses vite-plugin-dts output structure (dist/index.d.ts, dist/redux/index.d.ts)
 - Externalize @dnd-kit/* alongside React/motion/Redux in rollup for smaller bundles
 - Multi-entry Vite build: object entry in build.lib.entry for separate bundles
+- Card index lookup via suit+rank match in source location state for MOVE_CARD dispatch
+- useGameState for fresh state snapshot in handleDragEnd callback
+- autoDispatch defaults to true for zero-config state synchronization
 
 ### Pending Todos
 
@@ -119,6 +122,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T04:34:04Z
-Stopped at: Completed 04-05-PLAN.md
+Last session: 2026-02-04T04:39:10Z
+Stopped at: Completed 04-06-PLAN.md
 Resume file: None
