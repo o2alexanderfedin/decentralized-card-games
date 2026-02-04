@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 4 of 6 (State Management)
-Plan: 1 of 6 in current phase
+Plan: 2 of 6 in current phase
 Status: In progress
-Last activity: 2026-02-04 - Completed 04-01-PLAN.md
+Last activity: 2026-02-04 - Completed 04-02-PLAN.md
 
-Progress: [##############----] 14/19 plans (74%)
+Progress: [###############---] 15/19 plans (79%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
+- Total plans completed: 15
 - Average duration: 7 min
-- Total execution time: 97 min
+- Total execution time: 100 min
 
 **By Phase:**
 
@@ -30,11 +30,11 @@ Progress: [##############----] 14/19 plans (74%)
 | 1 - Foundation | 4/4 | 48 min | 12 min |
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
-| 4 - State Management | 1/6 | 2 min | 2 min |
+| 4 - State Management | 2/6 | 5 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (4 min), 03-03 (5 min), 03-04 (5 min), 03-05 (5 min), 04-01 (2 min)
-- Trend: Accelerating; TDD pure-logic plans execute fastest
+- Last 5 plans: 03-03 (5 min), 03-04 (5 min), 03-05 (5 min), 04-01 (2 min), 04-02 (3 min)
+- Trend: Accelerating; pure-logic and hook plans execute fastest
 
 *Updated after each plan completion*
 
@@ -94,6 +94,10 @@ Recent decisions affecting current work:
 - Pure gameReducer with zero RTK imports for dual-mode compatibility
 - SET_LOCATIONS merges into existing locations (preserves unmentioned keys)
 - DEAL_CARDS gracefully stops when source exhausted
+- selectCard selector aliased as selectCardState in barrel to avoid action creator collision
+- useLocation uses module-level EMPTY constant for stable empty-array reference with useSyncExternalStore
+- GameDispatchFn = (type: string, payload?: Record<string, unknown>) => void for Redux-style API
+- StateBackend interface: getState/dispatch/subscribe as strategy pattern pivot
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T04:14:00Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-02-04T04:19:28Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
