@@ -22,3 +22,9 @@ export { useGameState } from './useGameState';
 export { useLocation } from './useLocation';
 export { useCard } from './useCard';
 export { useGameActions } from './useGameActions';
+
+export { useRovingTabIndex } from './useRovingTabIndex';
+export type { UseRovingTabIndexReturn } from './useRovingTabIndex';
+
+export { useKeyboardShortcuts } from './useKeyboardShortcuts';
+export type { KeyboardShortcut } from './useKeyboardShortcuts';
