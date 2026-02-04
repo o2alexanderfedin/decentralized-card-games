@@ -12,6 +12,7 @@ import {
   useSpring,
   useTransform,
   useMotionValueEvent,
+  motionValue,
   type MotionValue,
   type SpringOptions,
 } from 'motion/react';
@@ -39,6 +40,15 @@ export interface UseCardFlipOptions {
    * @default 'default'
    */
   spring?: SpringPresetOrCustom;
+
+  /**
+   * When `true`, the card flip uses a quick opacity crossfade (250ms) instead
+   * of 3D rotation, per WCAG prefers-reduced-motion guidance. This avoids
+   * vestibular discomfort for users who have opted to minimize motion.
+   *
+   * @default false
+   */
+  reducedMotion?: boolean;
 
   /** Fired once when the flip animation settles at its target rotation. */
   onFlipComplete?: () => void;
@@ -104,7 +114,12 @@ function resolveSpring(spring: SpringPresetOrCustom): SpringOptions {
  * ```
  */
 export function useCardFlip(options: UseCardFlipOptions): UseCardFlipReturn {
-  const { isFaceUp, spring = 'default', onFlipComplete } = options;
+  const {
+    isFaceUp,
+    spring = 'default',
+    reducedMotion = false,
+    onFlipComplete,
+  } = options;
 
   // Resolve spring config --------------------------------------------------
   const springOptions = resolveSpring(spring);
@@ -131,18 +146,39 @@ export function useCardFlip(options: UseCardFlipOptions): UseCardFlipReturn {
     rotateY.set(targetRotation);
   }, [targetRotation, rotateY]);
 
-  // Derived opacity values (no re-renders) ---------------------------------
-  const frontOpacity = useTransform(
+  // Derived opacity values from rotation (no re-renders) -------------------
+  const rotationFrontOpacity = useTransform(
     rotateY,
     [0, 89, 90, 180],
     [1, 1, 0, 0],
   );
 
-  const backOpacity = useTransform(
+  const rotationBackOpacity = useTransform(
     rotateY,
     [0, 89, 90, 180],
     [0, 0, 1, 1],
   );
+
+  // Crossfade opacity values for reduced motion (250ms linear) -------------
+  const crossfadeFrontOpacity = useSpring(isFaceUp ? 1 : 0, { duration: 250 });
+  const crossfadeBackOpacity = useSpring(isFaceUp ? 0 : 1, { duration: 250 });
+
+  // Static rotateY=0 for reduced motion (no 3D rotation at all) -----------
+  const staticRotateYRef = useRef(motionValue(0));
+  const staticRotateY = staticRotateYRef.current;
+
+  // Drive crossfade opacities when isFaceUp changes -----------------------
+  useEffect(() => {
+    crossfadeFrontOpacity.set(isFaceUp ? 1 : 0);
+    crossfadeBackOpacity.set(isFaceUp ? 0 : 1);
+  }, [isFaceUp, crossfadeFrontOpacity, crossfadeBackOpacity]);
+
+  // When reducedMotion is active, hold rotateY at 0 (no rotation) ----------
+  useEffect(() => {
+    if (reducedMotion) {
+      rotateY.jump(0);
+    }
+  }, [reducedMotion, rotateY, isFaceUp]);
 
   // Animation-in-progress flag (the only React state) ----------------------
   const [isAnimating, setIsAnimating] = useState(false);
@@ -154,13 +190,31 @@ export function useCardFlip(options: UseCardFlipOptions): UseCardFlipReturn {
   }, [onFlipComplete]);
 
   useMotionValueEvent(rotateY, 'animationStart', useCallback(() => {
-    setIsAnimating(true);
-  }, []));
+    if (!reducedMotion) {
+      setIsAnimating(true);
+    }
+  }, [reducedMotion]));
 
   useMotionValueEvent(rotateY, 'animationComplete', useCallback(() => {
-    setIsAnimating(false);
-    onFlipCompleteRef.current?.();
-  }, []));
+    if (!reducedMotion) {
+      setIsAnimating(false);
+      onFlipCompleteRef.current?.();
+    }
+  }, [reducedMotion]));
 
-  return { rotateY, frontOpacity, backOpacity, isAnimating };
+  // Select which opacity values to return based on motion preference -------
+  // Crossfade fires onFlipComplete after a short delay for reduced motion
+  useEffect(() => {
+    if (reducedMotion) {
+      onFlipCompleteRef.current?.();
+    }
+  }, [isFaceUp, reducedMotion]);
+
+  // Memoize the return to select between rotation-based and crossfade paths
+  const frontOpacity = reducedMotion ? crossfadeFrontOpacity : rotationFrontOpacity;
+  const backOpacity = reducedMotion ? crossfadeBackOpacity : rotationBackOpacity;
+  // When reducedMotion is active, rotateY is held at 0 (no 3D rotation)
+  const effectiveRotateY = reducedMotion ? staticRotateY : rotateY;
+
+  return { rotateY: effectiveRotateY, frontOpacity, backOpacity, isAnimating };
 }

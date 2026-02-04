@@ -86,9 +86,8 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const { rotateY, frontOpacity, backOpacity } = useCardFlip({
     isFaceUp: faceUp,
-    spring: prefersReducedMotion
-      ? { stiffness: 1000, damping: 50 }
-      : spring,
+    spring,
+    reducedMotion: prefersReducedMotion,
     onFlipComplete,
   });
 
