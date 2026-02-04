@@ -296,6 +296,7 @@ export const Hand = forwardRef<HandRef, HandProps>((props, ref) => {
               <Card
                 card={card}
                 isFaceUp={faceUp}
+                interactive={false}
                 style={{ width: cardWidth, height: cardHeight }}
               />
             </motion.div>

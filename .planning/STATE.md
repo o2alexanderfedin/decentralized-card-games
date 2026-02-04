@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-02)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 5 - Accessibility (In Progress)
+**Current focus:** Phase 5 - Accessibility (Complete)
 
 ## Current Position
 
 Phase: 5 of 6 (Accessibility)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-02-04 - Completed 05-04-PLAN.md
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-02-04 - Completed 05-05-PLAN.md
 
-Progress: [#######################.] 23/24 plans (96%)
+Progress: [########################] 24/24 plans (100%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 23
+- Total plans completed: 24
 - Average duration: 6 min
-- Total execution time: 139 min
+- Total execution time: 156 min
 
 **By Phase:**
 
@@ -31,11 +31,11 @@ Progress: [#######################.] 23/24 plans (96%)
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
 | 4 - State Management | 6/6 | 21 min | 4 min |
-| 5 - Accessibility | 4/5 | 23 min | 6 min |
+| 5 - Accessibility | 5/5 | 40 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-06 (2 min), 05-01 (5 min), 05-02 (8 min), 05-03 (5 min), 05-04 (5 min)
-- Trend: Stable at 2-8 min per plan
+- Last 5 plans: 05-01 (5 min), 05-02 (8 min), 05-03 (5 min), 05-04 (5 min), 05-05 (17 min)
+- Trend: 05-05 longer due to axe violation discovery and fix
 
 *Updated after each plan completion*
 
@@ -126,6 +126,8 @@ Recent decisions affecting current work:
 - Card ARIA labels use natural language ("Ace of Spades") via formatCardForSpeech
 - Face-down cards announce as "Face-down card" without any identity information
 - Hand uses role="listbox" with role="option" children and roving tabindex
+- Card interactive prop suppresses role/tabIndex when nested inside interactive containers
+- @testing-library/user-event for realistic keyboard simulation in Hand/Deck tests
 
 ### Pending Todos
 
@@ -137,6 +139,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T07:27:00Z
-Stopped at: Completed 05-04-PLAN.md
+Last session: 2026-02-04T07:47:59Z
+Stopped at: Completed 05-05-PLAN.md (Phase 5 complete)
 Resume file: None

@@ -7,6 +7,7 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { DropZone } from './DropZone';
 
 describe('DropZone', () => {
@@ -98,6 +99,32 @@ describe('DropZone', () => {
 
       fireEvent.click(screen.getByTestId('drop-zone'));
       expect(onDrop).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Accessibility
+  // -------------------------------------------------------------------------
+  describe('accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<DropZone label="Discard" />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('has region role', () => {
+      render(<DropZone label="Discard" />);
+      expect(screen.getByRole('region')).toBeInTheDocument();
+    });
+
+    it('has aria-label from label prop', () => {
+      render(<DropZone label="Discard" />);
+      expect(screen.getByRole('region')).toHaveAttribute('aria-label', 'Discard');
+    });
+
+    it('has default aria-label when no label prop', () => {
+      render(<DropZone />);
+      expect(screen.getByRole('region')).toHaveAttribute('aria-label', 'Drop zone');
     });
   });
 

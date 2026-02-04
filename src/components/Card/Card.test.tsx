@@ -8,6 +8,7 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { createRef } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { Card } from './Card';
 import type { CardRef } from './Card.types';
 
@@ -241,7 +242,24 @@ describe('Card', () => {
   });
 
   // -------------------------------------------------------------------------
-  // Accessibility
+  // Accessibility - axe scans
+  // -------------------------------------------------------------------------
+  describe('accessibility - axe', () => {
+    it('has no axe violations when face up', async () => {
+      const { container } = render(<Card card="♠A" isFaceUp={true} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('has no axe violations when face down', async () => {
+      const { container } = render(<Card card="♠A" isFaceUp={false} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Accessibility - ARIA & keyboard
   // -------------------------------------------------------------------------
   describe('accessibility', () => {
     it('has correct ARIA label for spades ace', () => {

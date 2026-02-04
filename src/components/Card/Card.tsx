@@ -60,6 +60,7 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
     onFlipComplete,
     onHover,
     onFocus,
+    interactive = true,
     className,
     style,
   } = props;
@@ -192,9 +193,10 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
         onMouseLeave={() => onHover?.(false)}
         onFocus={() => onFocus?.(true)}
         onBlur={() => onFocus?.(false)}
-        tabIndex={0}
-        role="button"
-        aria-label={ariaLabel}
+        tabIndex={interactive ? 0 : -1}
+        role={interactive ? 'button' : undefined}
+        aria-label={interactive ? ariaLabel : undefined}
+        aria-hidden={interactive ? undefined : true}
       >
         {/* Front face */}
         <motion.div

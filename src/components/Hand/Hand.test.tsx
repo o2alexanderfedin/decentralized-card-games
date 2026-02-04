@@ -8,6 +8,8 @@
 import { describe, it, expect, vi, beforeAll, afterAll, beforeEach } from 'vitest';
 import { createRef } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { axe } from 'vitest-axe';
 import { Hand } from './Hand';
 import type { HandRef } from './Hand.types';
 
@@ -333,6 +335,58 @@ describe('Hand', () => {
       expect(hand.className).toContain('my-hand');
       // Should still have hand base class
       expect(hand.className).toContain('hand');
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Accessibility
+  // -------------------------------------------------------------------------
+  describe('accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<Hand cards={['sA', 'h7', 'dK']} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('has listbox role', () => {
+      render(<Hand cards={['sA', 'h7']} />);
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+    });
+
+    it('cards have option role', () => {
+      render(<Hand cards={['sA', 'h7']} />);
+      const options = screen.getAllByRole('option');
+      expect(options).toHaveLength(2);
+    });
+
+    it('only one card has tabIndex 0 (roving tabindex)', () => {
+      render(<Hand cards={['sA', 'h7', 'dK']} />);
+      const options = screen.getAllByRole('option');
+      const tabbable = options.filter((o) => o.tabIndex === 0);
+      expect(tabbable).toHaveLength(1);
+    });
+
+    it('arrow right moves focus to next card', async () => {
+      render(<Hand cards={['sA', 'h7', 'dK']} />);
+      const options = screen.getAllByRole('option');
+      options[0].focus();
+      await userEvent.keyboard('{ArrowRight}');
+      expect(options[1]).toHaveFocus();
+    });
+
+    it('space toggles card selection', async () => {
+      render(<Hand cards={['sA', 'h7']} />);
+      const options = screen.getAllByRole('option');
+      options[0].focus();
+      await userEvent.keyboard(' ');
+      expect(options[0]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('includes position context in aria-label', () => {
+      render(<Hand cards={['sA', 'h7']} />);
+      const options = screen.getAllByRole('option');
+      // Should contain position info like "card 1 of 2"
+      expect(options[0].getAttribute('aria-label')).toContain('card 1 of 2');
     });
   });
 

@@ -8,6 +8,8 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { createRef } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { axe } from 'vitest-axe';
 import { Deck } from './Deck';
 import type { DeckRef } from './Deck.types';
 
@@ -148,6 +150,52 @@ describe('Deck', () => {
         ref.current!.drawCard();
       });
       expect(onDraw).not.toHaveBeenCalled();
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Accessibility
+  // -------------------------------------------------------------------------
+  describe('accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<Deck count={10} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('has no axe violations when empty', async () => {
+      const { container } = render(<Deck count={0} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('draws on Enter key', async () => {
+      const onDraw = vi.fn();
+      render(<Deck count={10} onDraw={onDraw} />);
+      const deck = screen.getByRole('button');
+      await userEvent.type(deck, '{Enter}');
+      expect(onDraw).toHaveBeenCalled();
+    });
+
+    it('draws on Space key', async () => {
+      const onDraw = vi.fn();
+      render(<Deck count={10} onDraw={onDraw} />);
+      const deck = screen.getByRole('button');
+      fireEvent.keyDown(deck, { key: ' ' });
+      expect(onDraw).toHaveBeenCalled();
+    });
+
+    it('has button role when non-empty', () => {
+      render(<Deck count={10} />);
+      expect(screen.getByRole('button')).toBeInTheDocument();
+    });
+
+    it('has aria-label with card count', () => {
+      render(<Deck count={10} />);
+      expect(screen.getByRole('button')).toHaveAttribute(
+        'aria-label',
+        'Deck with 10 cards',
+      );
     });
   });
 
