@@ -28,3 +28,15 @@ export type { UseRovingTabIndexReturn } from './useRovingTabIndex';
 
 export { useKeyboardShortcuts } from './useKeyboardShortcuts';
 export type { KeyboardShortcut } from './useKeyboardShortcuts';
+
+export { useDraggableCard } from './useDraggableCard';
+export type {
+  UseDraggableCardOptions,
+  UseDraggableCardReturn,
+} from './useDraggableCard';
+
+export { useDroppableZone } from './useDroppableZone';
+export type {
+  UseDroppableZoneOptions,
+  UseDroppableZoneReturn,
+} from './useDroppableZone';

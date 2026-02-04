@@ -149,6 +149,18 @@ export { useRovingTabIndex } from './hooks';
 export { useKeyboardShortcuts } from './hooks';
 export type { KeyboardShortcut, UseRovingTabIndexReturn } from './hooks';
 
+// Headless DnD hooks (Phase 6)
+export { useDraggableCard } from './hooks';
+export { useDroppableZone } from './hooks';
+export type {
+  UseDraggableCardOptions,
+  UseDraggableCardReturn,
+} from './hooks';
+export type {
+  UseDroppableZoneOptions,
+  UseDroppableZoneReturn,
+} from './hooks';
+
 // Accessibility utilities (Phase 5)
 export {
   formatCardForSpeech,
