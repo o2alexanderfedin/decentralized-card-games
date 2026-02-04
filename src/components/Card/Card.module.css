@@ -1,0 +1,251 @@
+/* Card container - applies perspective */
+.container {
+  /* CSS custom properties for theming */
+  --card-perspective: 1000px;
+  --card-border-radius: 8px;
+  --card-padding: 0.5em;
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+  perspective: var(--card-perspective);
+  width: 100%;
+  height: 100%;
+}
+
+/* Card wrapper - maintains 3D context and aspect ratio */
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 7; /* Poker default */
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card--bridge {
+  aspect-ratio: 9 / 14;
+}
+
+/* Face base styles (shared by front and back) */
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Safari fix: force GPU compositing layer */
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow 0.2s ease;
+  /* Prevent content overflow */
+  overflow: hidden;
+  /* Add border for definition */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.face:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Front face */
+.front {
+  background: white;
+  /* Ensure solid background */
+  background-color: #ffffff;
+  /* Remove padding - let cardContent handle spacing */
+  /* Dark bevel for face-up cards */
+  box-shadow:
+    inset 1px 1px 0 rgba(0, 0, 0, 0.15),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Back face - pre-rotated 180deg for backface-visibility to work */
+.back {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Light bevel for face-down cards */
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Card content container - ensures content stays within bounds */
+.cardContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-padding);
+  box-sizing: border-box;
+}
+
+/* Regions for hierarchical layout */
+.topRegion {
+  flex-shrink: 0;
+  height: 16%; /* Slightly larger to prevent corner clipping */
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.2em; /* Add small top padding */
+}
+
+.centerRegion {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0; /* Allow flex shrink */
+  /* Add padding to prevent pips from overlapping corner ranks and being clipped */
+  /* Use larger padding to prevent clipping at small card sizes */
+  padding: 1.2em 0.6em;
+}
+
+.bottomRegion {
+  flex-shrink: 0;
+  height: 16%; /* Slightly larger to prevent corner clipping */
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 0.2em; /* Add small bottom padding */
+}
+
+/* Card content layout - corners and center */
+.corner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.corner--top {
+  /* Positioned in topRegion */
+}
+
+.corner--bottom {
+  transform: rotate(180deg);
+  /* Positioned in bottomRegion */
+}
+
+.rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.suit {
+  font-size: 1.2em;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+}
+
+/* ── Pip layout for number cards (2-10) ── */
+
+/**
+ * Pip grid uses a 3-column, 5-row layout matching traditional playing cards.
+ * Columns: left | center | right
+ * Rows represent vertical positions from top to bottom.
+ *
+ * Individual pips are placed using grid-column and grid-row.
+ */
+.pipGrid {
+  width: 95%; /* Reduce width slightly to add horizontal breathing room */
+  height: 95%; /* Reduce height to prevent bottom row clipping */
+  max-height: 100%; /* Constrain to parent */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+  font-size: 1em; /* Reduced to prevent bottom row clipping at small sizes */
+  box-sizing: border-box;
+  /* Ensure grid content doesn't overflow */
+  overflow: visible; /* Allow pips to be fully visible within card bounds */
+}
+
+.pip {
+  line-height: 0.8; /* Reduce line height to prevent bottom row clipping */
+}
+
+/* Flipped pips (bottom half of card, rotated 180deg) */
+.pip--flipped {
+  transform: rotate(180deg);
+}
+
+/* Column placement */
+.pip--left {
+  grid-column: 1;
+}
+
+.pip--center {
+  grid-column: 2;
+}
+
+.pip--right {
+  grid-column: 3;
+}
+
+/* Suit color classes - two-color scheme */
+.suit--red {
+  color: #cc0000;
+}
+
+.suit--black {
+  color: #000000;
+}
+
+/* Suit color classes - four-color scheme extensions */
+.suit--blue {
+  color: #0066cc;
+}
+
+.suit--green {
+  color: #009933;
+}
+
+/* Perspective variants */
+.container--subtle {
+  --card-perspective: 2000px;
+}
+
+.container--moderate {
+  --card-perspective: 1000px;
+}
+
+.container--dramatic {
+  --card-perspective: 600px;
+}
+
+/* Default card back pattern */
+.backPattern {
+  width: 80%;
+  height: 80%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255, 255, 255, 0.1) 5px,
+    rgba(255, 255, 255, 0.1) 10px
+  );
+}
+
+/* Error/invalid card state */
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.2em;
+  font-family: sans-serif;
+}

@@ -1,0 +1,47 @@
+.hand {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+}
+
+.cardSlot {
+  position: absolute;
+  transform-origin: bottom center;
+  cursor: pointer;
+  /* Smooth transitions for layout changes */
+  transition: filter 0.2s ease;
+}
+
+.cardSlot--selected {
+  filter: brightness(1.1);
+}
+
+/* Lift hover: translate card upward */
+@media (hover: hover) {
+  .hand--hover-lift .cardSlot:hover {
+    /* Applied via inline transform to avoid conflicting with position transforms */
+    filter: brightness(1.05);
+  }
+}
+
+/* Highlight hover: add glow */
+@media (hover: hover) {
+  .hand--hover-highlight .cardSlot:hover {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+  }
+}
+
+/* Selected card lift */
+.cardSlot--selected {
+  /* Selected cards shift up slightly - applied via motion animate y offset */
+}
+
+/* Empty hand */
+.hand--empty {
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}

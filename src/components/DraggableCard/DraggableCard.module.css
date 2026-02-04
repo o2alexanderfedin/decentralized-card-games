@@ -1,0 +1,26 @@
+/**
+ * DraggableCard styles.
+ *
+ * touch-action: none prevents iOS Safari from intercepting
+ * drag gestures as page scrolls.
+ *
+ * opacity: 0 on dragging hides the source card while the
+ * DragOverlay renders the visible clone. Using opacity (not
+ * display: none) preserves layout space.
+ */
+
+.draggable {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+  cursor: grab;
+}
+
+.draggable--dragging {
+  opacity: 0;
+  cursor: grabbing;
+}
+
+.draggable--disabled {
+  cursor: default;
+}
