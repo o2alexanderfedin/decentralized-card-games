@@ -35,11 +35,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### State Management
 
-- [ ] **STATE-01**: Redux Toolkit integration as optional layer
-- [ ] **STATE-02**: Redux slice for normalized card state (byId, allIds, locations)
-- [ ] **STATE-03**: Redux hooks (useDeck, useHand) for state access
-- [ ] **STATE-04**: Internal context provider for non-Redux usage
-- [ ] **STATE-05**: Selectors for common card queries
+- [x] **STATE-01**: Redux Toolkit integration as optional layer
+- [x] **STATE-02**: Redux slice for normalized card state (byId, allIds, locations)
+- [x] **STATE-03**: Redux hooks (useDeck, useHand) for state access
+- [x] **STATE-04**: Internal context provider for non-Redux usage
+- [x] **STATE-05**: Selectors for common card queries
 
 ### Container Components
 
@@ -57,12 +57,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Developer Experience
 
-- [ ] **DX-01**: Storybook documentation with component examples
-- [ ] **DX-02**: Headless hooks (useDraggableCard, useDroppableZone, useCardFlip)
-- [ ] **DX-03**: CSS variable theming system
-- [ ] **DX-04**: Tree-shakeable ESM build
-- [ ] **DX-05**: TypeScript declaration files (.d.ts)
-- [ ] **DX-06**: Package exports configuration for subpath imports
+- [x] **DX-01**: Storybook documentation with component examples
+- [x] **DX-02**: Headless hooks (useDraggableCard, useDroppableZone, useCardFlip)
+- [x] **DX-03**: CSS variable theming system
+- [x] **DX-04**: Tree-shakeable ESM build
+- [x] **DX-05**: TypeScript declaration files (.d.ts)
+- [x] **DX-06**: Package exports configuration for subpath imports
 
 ### Accessibility
 
@@ -77,12 +77,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Build & Distribution
 
-- [ ] **BUILD-01**: Vite library mode configuration
-- [ ] **BUILD-02**: Dual ESM/CJS output
-- [ ] **BUILD-03**: sideEffects: false for tree-shaking
-- [ ] **BUILD-04**: Vitest test suite with >80% coverage
-- [ ] **BUILD-05**: ESLint flat config with jsx-a11y plugin
-- [ ] **BUILD-06**: Bundle size testing and optimization
+- [x] **BUILD-01**: Vite library mode configuration
+- [x] **BUILD-02**: Dual ESM/CJS output
+- [x] **BUILD-03**: sideEffects: false for tree-shaking
+- [x] **BUILD-04**: Vitest test suite with >80% coverage
+- [x] **BUILD-05**: ESLint flat config with jsx-a11y plugin
+- [x] **BUILD-06**: Bundle size testing and optimization
 
 ## v2 Requirements
 
@@ -152,11 +152,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DND-04 | Phase 3 | Pending |
 | DND-05 | Phase 3 | Pending |
 | DND-06 | Phase 3 | Pending |
-| STATE-01 | Phase 4 | Pending |
-| STATE-02 | Phase 4 | Pending |
-| STATE-03 | Phase 4 | Pending |
-| STATE-04 | Phase 4 | Pending |
-| STATE-05 | Phase 4 | Pending |
+| STATE-01 | Phase 4 | Complete |
+| STATE-02 | Phase 4 | Complete |
+| STATE-03 | Phase 4 | Complete |
+| STATE-04 | Phase 4 | Complete |
+| STATE-05 | Phase 4 | Complete |
 | A11Y-01 | Phase 5 | Complete |
 | A11Y-02 | Phase 5 | Complete |
 | A11Y-03 | Phase 5 | Complete |
@@ -165,18 +165,18 @@ Which phases cover which requirements. Updated during roadmap creation.
 | A11Y-06 | Phase 5 | Complete |
 | A11Y-07 | Phase 5 | Complete |
 | A11Y-08 | Phase 5 | Complete |
-| DX-01 | Phase 6 | Pending |
-| DX-02 | Phase 6 | Pending |
-| DX-03 | Phase 6 | Pending |
-| DX-04 | Phase 6 | Pending |
-| DX-05 | Phase 6 | Pending |
-| DX-06 | Phase 6 | Pending |
-| BUILD-01 | Phase 6 | Pending |
-| BUILD-02 | Phase 6 | Pending |
-| BUILD-03 | Phase 6 | Pending |
-| BUILD-04 | Phase 6 | Pending |
-| BUILD-05 | Phase 6 | Pending |
-| BUILD-06 | Phase 6 | Pending |
+| DX-01 | Phase 6 | Complete |
+| DX-02 | Phase 6 | Complete |
+| DX-03 | Phase 6 | Complete |
+| DX-04 | Phase 6 | Complete |
+| DX-05 | Phase 6 | Complete |
+| DX-06 | Phase 6 | Complete |
+| BUILD-01 | Phase 6 | Complete |
+| BUILD-02 | Phase 6 | Complete |
+| BUILD-03 | Phase 6 | Complete |
+| BUILD-04 | Phase 6 | Complete |
+| BUILD-05 | Phase 6 | Complete |
+| BUILD-06 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 48 total
@@ -185,4 +185,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-02-02*
-*Last updated: 2026-02-02 - Traceability completed*
+*Last updated: 2026-02-04 - All v1 requirements complete*
