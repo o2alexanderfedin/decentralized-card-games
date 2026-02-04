@@ -21,6 +21,17 @@
   background: rgba(59, 130, 246, 0.02);
 }
 
+/* Focus-visible: show browser default outline for keyboard navigation */
+.dropZone:focus-visible {
+  outline: revert;
+  outline-offset: 2px;
+}
+
+/* Hide focus outline on mouse click */
+.dropZone:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .placeholder {
   display: flex;
   flex-direction: column;

@@ -21,6 +21,28 @@
   cursor: pointer;
 }
 
+/* Touch target expansion: ensures 44x44px minimum for WCAG compliance */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 44px;
+  min-height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* Focus-visible: show browser default outline for keyboard navigation */
+.card:focus-visible {
+  outline: revert;
+  outline-offset: 2px;
+}
+
+/* Hide focus outline on mouse click */
+.card:focus:not(:focus-visible) {
+  outline: none;
+}
+
 .card--bridge {
   aspect-ratio: 9 / 14;
 }
