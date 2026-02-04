@@ -34,3 +34,13 @@ export {
   setCurrentPlayer,
   reset,
 } from './actions';
+
+// Selectors
+export {
+  selectAllLocations,
+  selectLocation,
+  selectCard as selectCardState,
+  selectGamePhase,
+  selectCurrentPlayer,
+  selectLocationCount,
+} from './selectors';
