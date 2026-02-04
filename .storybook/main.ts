@@ -17,6 +17,13 @@ const config: StorybookConfig = {
   docs: {
     defaultName: 'Documentation',
   },
+  viteFinal: async (config) => {
+    // Set base path for GitHub Pages subdirectory deployment
+    if (process.env.STORYBOOK_BASE) {
+      config.base = process.env.STORYBOOK_BASE;
+    }
+    return config;
+  },
 };
 
 export default config;
