@@ -85,7 +85,7 @@ Plans:
   3. useGameState, useLocation, useCard, useGameActions hooks provide convenient state access
   4. Card state uses nested-by-location structure for flexible game types
   5. Drag/drop lifecycle can trigger state actions for unified state management
-**Plans**: 5 plans in 4 waves
+**Plans**: 6 plans in 5 waves
 
 Plans:
 - [ ] 04-01-PLAN.md — Shared state foundation: types, TDD reducer, action creators, initialState (Wave 1)
@@ -93,6 +93,7 @@ Plans:
 - [ ] 04-03-PLAN.md — Context mode GameProvider with localStorage persistence (Wave 3)
 - [ ] 04-04-PLAN.md — Redux entry point: slice, store, ReduxGameProvider (Wave 3)
 - [ ] 04-05-PLAN.md — Multi-entry build config, barrel exports, integration verification (Wave 4)
+- [ ] 04-06-PLAN.md — DnD-to-state integration: StatefulCardDndProvider (Wave 5)
 
 ### Phase 5: Accessibility
 **Goal**: Users with disabilities can fully interact with card components
@@ -134,7 +135,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
 | 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
 | 3. Drag & Drop | 5/5 | Complete | 2026-02-03 |
-| 4. State Management | 0/5 | Planned | - |
+| 4. State Management | 0/6 | Planned | - |
 | 5. Accessibility | 0/TBD | Not started | - |
 | 6. Developer Experience & Build | 0/TBD | Not started | - |
 
