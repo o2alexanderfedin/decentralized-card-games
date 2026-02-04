@@ -26,12 +26,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Drag & Drop
 
-- [ ] **DND-01**: dnd-kit integration for drag-and-drop functionality
-- [ ] **DND-02**: Draggable card components
-- [ ] **DND-03**: Droppable zone components
-- [ ] **DND-04**: Drag preview/overlay component
-- [ ] **DND-05**: Touch gesture support for mobile drag-and-drop
-- [ ] **DND-06**: Performance optimizations for dragging 50+ cards
+- [x] **DND-01**: dnd-kit integration for drag-and-drop functionality
+- [x] **DND-02**: Draggable card components
+- [x] **DND-03**: Droppable zone components
+- [x] **DND-04**: Drag preview/overlay component
+- [x] **DND-05**: Touch gesture support for mobile drag-and-drop
+- [x] **DND-06**: Performance optimizations for dragging 50+ cards
 
 ### State Management
 
@@ -43,17 +43,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Container Components
 
-- [ ] **CNTR-01**: Hand component for displaying player's cards
-- [ ] **CNTR-02**: Deck component for card stack with draw functionality
-- [ ] **CNTR-03**: CardStack component for visual card stacking
-- [ ] **CNTR-04**: DropZone component for droppable areas
+- [x] **CNTR-01**: Hand component for displaying player's cards
+- [x] **CNTR-02**: Deck component for card stack with draw functionality
+- [x] **CNTR-03**: CardStack component for visual card stacking
+- [x] **CNTR-04**: DropZone component for droppable areas
 
 ### Layout Presets
 
-- [ ] **LYOT-01**: Fan layout with configurable spread angle
-- [ ] **LYOT-02**: Spread layout for horizontal card arrangement
-- [ ] **LYOT-03**: Stack layout for vertical card stacking
-- [ ] **LYOT-04**: Layout calculation utilities (overlap, rotation)
+- [x] **LYOT-01**: Fan layout with configurable spread angle
+- [x] **LYOT-02**: Spread layout for horizontal card arrangement
+- [x] **LYOT-03**: Stack layout for vertical card stacking
+- [x] **LYOT-04**: Layout calculation utilities (overlap, rotation)
 
 ### Developer Experience
 
