@@ -123,6 +123,9 @@ Recent decisions affecting current work:
 - Static announcement constants outside component (not memoized inside)
 - aria-roledescription and aria-label placed after {...attributes} spread for override
 - aria-hidden={isDragging || undefined} hides source card during drag overlay
+- Card ARIA labels use natural language ("Ace of Spades") via formatCardForSpeech
+- Face-down cards announce as "Face-down card" without any identity information
+- Hand uses role="listbox" with role="option" children and roving tabindex
 
 ### Pending Todos
 
