@@ -17,6 +17,7 @@ dist/
 build/
 out/
 .next/
+storybook-static/
 
 # IDE
 .vscode/
