@@ -18,13 +18,65 @@ import {
   type DragStartEvent,
   type DragEndEvent,
   type DragOverEvent,
+  type Announcements,
+  type ScreenReaderInstructions,
 } from '@dnd-kit/core';
 import { useDragSensors } from '../../hooks';
 import { useHapticFeedback } from '../../hooks';
 import { CardDragOverlay } from '../CardDragOverlay';
+import { formatCardForSpeech } from '../../utils/a11y';
 import type { DragItemData, DropValidationFn } from '../../types';
 import type { CardData } from '../../types';
 import type { CardDndProviderProps } from './CardDndProvider.types';
+
+// ---------------------------------------------------------------------------
+// Card-specific screen reader announcements
+// ---------------------------------------------------------------------------
+
+/**
+ * Custom announcements that describe card drag operations in natural language.
+ *
+ * Instead of dnd-kit's generic "Picked up draggable item 1", screen readers
+ * hear "Picked up Ace of Spades from hand".
+ */
+const cardAnnouncements: Announcements = {
+  onDragStart({ active }) {
+    const data = active.data.current as DragItemData | undefined;
+    if (!data?.card) return 'Picked up item.';
+    const cardName = formatCardForSpeech(data.card);
+    const zone = data.sourceZoneId ?? 'the board';
+    return `Picked up ${cardName} from ${zone}. Use arrow keys to move between drop zones. Press Space or Enter to drop, Escape to cancel.`;
+  },
+  onDragOver({ active, over }) {
+    const data = active.data.current as DragItemData | undefined;
+    const cardName = data?.card ? formatCardForSpeech(data.card) : 'Item';
+    if (over) {
+      return `${cardName} is over ${String(over.id)}.`;
+    }
+    return `${cardName} is not over a drop zone.`;
+  },
+  onDragEnd({ active, over }) {
+    const data = active.data.current as DragItemData | undefined;
+    const cardName = data?.card ? formatCardForSpeech(data.card) : 'Item';
+    if (over) {
+      return `${cardName} was dropped on ${String(over.id)}.`;
+    }
+    return `${cardName} was returned to its original position.`;
+  },
+  onDragCancel({ active }) {
+    const data = active.data.current as DragItemData | undefined;
+    const cardName = data?.card ? formatCardForSpeech(data.card) : 'Item';
+    return `Dragging ${cardName} was cancelled. Card returned to original position.`;
+  },
+};
+
+/**
+ * Instructions read to screen reader users when a draggable card receives focus.
+ */
+const cardScreenReaderInstructions: ScreenReaderInstructions = {
+  draggable:
+    'To pick up this card, press Space or Enter. Use arrow keys to move between drop zones. Press Space or Enter to drop, or Escape to cancel.',
+};
 
 /**
  * CardDndProvider wraps children in DndContext with configured sensors,
@@ -170,6 +222,11 @@ export const CardDndProvider: React.FC<CardDndProviderProps> = ({
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
       autoScroll={autoScroll ?? false}
+      accessibility={{
+        announcements: cardAnnouncements,
+        screenReaderInstructions: cardScreenReaderInstructions,
+        restoreFocus: true,
+      }}
     >
       {children}
       <CardDragOverlay

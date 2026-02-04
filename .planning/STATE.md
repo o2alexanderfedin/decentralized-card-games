@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-02)
 ## Current Position
 
 Phase: 5 of 6 (Accessibility)
-Plan: 2 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-04 - Completed 05-02-PLAN.md
+Last activity: 2026-02-04 - Completed 05-04-PLAN.md
 
-Progress: [#####################...] 21/24 plans (87%)
+Progress: [#######################.] 23/24 plans (96%)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 23
 - Average duration: 6 min
-- Total execution time: 129 min
+- Total execution time: 139 min
 
 **By Phase:**
 
@@ -31,11 +31,11 @@ Progress: [#####################...] 21/24 plans (87%)
 | 2 - Containers | 4/4 | 24 min | 6 min |
 | 3 - Drag & Drop | 5/5 | 23 min | 5 min |
 | 4 - State Management | 6/6 | 21 min | 4 min |
-| 5 - Accessibility | 2/5 | 13 min | 7 min |
+| 5 - Accessibility | 4/5 | 23 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-04 (5 min), 04-05 (4 min), 04-06 (2 min), 05-01 (5 min), 05-02 (8 min)
-- Trend: Stable at 4-8 min per plan
+- Last 5 plans: 04-06 (2 min), 05-01 (5 min), 05-02 (8 min), 05-03 (5 min), 05-04 (5 min)
+- Trend: Stable at 2-8 min per plan
 
 *Updated after each plan completion*
 
@@ -120,6 +120,9 @@ Recent decisions affecting current work:
 - Touch target 44x44px via ::before pseudo-element invisible expansion
 - Static motionValue(0) for rotateY in reduced motion (no 3D rotation)
 - 250ms crossfade duration for reduced motion card flip
+- Static announcement constants outside component (not memoized inside)
+- aria-roledescription and aria-label placed after {...attributes} spread for override
+- aria-hidden={isDragging || undefined} hides source card during drag overlay
 
 ### Pending Todos
 
@@ -131,6 +134,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-04T07:18:17Z
-Stopped at: Completed 05-02-PLAN.md
+Last session: 2026-02-04T07:27:00Z
+Stopped at: Completed 05-04-PLAN.md
 Resume file: None

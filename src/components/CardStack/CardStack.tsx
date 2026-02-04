@@ -48,6 +48,7 @@ export const CardStack: React.FC<CardStackProps> = (props) => {
     maxRotation = 3,
     faceUp = 'top-only',
     onTopCardClick,
+    ariaLabel,
     className,
   } = props;
 
@@ -96,7 +97,12 @@ export const CardStack: React.FC<CardStackProps> = (props) => {
   const totalOffsetY = (normalizedCards.length - 1) * offsetY;
 
   return (
-    <div className={containerClasses} data-testid="card-stack">
+    <div
+      className={containerClasses}
+      data-testid="card-stack"
+      role="group"
+      aria-label={ariaLabel ?? `Card stack, ${normalizedCards.length} card${normalizedCards.length === 1 ? '' : 's'}`}
+    >
       {/* Spacer to give the container natural height/width */}
       <div
         style={{

@@ -43,6 +43,9 @@ export interface HandProps {
   /** Whether all cards are face up. Default: true. */
   faceUp?: boolean;
 
+  /** ARIA label for screen readers. Default: "Your hand". */
+  ariaLabel?: string;
+
   /** Additional CSS class for the hand container. */
   className?: string;
 }

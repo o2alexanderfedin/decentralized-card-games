@@ -81,6 +81,8 @@ export const DropZone: React.FC<DropZoneProps> = (props) => {
       className={containerClasses}
       data-testid="drop-zone"
       onClick={onDrop}
+      role="region"
+      aria-label={label ?? 'Drop zone'}
     >
       {hasChildren ? children : renderEmptyContent()}
     </div>
