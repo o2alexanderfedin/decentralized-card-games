@@ -97,6 +97,12 @@ None at this time. Research phase completed with HIGH confidence.
 
 None yet (v2.0 just started).
 
+### Pending Todos
+
+**Count:** 1
+
+- [2026-02-04] Add Playwright-based deployment verification tests (testing)
+
 ---
 
 ## Blockers & Risks
