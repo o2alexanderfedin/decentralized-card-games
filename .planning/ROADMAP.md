@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation & Core Rendering** - Card components with flip animations and TypeScript types
 - [x] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
 - [x] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
-- [ ] **Phase 4: State Management** - Optional Redux Toolkit integration layer
+- [x] **Phase 4: State Management** - Optional Redux Toolkit integration layer
 - [ ] **Phase 5: Accessibility** - WCAG compliance with keyboard navigation and screen readers
 - [ ] **Phase 6: Developer Experience & Build** - Storybook, tree-shakeable build, distribution
 
@@ -88,12 +88,12 @@ Plans:
 **Plans**: 6 plans in 5 waves
 
 Plans:
-- [ ] 04-01-PLAN.md — Shared state foundation: types, TDD reducer, action creators, initialState (Wave 1)
-- [ ] 04-02-PLAN.md — Selectors, StateBackend interface, unified hooks (Wave 2)
-- [ ] 04-03-PLAN.md — Context mode GameProvider with localStorage persistence (Wave 3)
-- [ ] 04-04-PLAN.md — Redux entry point: slice, store, ReduxGameProvider (Wave 3)
-- [ ] 04-05-PLAN.md — Multi-entry build config, barrel exports, integration verification (Wave 4)
-- [ ] 04-06-PLAN.md — DnD-to-state integration: StatefulCardDndProvider (Wave 5)
+- [x] 04-01-PLAN.md — Shared state foundation: types, TDD reducer, action creators, initialState (Wave 1)
+- [x] 04-02-PLAN.md — Selectors, StateBackend interface, unified hooks (Wave 2)
+- [x] 04-03-PLAN.md — Context mode GameProvider with localStorage persistence (Wave 3)
+- [x] 04-04-PLAN.md — Redux entry point: slice, store, ReduxGameProvider (Wave 3)
+- [x] 04-05-PLAN.md — Multi-entry build config, barrel exports, integration verification (Wave 4)
+- [x] 04-06-PLAN.md — DnD-to-state integration: StatefulCardDndProvider (Wave 5)
 
 ### Phase 5: Accessibility
 **Goal**: Users with disabilities can fully interact with card components
@@ -135,10 +135,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
 | 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
 | 3. Drag & Drop | 5/5 | Complete | 2026-02-03 |
-| 4. State Management | 0/6 | Planned | - |
+| 4. State Management | 6/6 | Complete | 2026-02-04 |
 | 5. Accessibility | 0/TBD | Not started | - |
 | 6. Developer Experience & Build | 0/TBD | Not started | - |
 
 ---
 *Roadmap created: 2026-02-02*
-*Last updated: 2026-02-03*
+*Last updated: 2026-02-04*
