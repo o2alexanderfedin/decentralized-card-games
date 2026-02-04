@@ -3,11 +3,11 @@
 }
 
 .overlay--translucent {
-  opacity: 0.7;
+  opacity: var(--drag-overlay-opacity, 0.7);
 }
 
 .overlay--miniature {
-  transform: scale(0.75);
+  transform: scale(var(--drag-overlay-scale, 0.75));
 }
 
 .multiStack {
@@ -28,8 +28,8 @@
   position: absolute;
   top: -8px;
   right: -8px;
-  background: #e74c3c;
-  color: white;
+  background: var(--drag-overlay-badge-bg, #e74c3c);
+  color: var(--drag-overlay-badge-color, white);
   border-radius: 50%;
   width: 24px;
   height: 24px;

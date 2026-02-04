@@ -17,13 +17,13 @@
 }
 
 .cardSlot--selected {
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.6);
+  box-shadow: var(--selected-shadow, 0 0 0 3px rgba(34, 197, 94, 0.6));
 }
 
 /* Focus-visible: show browser default outline for keyboard navigation */
 .cardSlot:focus-visible {
   outline: revert;
-  outline-offset: 2px;
+  outline-offset: var(--focus-ring-offset, 2px);
 }
 
 /* Hide focus outline on mouse click */
@@ -42,12 +42,12 @@
 /* Highlight hover: add glow */
 @media (hover: hover) {
   .hand--hover-highlight .cardSlot:hover {
-    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+    filter: drop-shadow(0 0 8px var(--hand-hover-highlight, rgba(59, 130, 246, 0.5)));
   }
 }
 
 /* Empty hand */
 .hand--empty {
-  border: 2px dashed rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
+  border: 2px dashed var(--empty-border-color, rgba(0, 0, 0, 0.15));
+  border-radius: var(--card-border-radius, 8px);
 }
