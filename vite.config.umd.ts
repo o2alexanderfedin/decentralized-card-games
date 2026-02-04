@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 
 const externals = [
@@ -23,25 +22,18 @@ const globals = {
   'react-redux': 'ReactRedux',
 };
 
-// ESM multi-entry build (main config)
-// UMD single-entry build runs separately via vite.config.umd.ts
+// UMD build for main entry only (CDN usage)
+// Multi-entry not supported with UMD format, so this is a separate build pass
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      include: ['src/**/*'],
-      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/**/*.stories.tsx'],
-    }),
-  ],
+  plugins: [react()],
   build: {
     sourcemap: true,
+    emptyOutDir: false,
     lib: {
-      entry: {
-        'card-components': resolve(__dirname, 'src/index.ts'),
-        'card-components-redux': resolve(__dirname, 'src/redux/index.ts'),
-      },
-      formats: ['es'],
-      fileName: (_format, entryName) => `${entryName}.js`,
+      entry: resolve(__dirname, 'src/index.ts'),
+      formats: ['umd'],
+      name: 'CardComponents',
+      fileName: () => 'card-components.umd.cjs',
     },
     rollupOptions: {
       external: externals,
