@@ -5,7 +5,7 @@
  * ref API, hover effects, card click events, and edge cases.
  */
 
-import { describe, it, expect, vi, beforeAll, afterAll, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { createRef } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -35,9 +35,9 @@ beforeAll(() => {
 });
 
 // Mock ResizeObserver (jsdom doesn't have it)
-let resizeCallback: ResizeObserverCallback | null = null;
+let _resizeCallback: ResizeObserverCallback | null = null;
 const mockResizeObserver = vi.fn().mockImplementation((cb: ResizeObserverCallback) => {
-  resizeCallback = cb;
+  _resizeCallback = cb;
   return {
     observe: vi.fn(),
     unobserve: vi.fn(),

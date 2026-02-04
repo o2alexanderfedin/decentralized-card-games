@@ -6,7 +6,7 @@ import {
   formatCardLabel,
   formatFaceDownLabel,
 } from './a11y';
-import type { CardData, Rank, Suit } from '../types/card';
+import type { CardData, Rank } from '../types/card';
 import { RANKS, SUITS } from '../types/card';
 
 describe('RANK_NAMES', () => {

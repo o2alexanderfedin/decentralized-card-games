@@ -46,7 +46,7 @@ import { useLocation } from '../../hooks/useLocation';
 /* ------------------------------------------------------------------ */
 
 const aceOfSpades: CardData = { suit: 'spades', rank: 'A' };
-const kingOfHearts: CardData = { suit: 'hearts', rank: 'K' };
+const _kingOfHearts: CardData = { suit: 'hearts', rank: 'K' };
 
 function makeCard(suit: CardState['suit'], rank: CardState['rank']): CardState {
   return { suit, rank, faceUp: false, selected: false };

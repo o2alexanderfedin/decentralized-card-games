@@ -43,11 +43,11 @@ vi.mock('@dnd-kit/core', () => ({
 /*  Mock CardDragOverlay to inspect its props                          */
 /* ------------------------------------------------------------------ */
 
-let overlayProps: Record<string, unknown> = {};
+let _overlayProps: Record<string, unknown> = {};
 
 vi.mock('../CardDragOverlay', () => ({
   CardDragOverlay: (props: Record<string, unknown>) => {
-    overlayProps = props;
+    _overlayProps = props;
     return (
       <div
         data-testid="card-drag-overlay"
@@ -140,7 +140,7 @@ function makeDragEndEvent(
 describe('CardDndProvider', () => {
   beforeEach(() => {
     capturedProps = {};
-    overlayProps = {};
+    _overlayProps = {};
     vi.clearAllMocks();
   });
 

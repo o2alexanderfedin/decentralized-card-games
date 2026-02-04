@@ -183,7 +183,7 @@ describe('gameReducer - SET_CURRENT_PLAYER', () => {
 
 describe('gameReducer - DEAL_CARDS', () => {
   it('deals N cards from source to each target', () => {
-    const deck = Array.from({ length: 10 }, (_, i) =>
+    const _deck = Array.from({ length: 10 }, (_, i) =>
       card('spades', String(i) as CardState['rank']),
     );
     // Use valid ranks
