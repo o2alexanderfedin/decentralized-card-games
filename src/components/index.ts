@@ -12,3 +12,6 @@ export * from './DraggableCard';
 export * from './CardDragOverlay';
 export * from './DroppableZone';
 export * from './CardDndProvider';
+
+// Phase 4
+export * from './StatefulCardDndProvider';

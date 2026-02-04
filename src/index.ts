@@ -11,6 +11,7 @@ export { DraggableCard } from './components';
 export { CardDragOverlay } from './components';
 export { DroppableZone } from './components';
 export { CardDndProvider } from './components';
+export { StatefulCardDndProvider } from './components';
 export type {
   // Phase 1 component types
   CardProps,
@@ -37,6 +38,8 @@ export type {
   CardDragOverlayProps,
   DroppableZoneProps,
   CardDndProviderProps,
+  // Phase 4 component types
+  StatefulCardDndProviderProps,
 } from './components';
 
 // Types
