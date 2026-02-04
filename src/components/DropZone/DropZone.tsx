@@ -81,7 +81,14 @@ export const DropZone: React.FC<DropZoneProps> = (props) => {
       className={containerClasses}
       data-testid="drop-zone"
       onClick={onDrop}
-      role="region"
+      onKeyDown={onDrop ? (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onDrop();
+        }
+      } : undefined}
+      role={onDrop ? 'button' : 'region'}
+      tabIndex={onDrop ? 0 : undefined}
       aria-label={label ?? 'Drop zone'}
     >
       {hasChildren ? children : renderEmptyContent()}
