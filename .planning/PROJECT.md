@@ -8,6 +8,16 @@ A lean React component library for visualizing and interacting with standard pla
 
 Developers can drop in fully interactive card components without building card UI from scratch. The library handles all visualization and interaction patterns for standard playing cards.
 
+## Current Milestone: v2.0 Distribution & Showcase
+
+**Goal:** Make the library publicly accessible with automated quality gates and compelling demonstration of capabilities through real game implementations.
+
+**Target features:**
+- CI/CD pipeline with automated testing, building, and documentation deployment
+- GitHub Pages site with custom landing page, installation guides, and live demos
+- Three playable game demonstrations: Memory (card matching), War (automated comparison), Solitaire (Klondike)
+- Public repository ready for community contribution and adoption
+
 ## Requirements
 
 ### Validated
@@ -24,7 +34,12 @@ Developers can drop in fully interactive card components without building card U
 
 ### Active
 
-(No active requirements — v1.0 complete. Define requirements for next milestone with `/gsd:new-milestone`)
+- [ ] **CI/CD pipeline** — GitHub Actions workflow with test/lint/build/deploy automation
+- [ ] **Documentation site** — GitHub Pages with landing page, installation guide, game demos, Storybook link
+- [ ] **Memory game demo** — Card matching game showcasing flip animations and game logic integration
+- [ ] **War game demo** — Automated comparison game demonstrating deck manipulation and state management
+- [ ] **Solitaire game demo** — Klondike implementation showing complex drag-and-drop and multi-zone interactions
+- [ ] **Public repository** — Repository made public and ready for community engagement
 
 ### Out of Scope
 
@@ -102,4 +117,4 @@ We started with standard playing cards (poker deck) as the baseline, with data s
 | Vitest (not Jest) | Native ESM support, faster | ✓ Good - 435 tests run in <15 seconds |
 
 ---
-*Last updated: 2026-02-04 after v1.0 milestone completion*
+*Last updated: 2026-02-04 after v2.0 milestone initialization*

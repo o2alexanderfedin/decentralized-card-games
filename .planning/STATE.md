@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-04)
 
 **Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Planning next milestone
+**Current focus:** Milestone v2.0 - Distribution & Showcase
 
 ## Current Position
 
-Phase: Milestone complete
-Plan: N/A
-Status: v1.0 shipped - Ready for next milestone
-Last activity: 2026-02-04 - v1.0 milestone complete
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements for v2.0
+Last activity: 2026-02-04 - Milestone v2.0 started
 
-Progress: [################################] 29/29 plans (100% of v1.0)
+Progress: [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0/? plans (0% of v2.0)
 
 ## Performance Metrics
 
