@@ -29,7 +29,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          # Temporarily disable cache to fix dependency resolution issues
+          # cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -46,7 +47,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          # Temporarily disable cache to fix dependency resolution issues
+          # cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -63,7 +65,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          # Temporarily disable cache to fix dependency resolution issues
+          # cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -80,7 +83,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          # Temporarily disable cache to fix dependency resolution issues
+          # cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -97,7 +101,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          # Temporarily disable cache to fix dependency resolution issues
+          # cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -115,7 +120,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-          cache: 'npm'
+          # Temporarily disable cache to fix dependency resolution issues
+          # cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
