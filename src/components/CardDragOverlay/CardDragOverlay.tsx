@@ -12,6 +12,8 @@
  */
 
 import { DragOverlay, defaultDropAnimationSideEffects } from '@dnd-kit/core';
+import type { Modifier } from '@dnd-kit/core';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import { Card } from '../Card';
 import type { CardDragOverlayProps } from './CardDragOverlay.types';
 import styles from './CardDragOverlay.module.css';
@@ -26,6 +28,35 @@ const defaultDropAnim = {
   sideEffects: defaultDropAnimationSideEffects({
     styles: { active: { opacity: '0.5' } },
   }),
+};
+
+/**
+ * Custom modifier that centers the dragged element on the cursor.
+ * Without this, the element maintains its original click offset,
+ * which can feel awkward for card dragging.
+ */
+const snapCenterToCursor: Modifier = ({ activatorEvent, draggingNodeRect, transform }) => {
+  if (draggingNodeRect && activatorEvent) {
+    const activatorCoordinates = {
+      x: activatorEvent instanceof MouseEvent || activatorEvent instanceof TouchEvent
+        ? ('clientX' in activatorEvent ? activatorEvent.clientX : activatorEvent.touches[0]?.clientX ?? 0)
+        : 0,
+      y: activatorEvent instanceof MouseEvent || activatorEvent instanceof TouchEvent
+        ? ('clientY' in activatorEvent ? activatorEvent.clientY : activatorEvent.touches[0]?.clientY ?? 0)
+        : 0,
+    };
+
+    const offsetX = activatorCoordinates.x - draggingNodeRect.left;
+    const offsetY = activatorCoordinates.y - draggingNodeRect.top;
+
+    return {
+      ...transform,
+      x: transform.x + (draggingNodeRect.width / 2 - offsetX),
+      y: transform.y + (draggingNodeRect.height / 2 - offsetY),
+    };
+  }
+
+  return transform;
 };
 
 /**
@@ -96,6 +127,7 @@ export const CardDragOverlay: React.FC<CardDragOverlayProps> = ({
     <DragOverlay
       dropAnimation={dropAnimation ?? defaultDropAnim}
       zIndex={zIndex}
+      modifiers={[snapCenterToCursor, restrictToWindowEdges]}
     >
       {renderContent()}
     </DragOverlay>
