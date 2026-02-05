@@ -104,7 +104,7 @@ export function parseCard(notation: string): CardData | null {
   let suit: Suit | undefined;
   let rankStr: string;
 
-  // Try emoji notation first (first character is emoji suit)
+  // Try suit-first notation (♠A, sA)
   const firstChar = notation.charAt(0);
   suit = EMOJI_TO_SUIT[firstChar];
 
@@ -116,7 +116,19 @@ export function parseCard(notation: string): CardData | null {
     if (suit) {
       rankStr = notation.slice(1);
     } else {
-      return null;
+      // Try rank-first notation (A♠, As)
+      const lastChar = notation.charAt(notation.length - 1);
+      suit = EMOJI_TO_SUIT[lastChar];
+
+      if (!suit) {
+        suit = TEXT_TO_SUIT[lastChar.toLowerCase()];
+      }
+
+      if (suit) {
+        rankStr = notation.slice(0, -1);
+      } else {
+        return null;
+      }
     }
   }
 
