@@ -31,6 +31,12 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
+      - name: Debug environment
+        run: |
+          node --version
+          npm --version
+          cat package-lock.json | head -10
+
       - name: Install Dependencies
         run: npm ci
 
