@@ -104,3 +104,48 @@ jobs:
 
       - name: Build Storybook
         run: npm run build-storybook
+
+  verify-deployment:
+    name: Verify Local Deployment
+    runs-on: ubuntu-latest
+    needs: [build-library, build-storybook]
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Library
+        run: npm run build
+
+      - name: Build Storybook
+        run: npm run build-storybook
+        env:
+          STORYBOOK_BASE: /decentralized-card-games/storybook/
+
+      - name: Compose Site Directory
+        run: |
+          mkdir -p site-dist/storybook
+          cp -r storybook-static/* site-dist/storybook/
+          touch site-dist/.nojekyll
+          echo "Site composed successfully"
+          ls -la site-dist/
+
+      - name: Run E2E Local Tests
+        run: npm run test:e2e:local
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
