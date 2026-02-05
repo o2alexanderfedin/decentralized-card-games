@@ -37,6 +37,9 @@ jobs:
           npm --version
           cat package-lock.json | head -10
 
+      - name: Clean npm cache
+        run: npm cache clean --force
+
       - name: Install Dependencies
         run: npm ci
 
