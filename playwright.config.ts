@@ -41,6 +41,13 @@ export default defineConfig({
         baseURL: 'http://localhost:5173',
       },
       testMatch: /.*local\.spec\.ts/,
+      // Web server only for local tests
+      webServer: {
+        command: 'npx serve site-dist -l 5173',
+        url: 'http://localhost:5173',
+        reuseExistingServer: !process.env.CI,
+        timeout: 120000,
+      },
     },
     {
       name: 'production',
@@ -49,6 +56,7 @@ export default defineConfig({
         baseURL: 'https://o2alexanderfedin.github.io/decentralized-card-games',
       },
       testMatch: /.*production\.spec\.ts/,
+      // No webServer needed - tests against live GitHub Pages
     },
     {
       name: 'storybook',
@@ -57,14 +65,7 @@ export default defineConfig({
         baseURL: 'http://localhost:6006',
       },
       testMatch: /.*storybook\.spec\.ts/,
+      // No webServer - assumes Storybook is already running
     },
   ],
-
-  // Web server for local tests (serve built site-dist)
-  webServer: {
-    command: 'npx serve site-dist -l 5173',
-    url: 'http://localhost:5173',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000,
-  },
 });
