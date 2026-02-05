@@ -99,9 +99,11 @@ None yet (v2.0 just started).
 
 ### Pending Todos
 
-**Count:** 1
+**Count:** 0
 
-- [2026-02-04] Add Playwright-based deployment verification tests (testing)
+### In Progress
+
+- [2026-02-04] Add Playwright-based deployment verification tests (testing) - Started implementation
 
 ---
 
