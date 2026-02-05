@@ -85,13 +85,13 @@ export const Deck = forwardRef<DeckRef, DeckProps>((props, ref) => {
   if (count <= 0) {
     if (emptyState === 'none') {
       return (
-        <div className={containerClasses} data-testid="deck" />
+        <div className={containerClasses} data-testid="deck" aria-label="Empty deck" />
       );
     }
 
     if (emptyState === 'placeholder' || isStringPreset(emptyState)) {
       return (
-        <div className={containerClasses} data-testid="deck">
+        <div className={containerClasses} data-testid="deck" aria-label="Empty deck">
           <div className={styles.placeholder} data-testid="deck-placeholder">
             Empty
           </div>
@@ -101,7 +101,7 @@ export const Deck = forwardRef<DeckRef, DeckProps>((props, ref) => {
 
     // Custom ReactNode
     return (
-      <div className={containerClasses} data-testid="deck">
+      <div className={containerClasses} data-testid="deck" aria-label="Empty deck">
         {emptyState}
       </div>
     );
@@ -115,6 +115,12 @@ export const Deck = forwardRef<DeckRef, DeckProps>((props, ref) => {
       className={containerClasses}
       data-testid="deck"
       onClick={handleDraw}
+      onKeyDown={(e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleDraw();
+        }
+      }}
       role="button"
       aria-label={`Deck with ${count} card${count === 1 ? '' : 's'}`}
       tabIndex={0}
@@ -132,7 +138,7 @@ export const Deck = forwardRef<DeckRef, DeckProps>((props, ref) => {
           }}
           data-testid="deck-card-layer"
         >
-          <Card card="sA" isFaceUp={false} style={{ width: 120, height: 168 }} />
+          <Card card="sA" isFaceUp={false} interactive={false} style={{ width: 120, height: 168 }} />
         </div>
       ))}
 

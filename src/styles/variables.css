@@ -1,0 +1,75 @@
+/**
+ * CSS Custom Property Theming Tokens
+ *
+ * Global token definitions for the card component library.
+ * Consumers can override any of these properties by setting them
+ * on a parent element or :root.
+ *
+ * @example
+ * ```css
+ * .dark-theme {
+ *   --card-bg: #2d2d2d;
+ *   --card-back-bg: linear-gradient(135deg, #4a0e0e 0%, #6b1a1a 100%);
+ *   --suit-red: #ff6666;
+ *   --suit-black: #e0e0e0;
+ * }
+ * ```
+ */
+:root {
+  /* ── Card tokens ── */
+  --card-bg: #ffffff;
+  --card-back-bg: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+  --card-border-radius: 8px;
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --card-perspective: 1000px;
+  --card-padding: 0.5em;
+  --card-border-color: rgba(0, 0, 0, 0.1);
+
+  /* ── Card bevel tokens ── */
+  --card-front-bevel: inset 1px 1px 0 rgba(0, 0, 0, 0.15),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+  --card-back-bevel: inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+
+  /* ── Suit colors (two-color scheme) ── */
+  --suit-red: #cc0000;
+  --suit-black: #000000;
+
+  /* ── Suit colors (four-color scheme) ── */
+  --suit-blue: #0066cc;
+  --suit-green: #009933;
+
+  /* ── Container tokens ── */
+  --deck-badge-bg: #1a365d;
+  --deck-badge-color: white;
+  --empty-border-color: rgba(0, 0, 0, 0.15);
+  --empty-placeholder-color: rgba(0, 0, 0, 0.3);
+
+  /* ── DropZone tokens ── */
+  --dropzone-active-border: #3b82f6;
+  --dropzone-active-bg: rgba(59, 130, 246, 0.05);
+  --dropzone-hover-border: #3b82f6;
+  --dropzone-hover-bg: rgba(59, 130, 246, 0.02);
+
+  /* ── Drag overlay tokens ── */
+  --drag-overlay-opacity: 0.7;
+  --drag-overlay-scale: 0.75;
+  --drag-overlay-badge-bg: #e74c3c;
+  --drag-overlay-badge-color: white;
+
+  /* ── DraggableCard tokens ── */
+  --draggable-dragging-opacity: 0;
+
+  /* ── Focus/selection tokens ── */
+  --focus-ring-offset: 2px;
+  --selected-shadow: 0 0 0 3px rgba(34, 197, 94, 0.6);
+
+  /* ── CardStack tokens ── */
+  --stack-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* ── Hand tokens ── */
+  --hand-hover-highlight: rgba(59, 130, 246, 0.5);
+}

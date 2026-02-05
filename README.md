@@ -1,6 +1,10 @@
-# Decentralized Card Games
+# @decentralized-games/card-components
 
-A blockchain-based card gaming platform enabling decentralized ownership, trading, and gameplay.
+[![CI/CD Pipeline](https://github.com/o2alexanderfedin/decentralized-card-games/actions/workflows/ci.yml/badge.svg)](https://github.com/o2alexanderfedin/decentralized-card-games/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@decentralized-games/card-components)](https://www.npmjs.com/package/@decentralized-games/card-components)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@decentralized-games/card-components)](https://bundlephobia.com/package/@decentralized-games/card-components)
+
+React component library for visualizing and interacting with playing cards.
 
 ## Getting Started
 

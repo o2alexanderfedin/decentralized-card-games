@@ -1,138 +1,241 @@
 # Roadmap: Decentralized Card Games Component Library
 
+**Project:** Decentralized Card Games - Documentation Site & Game Demos
+**Milestone:** v2.0 Distribution & Showcase
+**Created:** 2026-02-04
+**Depth:** Comprehensive
+**Status:** Active
+
 ## Overview
 
-This roadmap delivers a lean React component library for rendering and interacting with playing cards. The journey progresses from foundational card components with animations, through container components and layout presets, to drag-and-drop interactions, optional Redux state management, comprehensive accessibility, and finally build/distribution infrastructure. Each phase delivers a coherent, testable capability that builds on the previous.
+Transform the v1.0 component library into a public-facing project with CI/CD automation, GitHub Pages documentation site, and three playable game demos (Memory, War, Solitaire). This milestone makes the library discoverable and demonstrates its capabilities through real-world implementations while establishing quality gates for future contributions.
 
-## Phases
+## Phase Structure
 
-**Phase Numbering:**
-- Integer phases (1, 2, 3): Planned milestone work
-- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
+### Phase 7: CI/CD Foundation & Deployment Infrastructure
 
-Decimal phases appear between their surrounding integers in numeric order.
+**Goal:** Automated quality gates and deployment pipeline are operational before building content
 
-- [x] **Phase 1: Foundation & Core Rendering** - Card components with flip animations and TypeScript types
-- [x] **Phase 2: Container Components & Layouts** - Hand, Deck, Stack with layout presets
-- [ ] **Phase 3: Drag & Drop** - dnd-kit integration with draggable cards and drop zones
-- [ ] **Phase 4: State Management** - Optional Redux Toolkit integration layer
-- [ ] **Phase 5: Accessibility** - WCAG compliance with keyboard navigation and screen readers
-- [ ] **Phase 6: Developer Experience & Build** - Storybook, tree-shakeable build, distribution
+**Dependencies:** None (foundational phase)
 
-## Phase Details
-
-### Phase 1: Foundation & Core Rendering
-**Goal**: Developers can render any of the 52 playing cards with flip animations
-**Depends on**: Nothing (first phase)
-**Requirements**: FNDN-01, FNDN-02, FNDN-03, FNDN-04, FNDN-05, FNDN-06, FNDN-07, ANIM-01, ANIM-02, ANIM-03, ANIM-04
-**Success Criteria** (what must be TRUE):
-  1. Developer can render any card from the 52-card deck by specifying suit and rank
-  2. Cards display correct suit emoji and rank, or card back when face-down
-  3. Cards flip smoothly with 3D CSS transform animation when toggled
-  4. Click/tap on card triggers event handler with card identity
-  5. Cards scale responsively within their container
-**Plans**: 4 plans in 3 waves
+**Plans:** 3 plans
 
 Plans:
-- [x] 01-01-PLAN.md - Project foundation and TypeScript types (Wave 1)
-- [x] 01-02-PLAN.md - Animation hooks with motion values (Wave 2)
-- [x] 01-03-PLAN.md - Card face and back presentation components (Wave 2)
-- [x] 01-04-PLAN.md - Complete Card component integration with tests (Wave 3)
+- [x] 07-01-PLAN.md — Create CI workflow with parallel test/lint/build jobs
+- [x] 07-02-PLAN.md — Create deployment workflow and Storybook base path config
+- [x] 07-03-PLAN.md — Update README with badges and make repository public (manual checkpoint pending)
 
-### Phase 2: Container Components & Layouts
-**Goal**: Developers can display cards in hands, decks, and stacks with layout presets
-**Depends on**: Phase 1
-**Requirements**: CNTR-01, CNTR-02, CNTR-03, CNTR-04, LYOT-01, LYOT-02, LYOT-03, LYOT-04
-**Success Criteria** (what must be TRUE):
-  1. Hand component displays cards in fan, spread, or stack arrangement
-  2. Deck component shows card stack with draw action that removes top card
-  3. CardStack component displays overlapping cards with configurable offset
-  4. Layout utilities calculate correct rotation and overlap for any card count
-**Plans**: 4 plans in 3 waves
+**Requirements:**
+- CICD-01: Tests run on every push to develop/feature branches
+- CICD-02: Linting runs on every push
+- CICD-03: Library build verification on every push
+- CICD-04: Storybook build in CI pipeline
+- CICD-05: Game demos build in CI pipeline
+- CICD-06: Composite site deployment to GitHub Pages
+- CICD-07: npm caching for faster builds
+- CICD-08: NODE_OPTIONS memory allocation
+- REPO-01: Repository visibility changed to public
+- REPO-02: Build status badge in README
 
-Plans:
-- [x] 02-01-PLAN.md — Layout utilities, container types, constants, and useContainerSize hook (Wave 1)
-- [x] 02-02-PLAN.md — Hand component with fan/spread/stack layouts (Wave 2)
-- [x] 02-03-PLAN.md — Deck, CardStack, and DropZone components (Wave 2)
-- [x] 02-04-PLAN.md — Barrel exports and integration verification (Wave 3)
-
-### Phase 3: Drag & Drop
-**Goal**: Developers can build card games where cards can be dragged between zones
-**Depends on**: Phase 2
-**Requirements**: DND-01, DND-02, DND-03, DND-04, DND-05, DND-06
-**Success Criteria** (what must be TRUE):
-  1. Cards can be picked up and dragged with mouse or touch
-  2. Drop zones visually indicate when a card can be dropped
-  3. Drag preview shows the card being dragged at cursor position
-  4. Dragging 50+ cards simultaneously does not cause visible jank
-  5. Touch gestures work on mobile devices (iOS Safari, Android Chrome)
-**Plans**: 5 plans in 4 waves
-
-Plans:
-- [x] 03-01-PLAN.md — Install @dnd-kit deps, DnD types, sensor and haptic hooks (Wave 1)
-- [x] 03-02-PLAN.md — DraggableCard component with touch support (Wave 2)
-- [x] 03-03-PLAN.md — CardDragOverlay and DroppableZone components (Wave 2)
-- [x] 03-04-PLAN.md — CardDndProvider with lifecycle and multi-card support (Wave 3)
-- [x] 03-05-PLAN.md — Barrel exports and integration verification (Wave 4)
-
-### Phase 4: State Management
-**Goal**: Redux users can integrate card state with their application store
-**Depends on**: Phase 3
-**Requirements**: STATE-01, STATE-02, STATE-03, STATE-04, STATE-05
-**Success Criteria** (what must be TRUE):
-  1. Library works without Redux (internal context provides state)
-  2. Redux users can import slice and selectors from separate entry point
-  3. useDeck and useHand hooks provide convenient state access
-  4. Card state is normalized (byId, allIds, locations) for efficient updates
-**Plans**: TBD
-
-Plans:
-- [ ] 04-01: (TBD during plan-phase)
-
-### Phase 5: Accessibility
-**Goal**: Users with disabilities can fully interact with card components
-**Depends on**: Phase 3
-**Requirements**: A11Y-01, A11Y-02, A11Y-03, A11Y-04, A11Y-05, A11Y-06, A11Y-07, A11Y-08
-**Success Criteria** (what must be TRUE):
-  1. All interactive elements are reachable via Tab key navigation
-  2. Screen readers announce card identity and available actions
-  3. Keyboard users can move cards between zones without mouse
-  4. Animations respect prefers-reduced-motion system setting
-  5. Touch targets meet minimum 44x44px size requirement
-**Plans**: TBD
-
-Plans:
-- [ ] 05-01: (TBD during plan-phase)
-
-### Phase 6: Developer Experience & Build
-**Goal**: Library is published with documentation and tree-shakeable imports
-**Depends on**: Phase 5
-**Requirements**: DX-01, DX-02, DX-03, DX-04, DX-05, DX-06, BUILD-01, BUILD-02, BUILD-03, BUILD-04, BUILD-05, BUILD-06
-**Success Criteria** (what must be TRUE):
-  1. Storybook shows interactive examples of all components
-  2. Importing single component does not bundle entire library
-  3. TypeScript users get full type definitions and autocomplete
-  4. Test suite passes with >80% coverage
-  5. Library installs and works in fresh Vite/Next.js projects
-**Plans**: TBD
-
-Plans:
-- [ ] 06-01: (TBD during plan-phase)
-
-## Progress
-
-**Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
-
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Foundation & Core Rendering | 4/4 | Complete | 2026-02-03 |
-| 2. Container Components & Layouts | 4/4 | Complete | 2026-02-03 |
-| 3. Drag & Drop | 5/5 | Complete | 2026-02-03 |
-| 4. State Management | 0/TBD | Not started | - |
-| 5. Accessibility | 0/TBD | Not started | - |
-| 6. Developer Experience & Build | 0/TBD | Not started | - |
+**Success Criteria:**
+1. Developer pushes to feature branch and sees CI pass/fail status within 5 minutes
+2. Pull request to develop shows all checks (tests, lint, build) with pass/fail indicators
+3. Merge to main triggers automatic deployment to GitHub Pages at https://{username}.github.io/decentralized-card-games/
+4. GitHub Actions page shows successful deployment with green checkmarks
+5. Repository is publicly visible and README displays live build status badge
 
 ---
-*Roadmap created: 2026-02-02*
-*Last updated: 2026-02-03*
+
+### Phase 8: Landing Page & Storybook Integration
+
+**Goal:** Public-facing documentation site with hero, installation guide, and component docs is live
+
+**Dependencies:** Phase 7 (deployment infrastructure required)
+
+**Requirements:**
+- SITE-01: Hero section showcasing library capabilities
+- SITE-02: Installation instructions with npm command
+- SITE-03: Quick start code example
+- SITE-04: Feature highlights section
+- SITE-05: Navigation links to Storybook
+- SITE-06: Navigation links to game demos
+- SITE-07: Storybook deployed at /storybook/ subdirectory
+- SITE-08: Games deployed at /games/ subdirectory
+- SITE-09: .nojekyll file prevents Jekyll filtering
+- SITE-10: All artifacts composed into site-dist/
+- REPO-03: npm version badge
+- REPO-04: Bundle size badge
+- REPO-05: Link to live GitHub Pages site
+- REPO-06: Link to Storybook documentation
+
+**Success Criteria:**
+1. User visits site root and sees project identity and "what is this" within 5 seconds
+2. User can copy-paste npm install command from installation section
+3. User can copy quick start code and render first Card component
+4. User clicks "Documentation" link and lands on Storybook with all 35 stories
+5. User clicks "Demos" link and sees navigation to three games
+6. All CSS/JS assets load correctly (no 404s from base path mismatch)
+
+---
+
+### Phase 9: Memory Game Demo
+
+**Goal:** First playable game demo proves library works for card flip gameplay
+
+**Dependencies:** Phase 8 (site shell required for game navigation)
+
+**Requirements:**
+- MEM-01: Start new Memory game with shuffled pairs
+- MEM-02: Flip cards by clicking
+- MEM-03: Cards auto-flip back if no match
+- MEM-04: Matched pairs remain face-up and disabled
+- MEM-05: Win detection when all matched
+- MEM-06: Move counter and elapsed time display
+- MEM-07: Reset game functionality
+
+**Success Criteria:**
+1. User navigates to /games/#/memory and sees grid of face-down cards
+2. User clicks two cards and sees flip animation with 3D transform
+3. User matches two cards and they remain face-up
+4. User mismatches two cards and they auto-flip back after 1 second delay
+5. User matches all pairs and sees "You Won!" message with move count and time
+6. User clicks "New Game" and grid reshuffles
+
+---
+
+### Phase 10: War Game Demo
+
+**Goal:** Second game demo showcases deck management and automated gameplay
+
+**Dependencies:** Phase 9 (game build pattern established)
+
+**Requirements:**
+- WAR-01: Start War game with split deck
+- WAR-02: Automated card drawing and comparison
+- WAR-03: Higher card wins round
+- WAR-04: "War" tie scenario with face-down/face-up sequence
+- WAR-05: Current card count display for both players
+- WAR-06: Win detection when one player has all cards
+- WAR-07: Pause/resume automated gameplay
+
+**Success Criteria:**
+1. User navigates to /games/#/war and sees two decks with 26 cards each
+2. User clicks "Start" and cards automatically draw and compare each round
+3. User sees higher-ranked card win the round and both cards move to winner's pile
+4. User sees "War!" scenario when cards tie, followed by face-down then face-up resolution
+5. User sees real-time card counts update (e.g., "Player: 28, Computer: 24")
+6. User sees "You Win!" or "Computer Wins!" when one side reaches 52 cards
+7. User clicks "Pause" and gameplay stops mid-round
+
+---
+
+### Phase 11: Solitaire Game Demo
+
+**Goal:** Complex game demo proves library handles production-grade drag-and-drop scenarios
+
+**Dependencies:** Phase 10 (simpler games validated)
+
+**Requirements:**
+- SOL-01: Klondike initial layout with 7 tableau columns
+- SOL-02: Drag cards between tableau columns
+- SOL-03: Drag cards to foundation piles (4 foundations by suit)
+- SOL-04: Draw cards from stock to waste (draw 3 mode)
+- SOL-05: Drag from waste to tableau/foundations
+- SOL-06: Legal move validation (alternating colors, descending rank)
+- SOL-07: Auto-reveal face-down cards when top card removed
+- SOL-08: Win detection when all foundations complete
+- SOL-09: Restart game with new shuffle
+
+**Success Criteria:**
+1. User navigates to /games/#/solitaire and sees 7 tableau columns with cascading cards
+2. User drags King from tableau to empty column and drop is accepted
+3. User drags Red 6 onto Black 7 and cards stack correctly
+4. User attempts to drag Black 6 onto Black 7 and drop is rejected
+5. User drags Ace to foundation pile and card moves
+6. User clicks stock pile and 3 cards flip to waste pile
+7. User completes all 4 foundations and sees "You Won!" message
+8. User clicks "New Game" and layout reshuffles
+
+---
+
+### Phase 12: Repository Documentation & Community Preparation
+
+**Goal:** Repository is ready for public contribution with clear guidelines and documentation
+
+**Dependencies:** Phase 11 (all features complete)
+
+**Requirements:**
+- REPO-07: CONTRIBUTING.md file created
+- REPO-08: Development setup instructions
+- REPO-09: Testing guidelines
+- REPO-10: Code style expectations
+
+**Success Criteria:**
+1. External contributor finds CONTRIBUTING.md in repository root
+2. Contributor follows setup instructions and runs `npm install && npm test` successfully
+3. Contributor reads testing guidelines and understands how to add tests
+4. Contributor reads code style section and knows project uses ESLint + Prettier
+5. Repository README displays all badges (build, npm, bundle size) with live links
+
+---
+
+## Progress Tracking
+
+| Phase | Status | Plans | Completed | Progress |
+|-------|--------|-------|-----------|----------|
+| 7 - CI/CD Foundation | Complete* | 3 | 3 | ██████████ 100% |
+| 8 - Landing Page | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
+| 9 - Memory Game | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
+| 10 - War Game | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
+| 11 - Solitaire Game | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
+| 12 - Repository Docs | Pending | 0 | 0 | ░░░░░░░░░░ 0% |
+
+**Overall:** 1/6 phases complete (17%)
+
+*Phase 7 automated tasks complete; manual checkpoint pending (make repo public + configure GitHub Pages)
+
+---
+
+## Requirements Coverage
+
+**Total v2.0 requirements:** 51
+**Mapped to phases:** 51
+**Unmapped:** 0
+
+### Coverage by Category
+
+| Category | Requirements | Phase |
+|----------|--------------|-------|
+| CI/CD Pipeline | 8 | Phase 7 |
+| GitHub Pages Site | 10 | Phase 8 |
+| Memory Game | 7 | Phase 9 |
+| War Game | 7 | Phase 10 |
+| Solitaire Game | 9 | Phase 11 |
+| Repository Docs | 10 | Phase 7, 8, 12 |
+
+**Coverage: 100%** ✓
+
+---
+
+## Dependency Graph
+
+```
+Phase 7 (CI/CD Foundation)
+    ↓
+Phase 8 (Landing Page & Storybook)
+    ↓
+Phase 9 (Memory Game)
+    ↓
+Phase 10 (War Game)
+    ↓
+Phase 11 (Solitaire Game)
+    ↓
+Phase 12 (Repository Docs)
+```
+
+**Critical path:** Linear progression from infrastructure → content → demos → polish
+
+---
+
+*Roadmap created: 2026-02-04*
+*Last updated: 2026-02-04*

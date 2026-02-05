@@ -15,6 +15,7 @@ import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { Card } from '../Card';
 import { parseCard } from '../../types';
+import { formatCardForSpeech } from '../../utils/a11y';
 import type { CardData } from '../../types';
 import type { DragItemData } from '../../types/dnd';
 import type { DraggableCardProps } from './DraggableCard.types';
@@ -65,6 +66,13 @@ const DraggableCardInner: React.FC<DraggableCardProps> = ({
       disabled,
     });
 
+  // Accessible label describing the card for screen readers
+  const dragAriaLabel = useMemo(() => {
+    if (!resolvedCardData) return 'Draggable card';
+    const cardName = formatCardForSpeech(resolvedCardData);
+    return disabled ? `${cardName}, dragging disabled` : cardName;
+  }, [resolvedCardData, disabled]);
+
   // Compute inline transform style from dnd-kit transform
   const transformStyle = transform
     ? CSS.Translate.toString(transform)
@@ -88,6 +96,9 @@ const DraggableCardInner: React.FC<DraggableCardProps> = ({
       data-testid={`draggable-card-${id}`}
       {...attributes}
       {...listeners}
+      aria-roledescription="draggable card"
+      aria-label={dragAriaLabel}
+      aria-hidden={isDragging || undefined}
     >
       <Card
         card={card}
@@ -102,6 +113,7 @@ const DraggableCardInner: React.FC<DraggableCardProps> = ({
         onFlipComplete={onFlipComplete}
         onHover={onHover}
         onFocus={onFocus}
+        interactive={false}
       />
     </div>
   );

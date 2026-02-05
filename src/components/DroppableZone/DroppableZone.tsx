@@ -65,7 +65,12 @@ export const DroppableZone: React.FC<DroppableZoneProps> = ({
   // Render: wrap DropZone in a div that receives the droppable ref
   // ---------------------------------------------------------------------------
   return (
-    <div ref={setNodeRef} data-testid="droppable-zone-wrapper">
+    <div
+      ref={setNodeRef}
+      data-testid="droppable-zone-wrapper"
+      role="region"
+      aria-label={label ?? 'Drop zone'}
+    >
       <DropZone
         state={visualState}
         emptyState={emptyState}

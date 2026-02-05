@@ -8,6 +8,7 @@
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { createRef } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { Card } from './Card';
 import type { CardRef } from './Card.types';
 
@@ -61,11 +62,11 @@ describe('Card', () => {
       expect(ranks.length).toBeGreaterThanOrEqual(1);
     });
 
-    it('displays rank "T" as "10" in aria-label', () => {
+    it('displays rank "T" as "Ten" in aria-label', () => {
       render(<Card card="♠T" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        '10 of spades',
+        'Ten of Spades',
       );
     });
 
@@ -241,14 +242,31 @@ describe('Card', () => {
   });
 
   // -------------------------------------------------------------------------
-  // Accessibility
+  // Accessibility - axe scans
+  // -------------------------------------------------------------------------
+  describe('accessibility - axe', () => {
+    it('has no axe violations when face up', async () => {
+      const { container } = render(<Card card="♠A" isFaceUp={true} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('has no axe violations when face down', async () => {
+      const { container } = render(<Card card="♠A" isFaceUp={false} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Accessibility - ARIA & keyboard
   // -------------------------------------------------------------------------
   describe('accessibility', () => {
     it('has correct ARIA label for spades ace', () => {
       render(<Card card="♠A" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        'A of spades',
+        'Ace of Spades',
       );
     });
 
@@ -256,7 +274,7 @@ describe('Card', () => {
       render(<Card card="♥K" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        'K of hearts',
+        'King of Hearts',
       );
     });
 
@@ -264,8 +282,30 @@ describe('Card', () => {
       render(<Card card="♦T" isFaceUp={true} />);
       expect(screen.getByRole('button')).toHaveAttribute(
         'aria-label',
-        '10 of diamonds',
+        'Ten of Diamonds',
       );
+    });
+
+    it('announces face-down card without revealing identity', () => {
+      render(<Card card="♠A" isFaceUp={false} />);
+      expect(screen.getByRole('button')).toHaveAttribute(
+        'aria-label',
+        'Face-down card',
+      );
+    });
+
+    it('activates on Enter key press', () => {
+      const onClick = vi.fn();
+      render(<Card card="♠A" isFaceUp={true} onClick={onClick} />);
+      fireEvent.keyDown(screen.getByRole('button'), { key: 'Enter' });
+      expect(onClick).toHaveBeenCalled();
+    });
+
+    it('activates on Space key press', () => {
+      const onClick = vi.fn();
+      render(<Card card="♠A" isFaceUp={true} onClick={onClick} />);
+      fireEvent.keyDown(screen.getByRole('button'), { key: ' ' });
+      expect(onClick).toHaveBeenCalled();
     });
 
     it('has fallback ARIA label for invalid card', () => {

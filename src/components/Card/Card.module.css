@@ -1,11 +1,11 @@
 /* Card container - applies perspective */
 .container {
-  /* CSS custom properties for theming */
-  --card-perspective: 1000px;
-  --card-border-radius: 8px;
-  --card-padding: 0.5em;
-  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --card-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.3);
+  /* CSS custom properties for theming - inherit from global tokens with fallback */
+  --card-perspective: var(--card-perspective, 1000px);
+  --card-border-radius: var(--card-border-radius, 8px);
+  --card-padding: var(--card-padding, 0.5em);
+  --card-shadow: var(--card-shadow, 0 2px 4px rgba(0, 0, 0, 0.2));
+  --card-shadow-hover: var(--card-shadow-hover, 0 4px 8px rgba(0, 0, 0, 0.3));
 
   perspective: var(--card-perspective);
   width: 100%;
@@ -19,6 +19,28 @@
   aspect-ratio: 5 / 7; /* Poker default */
   transform-style: preserve-3d;
   cursor: pointer;
+}
+
+/* Touch target expansion: ensures 44x44px minimum for WCAG compliance */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 44px;
+  min-height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* Focus-visible: show browser default outline for keyboard navigation */
+.card:focus-visible {
+  outline: revert;
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+/* Hide focus outline on mouse click */
+.card:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .card--bridge {
@@ -39,7 +61,7 @@
   /* Prevent content overflow */
   overflow: hidden;
   /* Add border for definition */
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--card-border-color, rgba(0, 0, 0, 0.1));
 }
 
 .face:hover {
@@ -48,29 +70,27 @@
 
 /* Front face */
 .front {
-  background: white;
+  background: var(--card-bg, #ffffff);
   /* Ensure solid background */
-  background-color: #ffffff;
+  background-color: var(--card-bg, #ffffff);
   /* Remove padding - let cardContent handle spacing */
   /* Dark bevel for face-up cards */
-  box-shadow:
-    inset 1px 1px 0 rgba(0, 0, 0, 0.15),
+  box-shadow: var(--card-front-bevel, inset 1px 1px 0 rgba(0, 0, 0, 0.15),
     inset -1px -1px 0 rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(0, 0, 0, 0.2);
+    0 0 0 1px rgba(0, 0, 0, 0.2));
 }
 
 /* Back face - pre-rotated 180deg for backface-visibility to work */
 .back {
-  background: linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%);
+  background: var(--card-back-bg, linear-gradient(135deg, #1a365d 0%, #2d4a7c 100%));
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
   /* Light bevel for face-down cards */
-  box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.4),
+  box-shadow: var(--card-back-bevel, inset 1px 1px 0 rgba(255, 255, 255, 0.4),
     inset -1px -1px 0 rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(0, 0, 0, 0.2);
+    0 0 0 1px rgba(0, 0, 0, 0.2));
 }
 
 /* Card content container - ensures content stays within bounds */
@@ -196,20 +216,20 @@
 
 /* Suit color classes - two-color scheme */
 .suit--red {
-  color: #cc0000;
+  color: var(--suit-red, #cc0000);
 }
 
 .suit--black {
-  color: #000000;
+  color: var(--suit-black, #000000);
 }
 
 /* Suit color classes - four-color scheme extensions */
 .suit--blue {
-  color: #0066cc;
+  color: var(--suit-blue, #0066cc);
 }
 
 .suit--green {
-  color: #009933;
+  color: var(--suit-green, #009933);
 }
 
 /* Perspective variants */

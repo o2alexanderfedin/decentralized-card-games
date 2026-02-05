@@ -121,6 +121,25 @@ describe('parseCard', () => {
       }
     }
   });
+
+  it('parses rank-first emoji notation', () => {
+    expect(parseCard('A\u2660')).toEqual({ suit: 'spades', rank: 'A' });
+    expect(parseCard('7\u2665')).toEqual({ suit: 'hearts', rank: '7' });
+    expect(parseCard('T\u2666')).toEqual({ suit: 'diamonds', rank: 'T' });
+    expect(parseCard('K\u2663')).toEqual({ suit: 'clubs', rank: 'K' });
+  });
+
+  it('parses rank-first text notation', () => {
+    expect(parseCard('As')).toEqual({ suit: 'spades', rank: 'A' });
+    expect(parseCard('7h')).toEqual({ suit: 'hearts', rank: '7' });
+    expect(parseCard('Td')).toEqual({ suit: 'diamonds', rank: 'T' });
+    expect(parseCard('Kc')).toEqual({ suit: 'clubs', rank: 'K' });
+  });
+
+  it('handles case-insensitive rank-first text notation', () => {
+    expect(parseCard('AS')).toEqual({ suit: 'spades', rank: 'A' });
+    expect(parseCard('7H')).toEqual({ suit: 'hearts', rank: '7' });
+  });
 });
 
 describe('formatCard', () => {

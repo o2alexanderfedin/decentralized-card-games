@@ -7,6 +7,7 @@
 
 import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'vitest-axe';
 import { CardStack } from './CardStack';
 
 // jsdom does not implement window.matchMedia; mock for usePrefersReducedMotion
@@ -127,6 +128,30 @@ describe('CardStack', () => {
       fireEvent.click(slots[0]);
 
       expect(onTopCardClick).not.toHaveBeenCalled();
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Accessibility
+  // -------------------------------------------------------------------------
+  describe('accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<CardStack cards={['sA', 'h7']} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('has group role', () => {
+      render(<CardStack cards={['sA', 'h7']} />);
+      expect(screen.getByRole('group')).toBeInTheDocument();
+    });
+
+    it('has descriptive aria-label', () => {
+      render(<CardStack cards={['sA', 'h7']} />);
+      expect(screen.getByRole('group')).toHaveAttribute(
+        'aria-label',
+        'Card stack, 2 cards',
+      );
     });
   });
 

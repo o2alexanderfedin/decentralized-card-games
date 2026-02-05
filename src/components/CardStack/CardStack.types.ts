@@ -37,6 +37,8 @@ export interface CardStackProps {
   faceUp?: FaceUpMode;
   /** Fired when the top card is clicked. */
   onTopCardClick?: (card: CardData, index: number) => void;
+  /** ARIA label for screen readers. Default: "Card stack, N card(s)". */
+  ariaLabel?: string;
   /** Additional CSS class. */
   className?: string;
 }

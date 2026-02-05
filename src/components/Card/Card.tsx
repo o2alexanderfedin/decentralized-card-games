@@ -22,6 +22,7 @@ import { useCardFlip, usePrefersReducedMotion } from '../../hooks';
 import { parseCard } from '../../types';
 import type { CardData } from '../../types';
 import { PERSPECTIVE_VALUES } from '../../constants';
+import { formatCardForSpeech } from '../../utils/a11y';
 import { CardFace } from './CardFace';
 import { CardBack } from './CardBack';
 import type { CardProps, CardRef, CardClickData } from './Card.types';
@@ -59,6 +60,7 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
     onFlipComplete,
     onHover,
     onFocus,
+    interactive = true,
     className,
     style,
   } = props;
@@ -86,9 +88,8 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const { rotateY, frontOpacity, backOpacity } = useCardFlip({
     isFaceUp: faceUp,
-    spring: prefersReducedMotion
-      ? { stiffness: 1000, damping: 50 }
-      : spring,
+    spring,
+    reducedMotion: prefersReducedMotion,
     onFlipComplete,
   });
 
@@ -165,10 +166,10 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
   // ARIA label
   // ---------------------------------------------------------------------------
   const ariaLabel = useMemo(() => {
+    if (!faceUp) return 'Face-down card';
     if (!cardData) return 'Card';
-    const displayRank = cardData.rank === 'T' ? '10' : cardData.rank;
-    return `${displayRank} of ${cardData.suit}`;
-  }, [cardData]);
+    return formatCardForSpeech(cardData);
+  }, [faceUp, cardData]);
 
   // ---------------------------------------------------------------------------
   // Render
@@ -182,13 +183,20 @@ export const Card = forwardRef<CardRef, CardProps>((props, ref) => {
         className={cardClasses}
         style={{ rotateY }}
         onClick={handleClick}
+        onKeyDown={(e: React.KeyboardEvent) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
         onMouseEnter={() => onHover?.(true)}
         onMouseLeave={() => onHover?.(false)}
         onFocus={() => onFocus?.(true)}
         onBlur={() => onFocus?.(false)}
-        tabIndex={0}
-        role="button"
-        aria-label={ariaLabel}
+        tabIndex={interactive ? 0 : -1}
+        role={interactive ? 'button' : undefined}
+        aria-label={interactive ? ariaLabel : undefined}
+        aria-hidden={interactive ? undefined : true}
       >
         {/* Front face */}
         <motion.div

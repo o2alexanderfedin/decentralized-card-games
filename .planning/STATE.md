@@ -1,104 +1,167 @@
-# Project State
+# Project State: Decentralized Card Games Component Library
+
+**Updated:** 2026-02-04
+**Milestone:** v2.0 Distribution & Showcase
+**Status:** In Progress
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-02)
+**Core Value:** Developers can drop in fully interactive card components without building card UI from scratch
 
-**Core value:** Developers can drop in fully interactive card components without building card UI from scratch
-**Current focus:** Phase 3 - Drag & Drop (Complete)
+**Current Focus:** Make the library publicly accessible with automated quality gates and compelling demonstration of capabilities through real game implementations
+
+**Milestone Goal:** CI/CD pipeline + GitHub Pages site + three playable game demos (Memory, War, Solitaire)
+
+---
 
 ## Current Position
 
-Phase: 3 of 6 (Drag & Drop)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-03 - Completed 03-05-PLAN.md
+**Phase:** 7 of 6 - CI/CD Foundation & Deployment Infrastructure
+**Plan:** 3 of 3 complete (manual checkpoint pending)
+**Status:** Complete (automated tasks) / Checkpoint (manual repository settings)
+**Last activity:** 2026-02-04 - Completed 07-03-PLAN.md
 
-Progress: [#############] 13/13 plans (100%)
+**Progress:**
+```
+███████░░░ ~10% (3/~24 plans complete)
+```
+
+**Next Action:** User to complete manual checkpoint (make repo public + configure GitHub Pages), then proceed to Phase 8 planning
+
+---
 
 ## Performance Metrics
 
-**Velocity:**
-- Total plans completed: 13
-- Average duration: 7 min
-- Total execution time: 95 min
+### v2.0 Milestone (Current)
 
-**By Phase:**
+| Metric | Value | Target |
+|--------|-------|--------|
+| Phases planned | 6 | 6 |
+| Phases complete | 1 | 6 |
+| Plans created | 3 | ~24 (estimated) |
+| Plans complete | 3 | ~24 |
+| Requirements delivered | 10/51 | 51/51 |
+| Days elapsed | 0 | TBD |
 
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| 1 - Foundation | 4/4 | 48 min | 12 min |
-| 2 - Containers | 4/4 | 24 min | 6 min |
-| 3 - Drag & Drop | 5/5 | 23 min | 5 min |
+### v1.0 Milestone (Completed 2026-02-04)
 
-**Recent Trend:**
-- Last 5 plans: 03-01 (4 min), 03-02 (4 min), 03-03 (5 min), 03-04 (5 min), 03-05 (5 min)
-- Trend: Consistent fast execution; Phase 3 completed at 5 min/plan average
+| Metric | Actual |
+|--------|--------|
+| Phases | 6 |
+| Plans | 29 |
+| Requirements | 9/9 delivered |
+| Files created | 278 |
+| Lines of code | ~13,000 TypeScript/TSX |
+| Test coverage | 91.78% |
+| Duration | 2 days (Feb 2-4, 2026) |
 
-*Updated after each plan completion*
+---
 
 ## Accumulated Context
 
-### Decisions
+### Key Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+**v2.0 Architecture:**
+- Three-way composed deployment: landing page + Storybook + game demos into unified site-dist/
+- Hash routing for games to avoid GitHub Pages SPA 404 issues
+- Direct source imports (games/site import from ../src/ not npm package during development)
+- Game logic as custom hooks (useMemoryGame, useWarGame, useSolitaire)
+- Separate Vite configs per build target (library vs. app mode)
 
-- Const assertion pattern for Suit/Rank types (typeof arr[number])
-- parseCard supports both emoji and text notation
-- React as peer dependency (not bundled)
-- Vitest 3.x (4.x not yet available)
-- vite-plugin-dts for library .d.ts generation
-- Reuse ColorScheme from constants rather than redefining in component types
-- Display rank T as "10" in rendered output
-- Inline style for suit colors using getSuitColor utility
-- CSS module type declarations at src/css-modules.d.ts
-- useSpring (not useMotionValue) for automatic spring-animated transitions
-- 4-point opacity transform [0,89,90,180] for sharp crossover at 90 degrees
-- useMotionValueEvent for animation lifecycle tracking
-- Custom usePrefersReducedMotion independent of Motion library
-- CSS grid (3-col x 5-row) for pip layouts matching traditional card arrangements
-- Number cards (2-10) show pip grids; face cards and Ace show single large symbol
-- Bottom-half pips rotated 180deg for visual symmetry
-- forwardRef + useImperativeHandle for uncontrolled component ref API
-- Fan angle scaling: count<=3 uses count/5, count>3 uses sqrt(count/7)
-- Spread spacing clamps to minOverlap when container is too narrow
-- useContainerSize rounds via Math.round with functional updater for identity preservation
-- Hook tests use component render approach rather than useRef spy
-- Card dimensions in Hand: clamp(60, containerWidth/(count+4), 120) with 1.4x aspect ratio
-- AnimatePresence key uses formatCard(card) for stable identity across reorders
-- Selected card y-offset of -15px via motion animate prop
-- Motion/react test mock: importOriginal + override motion.div and AnimatePresence
-- Deck renders max 5 visual layers for stack depth effect
-- CardStack defaults to 'top-only' face-up mode
-- DropZone visual states controlled via prop (future DnD context integration)
-- Container empty state pattern: 'none' | 'placeholder' | ReactNode
-- Named exports in src/index.ts for explicit public API surface
-- Wildcard re-exports in src/components/index.ts for internal convenience
-- Separate MouseSensor + TouchSensor instead of PointerSensor for iOS Safari scroll prevention
-- @dnd-kit/modifiers installed at 9.0.0 (latest available)
-- useHapticFeedback uses useMemo keyed on enabled+isSupported for referential stability
-- CardDndProviderProps extends DragLifecycleCallbacks via interface extension
-- DragOverlay always mounted, children conditionally rendered (dnd-kit pitfall 4)
-- Wrapper div for useDroppable ref to avoid modifying Phase 2 DropZone
-- Multi-card stack shows max 3 visual cards with +N badge
-- DroppableZone supports both accepts array and onValidate callback
-- Component-level CardDndProviderProps uses simplified card callbacks (card, zoneId) not raw dnd-kit events
-- Drop validation checks zone data.onValidate first, falls back to data.accepts array
-- activeCard state managed internally; consumer never touches DndContext directly
-- Barrel exports expanded to include all Phase 3 DnD components, hooks, and types
-- ReactNode over JSX.Element for return type annotations in TSX layout files
+**Critical Deployment Config:**
+- Base path: `/decentralized-card-games/` for all builds (GitHub Pages subdirectory)
+- .nojekyll file required to prevent Jekyll filtering of Storybook assets
+- NODE_OPTIONS: '--max_old_space_size=4096' in CI to prevent OOM during Storybook build
+- Workflow triggers: [main, develop, 'feature/**', 'release/**', 'hotfix/**'] to align with git-flow
+
+**Game Scope Constraints:**
+- Memory: Flip-pairs-match only, no difficulty levels or leaderboards
+- War: Automated comparison only, no manual play mode
+- Solitaire: Klondike draw-1 mode, NO undo, NO hints, NO auto-complete
+
+**CI/CD Decisions (Phase 7):**
+
+| ID | Decision | Rationale |
+|----|----------|-----------|
+| CICD-01 | Five parallel jobs for maximum CI speed | No dependencies between jobs; ~3-5 min feedback |
+| CICD-02 | Node.js 22 LTS for CI | Current LTS with maintenance until Apr 2027 |
+| CICD-03 | setup-node cache: npm | Automatic lockfile-based caching |
+| CICD-04 | Conditional deploy jobs for production/staging | Separate environments in GitHub UI for tracking |
+| CICD-05 | STORYBOOK_BASE env var for base path | Flexible subdirectory deployment without hardcoding |
+
+### Open Questions
+
+None at this time. Research phase completed with HIGH confidence.
+
+### Technical Debt
+
+None yet (v2.0 just started).
 
 ### Pending Todos
 
-None.
+**Count:** 0
 
-### Blockers/Concerns
+### Recently Completed
 
-None. (Pre-existing JSX namespace TypeScript errors resolved in 03-05.)
+- [2026-02-04] ✓ Add Playwright-based deployment verification tests (testing)
+
+---
+
+## Blockers & Risks
+
+### Active Blockers
+
+None
+
+### Known Risks
+
+1. **Storybook base path edge cases** (Medium) - Storybook 8.x has inconsistent viteFinal behavior in some scenarios. Mitigation: Test deployment early in Phase 7.
+
+2. **GitHub Actions permissions** (Medium) - Three overlapping config points (workflow permissions, repo settings, Actions permissions). Mitigation: Follow Phase 7 checklist carefully.
+
+3. **Game scope creep** (Low) - Temptation to add "just one more feature" to games. Mitigation: Hard requirements list in roadmap.
+
+### Mitigated Risks
+
+- **Deployment failures** - Research identified top 5 pitfalls with solutions
+- **Missing dependencies** - Research confirmed no new npm packages needed
+
+---
 
 ## Session Continuity
 
-Last session: 2026-02-03T23:28:00Z
-Stopped at: Completed 03-05-PLAN.md (Phase 3 complete)
-Resume file: None
+### Last Session Summary
+
+**Date:** 2026-02-04
+**Agent:** Claude Sonnet 4.5
+**Accomplishment:** Added Playwright E2E deployment verification tests
+
+**Files modified:**
+- Created tests/e2e/deployment/local.spec.ts (8 verification tests)
+- Created tests/e2e/deployment/production.spec.ts (10 verification tests)
+- Modified .github/workflows/ci.yml (added verify-deployment job)
+- Modified .github/workflows/deploy.yml (added verify-production job)
+- Modified package.json (added test:e2e:* scripts)
+
+**Context for next session:**
+- Phase 7 complete with enhanced E2E verification
+- Local tests verify built site-dist/ before deployment
+- Production tests verify live GitHub Pages after deployment
+- CI/CD pipelines now include automated deployment verification
+- Manual checkpoint still pending: Make repo public + configure GitHub Pages source
+- Ready for Phase 8 planning after checkpoint complete
+
+### Quick Context Recovery
+
+If resuming after interruption:
+
+1. **Where we are:** Phase 7 complete with E2E verification, manual checkpoint pending
+2. **What's built:** CI workflow + deploy workflow + README badges + E2E tests (local + production)
+3. **What's next:** Complete manual checkpoint (repo public + GitHub Pages config), then Phase 8 planning
+4. **Key constraints:** git-flow branch strategy, GitHub Pages requires manual configuration
+5. **Quality gates:** E2E tests verify deployment in CI (local) and post-deploy (production)
+
+---
+
+*State initialized: 2026-02-04*
+*Last updated: 2026-02-04*

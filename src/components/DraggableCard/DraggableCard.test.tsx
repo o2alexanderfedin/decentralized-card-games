@@ -107,8 +107,8 @@ describe('DraggableCard', () => {
     render(<DraggableCard id="card-1" card="sA" />);
     const wrapper = screen.getByTestId('draggable-card-card-1');
     expect(wrapper).toBeInTheDocument();
-    // Card should render inside - look for the card's aria-label on the inner Card element
-    const cardElements = screen.getAllByRole('button', { name: /A of spades/i });
+    // Wrapper has aria-label with full card name from formatCardForSpeech
+    const cardElements = screen.getAllByRole('button', { name: /Ace of Spades/i });
     expect(cardElements.length).toBeGreaterThanOrEqual(1);
   });
 
@@ -199,6 +199,53 @@ describe('DraggableCard', () => {
     render(<DraggableCard id="card-8" card="d5" />);
     const wrapper = screen.getByTestId('draggable-card-card-8');
     expect(wrapper.style.transform).toBe('');
+  });
+
+  // ---------------------------------------------------------------------------
+  // ARIA enhancements
+  // ---------------------------------------------------------------------------
+  it('has aria-roledescription="draggable card"', () => {
+    render(<DraggableCard id="card-a1" card="sA" />);
+    const wrapper = screen.getByTestId('draggable-card-card-a1');
+    expect(wrapper).toHaveAttribute('aria-roledescription', 'draggable card');
+  });
+
+  it('has aria-label with full card name', () => {
+    render(<DraggableCard id="card-a2" card="hK" />);
+    const wrapper = screen.getByTestId('draggable-card-card-a2');
+    expect(wrapper).toHaveAttribute('aria-label', 'King of Hearts');
+  });
+
+  it('includes "dragging disabled" in aria-label when disabled', () => {
+    render(<DraggableCard id="card-a3" card="dQ" disabled />);
+    const wrapper = screen.getByTestId('draggable-card-card-a3');
+    expect(wrapper).toHaveAttribute('aria-label', 'Queen of Diamonds, dragging disabled');
+  });
+
+  it('sets aria-hidden when isDragging', () => {
+    mockUseDraggableReturn = {
+      ...mockUseDraggableReturn,
+      isDragging: true,
+    };
+    render(<DraggableCard id="card-a4" card="c5" />);
+    const wrapper = screen.getByTestId('draggable-card-card-a4');
+    expect(wrapper).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('does not set aria-hidden when not dragging', () => {
+    render(<DraggableCard id="card-a5" card="c5" />);
+    const wrapper = screen.getByTestId('draggable-card-card-a5');
+    expect(wrapper).not.toHaveAttribute('aria-hidden');
+  });
+
+  // ---------------------------------------------------------------------------
+  // Accessibility - axe scan
+  // ---------------------------------------------------------------------------
+  it('has no axe violations', async () => {
+    const { axe: runAxe } = await import('vitest-axe');
+    const { container } = render(<DraggableCard id="card-axe" card="sA" />);
+    const results = await runAxe(container);
+    expect(results).toHaveNoViolations();
   });
 
   // ---------------------------------------------------------------------------
