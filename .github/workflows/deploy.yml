@@ -157,6 +157,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: deploy-production
     runs-on: ubuntu-latest
+    continue-on-error: true  # Don't fail workflow if CDN hasn't fully propagated
     steps:
       - uses: actions/checkout@v6
 
