@@ -56,6 +56,9 @@ export default defineConfig({
         baseURL: 'https://o2alexanderfedin.github.io/decentralized-card-games',
       },
       testMatch: /.*production\.spec\.ts/,
+      // Increased timeout to accommodate retry logic with exponential backoff
+      // Retry logic can take up to 62s (2+4+8+16+32) per navigation
+      timeout: 120000, // 2 minutes per test
       // No webServer needed - tests against live GitHub Pages
     },
     {
