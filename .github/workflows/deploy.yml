@@ -171,10 +171,26 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Wait for Deployment
+      - name: Wait for Deployment to Propagate
         run: |
-          echo "Waiting 30 seconds for GitHub Pages to propagate..."
-          sleep 30
+          echo "Polling GitHub Pages deployment until available..."
+          MAX_ATTEMPTS=60  # 5 minutes (60 * 5 seconds)
+          ATTEMPT=0
+          URL="https://o2alexanderfedin.github.io/decentralized-card-games/"
+
+          until curl -sSf "$URL" > /dev/null 2>&1; do
+            ATTEMPT=$((ATTEMPT + 1))
+            if [ $ATTEMPT -ge $MAX_ATTEMPTS ]; then
+              echo "❌ Deployment did not become available after 5 minutes"
+              exit 1
+            fi
+            echo "⏳ Attempt $ATTEMPT/$MAX_ATTEMPTS - Waiting for deployment..."
+            sleep 5
+          done
+
+          echo "✅ Deployment is available!"
+          echo "Waiting additional 10 seconds for full propagation..."
+          sleep 10
 
       - name: Run E2E Production Tests
         run: npm run test:e2e:production
