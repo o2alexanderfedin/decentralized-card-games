@@ -145,6 +145,68 @@ jobs:
           mkdir -p site-dist/storybook
           cp -r storybook-static/* site-dist/storybook/
           touch site-dist/.nojekyll
+          cat > site-dist/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>@decentralized-games/card-components</title>
+            <style>
+              body {
+                font-family: system-ui, -apple-system, sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+              }
+              .container {
+                text-align: center;
+                padding: 2rem;
+              }
+              h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+              }
+              p {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                margin-bottom: 1.5rem;
+              }
+              .btn {
+                display: inline-block;
+                padding: 1rem 2rem;
+                background: white;
+                color: #667eea;
+                text-decoration: none;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                transition: transform 0.2s;
+              }
+              .btn:hover {
+                transform: translateY(-2px);
+              }
+            </style>
+            <script>
+              // Auto-redirect after 3 seconds
+              setTimeout(() => {
+                window.location.href = './storybook/';
+              }, 3000);
+            </script>
+          </head>
+          <body>
+            <div class="container">
+              <h1>@decentralized-games/card-components</h1>
+              <p>React component library for building card games</p>
+              <p>Redirecting to documentation in 3 seconds...</p>
+              <a href="./storybook/" class="btn">View Documentation</a>
+            </div>
+          </body>
+          </html>
+          EOF
           echo "Site composed successfully"
           ls -la site-dist/
 
