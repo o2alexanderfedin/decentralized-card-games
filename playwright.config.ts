@@ -50,6 +50,14 @@ export default defineConfig({
       },
       testMatch: /.*production\.spec\.ts/,
     },
+    {
+      name: 'storybook',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:6006',
+      },
+      testMatch: /.*storybook\.spec\.ts/,
+    },
   ],
 
   // Web server for local tests (serve built site-dist)
