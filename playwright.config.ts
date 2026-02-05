@@ -53,7 +53,7 @@ export default defineConfig({
       name: 'production',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'https://o2alexanderfedin.github.io/decentralized-card-games',
+        baseURL: process.env.PLAYWRIGHT_BASE_URL || 'https://o2alexanderfedin.github.io/decentralized-card-games',
       },
       testMatch: /.*production\.spec\.ts/,
       // Increased timeout to accommodate retry logic with exponential backoff
