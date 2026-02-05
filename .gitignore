@@ -65,3 +65,7 @@ private-key.txt
 
 # Local blockchain data
 blockchain-data/
+
+# E2E test artifacts
+site-dist/
+test-results/
