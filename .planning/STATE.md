@@ -99,7 +99,9 @@ None yet (v2.0 just started).
 
 ### Pending Todos
 
-**Count:** 0
+**Count:** 1
+
+- [2026-02-04] Fix all tests (testing) - Production E2E tests failing due to CDN propagation
 
 ### Recently Completed
 
